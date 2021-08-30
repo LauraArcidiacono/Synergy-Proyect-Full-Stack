@@ -5,7 +5,7 @@ const resourceSchema = Schema({
  author: String,
  editorial: String,
  siteEditorial: String,
- img: String
+ image: String
 })
 
 module.exports = model('Resource', resourceSchema);
