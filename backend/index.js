@@ -13,10 +13,10 @@ server.use(express.json());
 server.use(morgan('dev'));
 
 const userRouter = require('./src/routes/userRouter');
+
 server.use('/synergy/users', userRouter);
 
 server.listen(
-    port,
-    () => debug(`Server is running on ${chalk.blue(`http://localhost:${port}`)}`)
-)
-
+  port,
+  () => debug(`Server is running on ${chalk.blue(`http://localhost:${port}`)}`)
+);

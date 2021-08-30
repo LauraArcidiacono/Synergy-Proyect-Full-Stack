@@ -1,15 +1,15 @@
-const {connect} = require('mongoose');
+const { connect } = require('mongoose');
 const debug = require('debug')('synergy');
 
 connect(
-    process.env.DDBB_URL,
-    {
-        useUnifiedTopology: true,
-        useNewUrlParser: true
-    }
+  process.env.DDBB_URL,
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  }
 )
 
-.then(
+  .then(
     () => debug('Connection established'),
     (error) => debug(error)
-);
+  );
