@@ -22,7 +22,16 @@ async function createOneUser({ body }, res) {
 
 async function getOneUserById({ params: { userId } }, res) {
   try {
-    const foundUser = await User.findById(userId);
+    const foundUser = await User.findById(userId)
+      .populate({
+        path: 'favoriteTechniques',
+        select: ['name', 'ilustration']
+      })
+      .populate({
+        path: 'techniquesProvided',
+        select: ['name', 'ilustration']
+      });
+
     res.json(foundUser);
     res.send(204);
   } catch (error) {

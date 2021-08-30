@@ -21,7 +21,11 @@ async function createOneTechnique({ body }, res) {
 
 async function getOneTechniqueById({ params: { techniqueId } }, res) {
   try {
-    const foundTechnique = await Technique.findById(techniqueId);
+    const foundTechnique = await Technique.findById(techniqueId)
+      .populate({
+        path: 'review',
+        select: ['technique', 'user', 'score']
+      });
     res.json(foundTechnique);
     res.send(204);
   } catch (error) {
