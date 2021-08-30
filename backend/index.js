@@ -16,6 +16,10 @@ const userRouter = require('./src/routes/userRouter');
 
 server.use('/synergy/users', userRouter);
 
+const techniqueRouter = require('./src/routes/techniqueRouter');
+
+server.use('/synergy/technique', techniqueRouter);
+
 server.listen(
   port,
   () => debug(`Server is running on ${chalk.blue(`http://localhost:${port}`)}`)
