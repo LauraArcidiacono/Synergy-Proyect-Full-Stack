@@ -1,9 +1,9 @@
-const User = require('../models/userModel');
-const controllers = require('./userControllers');
+const Technique = require('../models/techniqueModel');
+const controllers = require('./techniqueControllers');
 
-jest.mock('../models/userModel');
+jest.mock('../models/techniqueModel');
 
-describe('UserControllers', () => {
+describe('TechniqueControllers', () => {
   let res;
   let req;
 
@@ -14,7 +14,7 @@ describe('UserControllers', () => {
       status: jest.fn()
     };
   });
-  describe('Given a getAllUsers function', () => {
+  describe('Given a getAllTechniques function', () => {
     describe('When is triggered', () => {
       describe('And find resolved', () => {
         test('Then call json', async () => {
@@ -22,9 +22,9 @@ describe('UserControllers', () => {
             query: jest.fn()
           };
 
-          User.find.mockResolvedValue();
+          Technique.find.mockResolvedValue();
 
-          await controllers.getAllUsers(req, res);
+          await controllers.getAllTechniques(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -36,9 +36,9 @@ describe('UserControllers', () => {
             query: jest.fn()
           };
 
-          User.find.mockRejectedValue();
+          Technique.find.mockRejectedValue();
 
-          await controllers.getAllUsers(req, res);
+          await controllers.getAllTechniques(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -46,29 +46,29 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a createOneUser function', () => {
+  describe('Given a createOneTechnique function', () => {
     describe('When is triggeres', () => {
-      describe('And find resolved', () => {
+      describe('And create resolved', () => {
         test('Then call json', async () => {
           req = {
             body: {}
           };
-          User.find.mockResolvedValue({});
+          Technique.find.mockResolvedValue({});
 
-          await controllers.createOneUser(req, res);
+          await controllers.createOneTechnique(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
       });
 
-      describe('And find rejected', () => {
+      describe('And create rejected', () => {
         test('Then call status with 500', async () => {
           req = {
             body: {}
           };
-          User.create.mockRejectedValue();
+          Technique.create.mockRejectedValue();
 
-          await controllers.createOneUser(req, res);
+          await controllers.createOneTechnique(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -76,18 +76,18 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a getOneUserById function', () => {
+  describe('Given a getOneTechniqueById function', () => {
     beforeEach(() => {
       req = {
-        params: { userId: '612cdc22f51271a5127ca260' }
+        params: { techniqueId: '612cdc22f51271a5127ca260' }
       };
     });
     describe('When is triggered', () => {
       describe('And findById resolves', () => {
         test('Then res.json is called', async () => {
-          User.findById.mockResolvedValue({});
+          Technique.findById.mockResolvedValue({});
 
-          await controllers.getOneUserById(req, res);
+          await controllers.getOneTechniqueById(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -95,9 +95,9 @@ describe('UserControllers', () => {
 
       describe('And findById rejects', () => {
         test('Then call status with 500', async () => {
-          User.findById.mockRejectedValue();
+          Technique.findById.mockRejectedValue();
 
-          await controllers.getOneUserById(req, res);
+          await controllers.getOneTechniqueById(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -105,19 +105,19 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a updateOneUserById function', () => {
+  describe('Given a updateOneTechniqueById function', () => {
     beforeEach(() => {
       req = {
-        params: { userId: '612cdc22f51271a5127ca260' },
+        params: { techniqueId: '612cdc22f51271a5127ca260' },
         body: {}
       };
     });
     describe('When is triggered', () => {
       describe('And findByIdAndUpdate response', () => {
         test('Then res.json is called', async () => {
-          User.findByIdAndUpdate.mockResolvedValue({});
+          Technique.findByIdAndUpdate.mockResolvedValue({});
 
-          await controllers.updateOneUserById(req, res);
+          await controllers.updateOneTechniqueById(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -125,9 +125,9 @@ describe('UserControllers', () => {
 
       describe('And findByIdAndUpdate rejects', () => {
         test('Then res.status is called with 500', async () => {
-          User.findByIdAndUpdate.mockRejectedValue();
+          Technique.findByIdAndUpdate.mockRejectedValue();
 
-          await controllers.updateOneUserById(req, res);
+          await controllers.updateOneTechniqueById(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -135,13 +135,13 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a deleteOneUserById function', () => {
+  describe('Given a deleteOneTechniqueById function', () => {
     describe('When is triggered', () => {
       describe('And findByIdAndDelete response', () => {
         test('Then res.json is called', async () => {
-          User.findByIdAndDelete.mockResolvedValue();
+          Technique.findByIdAndDelete.mockResolvedValue();
 
-          await controllers.deleteOneUserById(req, res);
+          await controllers.deleteOneTechniqueById(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -149,9 +149,9 @@ describe('UserControllers', () => {
 
       describe('And findByIdAndDelete rejects', () => {
         test('Then res.status is called with 500', async () => {
-          User.findByIdAndDelete.mockRejectedValue();
+          Technique.findByIdAndDelete.mockRejectedValue();
 
-          await controllers.deleteOneUserById(req, res);
+          await controllers.deleteOneTechniqueById(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });

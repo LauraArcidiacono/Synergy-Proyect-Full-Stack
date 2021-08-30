@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 
-async function getAll({ query }, res) {
+async function getAllUsers({ query }, res) {
   try {
     const users = await User.find(query);
     res.json(users);
@@ -10,7 +10,7 @@ async function getAll({ query }, res) {
   }
 }
 
-async function createOne({ body }, res) {
+async function createOneUser({ body }, res) {
   try {
     const newUser = await User.create(body);
     res.json(newUser);
@@ -20,7 +20,7 @@ async function createOne({ body }, res) {
   }
 }
 
-async function getById({ params: { userId } }, res) {
+async function getOneUserById({ params: { userId } }, res) {
   try {
     const foundUser = await User.findById(userId);
     res.json(foundUser);
@@ -31,7 +31,7 @@ async function getById({ params: { userId } }, res) {
   }
 }
 
-async function updateOneById(req, res) {
+async function updateOneUserById(req, res) {
   const { userId } = req.params;
   const dataToUpdate = req.body;
   try {
@@ -47,7 +47,7 @@ async function updateOneById(req, res) {
   }
 }
 
-async function deleteOneById(req, res) {
+async function deleteOneUserById(req, res) {
   const { userId } = req.params;
   try {
     await User.findByIdAndDelete(userId);
@@ -59,9 +59,9 @@ async function deleteOneById(req, res) {
 }
 
 module.exports = {
-  getAll,
-  createOne,
-  getById,
-  updateOneById,
-  deleteOneById
+  getAllUsers,
+  createOneUser,
+  getOneUserById,
+  updateOneUserById,
+  deleteOneUserById
 };
