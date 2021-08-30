@@ -14,7 +14,7 @@ describe('UserControllers', () => {
       status: jest.fn()
     };
   });
-  describe('Given a getAll function', () => {
+  describe('Given a getAllUsers function', () => {
     describe('When is triggered', () => {
       describe('And find resolved', () => {
         test('Then call json', async () => {
@@ -24,7 +24,7 @@ describe('UserControllers', () => {
 
           User.find.mockResolvedValue();
 
-          await controllers.getAll(req, res);
+          await controllers.getAllUsers(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -38,7 +38,7 @@ describe('UserControllers', () => {
 
           User.find.mockRejectedValue();
 
-          await controllers.getAll(req, res);
+          await controllers.getAllUsers(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -46,7 +46,7 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a createOne function', () => {
+  describe('Given a createOneUser function', () => {
     describe('When is triggeres', () => {
       describe('And find resolved', () => {
         test('Then call json', async () => {
@@ -55,7 +55,7 @@ describe('UserControllers', () => {
           };
           User.find.mockResolvedValue({});
 
-          await controllers.createOne(req, res);
+          await controllers.createOneUser(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -68,7 +68,7 @@ describe('UserControllers', () => {
           };
           User.create.mockRejectedValue();
 
-          await controllers.createOne(req, res);
+          await controllers.createOneUser(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -76,7 +76,7 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a getById function', () => {
+  describe('Given a getOneUserById function', () => {
     beforeEach(() => {
       req = {
         params: { userId: '612cdc22f51271a5127ca260' }
@@ -87,7 +87,7 @@ describe('UserControllers', () => {
         test('Then res.json is called', async () => {
           User.findById.mockResolvedValue({});
 
-          await controllers.getById(req, res);
+          await controllers.getOneUserById(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -97,7 +97,7 @@ describe('UserControllers', () => {
         test('Then call status with 500', async () => {
           User.findById.mockRejectedValue();
 
-          await controllers.getById(req, res);
+          await controllers.getOneUserById(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -105,7 +105,7 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a updateOneById function', () => {
+  describe('Given a updateOneUserById function', () => {
     beforeEach(() => {
       req = {
         params: { userId: '612cdc22f51271a5127ca260' },
@@ -117,7 +117,7 @@ describe('UserControllers', () => {
         test('Then res.json is called', async () => {
           User.findByIdAndUpdate.mockResolvedValue({});
 
-          await controllers.updateOneById(req, res);
+          await controllers.updateOneUserById(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -127,7 +127,7 @@ describe('UserControllers', () => {
         test('Then res.status is called with 500', async () => {
           User.findByIdAndUpdate.mockRejectedValue();
 
-          await controllers.updateOneById(req, res);
+          await controllers.updateOneUserById(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
@@ -135,13 +135,13 @@ describe('UserControllers', () => {
     });
   });
 
-  describe('Given a deleteOneByIde function', () => {
+  describe('Given a deleteOneUserById function', () => {
     describe('When is triggered', () => {
       describe('And findByIdAndDelete response', () => {
         test('Then res.json is called', async () => {
           User.findByIdAndDelete.mockResolvedValue();
 
-          await controllers.deleteOneById(req, res);
+          await controllers.deleteOneUserById(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
@@ -151,7 +151,7 @@ describe('UserControllers', () => {
         test('Then res.status is called with 500', async () => {
           User.findByIdAndDelete.mockRejectedValue();
 
-          await controllers.deleteOneById(req, res);
+          await controllers.deleteOneUserById(req, res);
 
           expect(res.status).toHaveBeenCalledWith(500);
         });
