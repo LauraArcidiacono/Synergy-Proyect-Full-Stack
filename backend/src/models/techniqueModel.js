@@ -9,7 +9,7 @@ const techniqueSchema = Schema({
   task: String,
   workflow: String,
   ilustration: String,
-  review: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
+  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
 });
 
 module.exports = model('Technique', techniqueSchema);
