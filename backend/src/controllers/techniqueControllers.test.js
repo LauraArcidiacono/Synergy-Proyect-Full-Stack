@@ -53,7 +53,7 @@ describe('TechniqueControllers', () => {
           req = {
             body: {}
           };
-          Technique.find.mockResolvedValue({});
+          Technique.create.mockResolvedValue({});
 
           await controllers.createOneTechnique(req, res);
 
