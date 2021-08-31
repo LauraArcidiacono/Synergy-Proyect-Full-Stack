@@ -85,7 +85,13 @@ describe('TechniqueControllers', () => {
     describe('When is triggered', () => {
       describe('And findById resolves', () => {
         test('Then res.json is called', async () => {
-          Technique.findById.mockResolvedValue({});
+          Technique.findById
+            .mockReturnValue({
+              populate: jest.fn().mockResolvedValue({
+                name: '',
+                review: [{ technique: {}, user: '', score: 4 }]
+              })
+            });
 
           await controllers.getOneTechniqueById(req, res);
 
@@ -95,7 +101,10 @@ describe('TechniqueControllers', () => {
 
       describe('And findById rejects', () => {
         test('Then call status with 500', async () => {
-          Technique.findById.mockRejectedValue();
+          Technique.findById
+            .mockReturnValue({
+              populate: jest.fn().mockRejectedValue()
+            });
 
           await controllers.getOneTechniqueById(req, res);
 
