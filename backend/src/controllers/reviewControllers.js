@@ -60,8 +60,8 @@ async function deleteOneReviewById(req, res) {
     await Review.findByIdAndDelete(reviewId);
     res.json('The Review has been deleted');
   } catch (error) {
-    res.status(500);
     res.send('The Review hasn´t been deleted');
+    res.status(500);
   }
 }
 
