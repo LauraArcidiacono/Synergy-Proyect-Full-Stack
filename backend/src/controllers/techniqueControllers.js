@@ -22,7 +22,9 @@ async function createOneTechnique({ body }, res) {
 async function getOneTechniqueById({ params: { techniqueId } }, res) {
   try {
     const foundTechnique = await Technique.findById(techniqueId)
-      .populate('reviews');
+      .populate({
+        path: 'reviews'
+      });
 
     res.json(foundTechnique);
     res.send(204);
