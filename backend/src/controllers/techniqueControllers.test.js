@@ -89,7 +89,7 @@ describe('TechniqueControllers', () => {
             .mockReturnValue({
               populate: jest.fn().mockResolvedValue({
                 name: '',
-                review: [{ technique: {}, user: '', score: 4 }]
+                reviews: [{ technique: {}, user: '', score: 4 }]
               })
             });
 
