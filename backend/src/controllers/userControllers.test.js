@@ -79,13 +79,23 @@ describe('UserControllers', () => {
   describe('Given a getOneUserById function', () => {
     beforeEach(() => {
       req = {
-        params: { userId: '612cdc22f51271a5127ca260' }
+        params: { userId: 'i2cdc22f51271a5127ca260' }
       };
     });
     describe('When is triggered', () => {
       describe('And findById resolves', () => {
         test('Then res.json is called', async () => {
-          User.findById.mockResolvedValue({});
+          User.findById
+            .mockReturnValue({
+              populate: jest.fn().mockReturnValue({
+                populate: jest.fn()
+                  .mockResolvedValue({
+                    name: '',
+                    favoriteTechniques: [{}],
+                    techniquesProvided: [{}]
+                  })
+              })
+            });
 
           await controllers.getOneUserById(req, res);
 
@@ -95,7 +105,12 @@ describe('UserControllers', () => {
 
       describe('And findById rejects', () => {
         test('Then call status with 500', async () => {
-          User.findById.mockRejectedValue();
+          User.findById
+            .mockReturnValue({
+              populate: jest.fn().mockReturnValue({
+                populate: jest.fn().mockRejectedValue()
+              })
+            });
 
           await controllers.getOneUserById(req, res);
 
