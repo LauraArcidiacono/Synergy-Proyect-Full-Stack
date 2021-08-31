@@ -11,4 +11,8 @@ const userSchema = Schema({
   techniquesProvided: [{ type: Schema.Types.ObjectId, ref: 'Technique' }]
 });
 
+userSchema.methods.isValidPassword = function isValidPassword(password) {
+  return password === this.password;
+};
+
 module.exports = model('User', userSchema);
