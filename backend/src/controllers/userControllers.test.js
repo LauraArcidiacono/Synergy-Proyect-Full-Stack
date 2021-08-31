@@ -48,12 +48,12 @@ describe('UserControllers', () => {
 
   describe('Given a createOneUser function', () => {
     describe('When is triggeres', () => {
-      describe('And find resolved', () => {
+      describe('And create resolved', () => {
         test('Then call json', async () => {
           req = {
             body: {}
           };
-          User.find.mockResolvedValue({});
+          User.create.mockResolvedValue({});
 
           await controllers.createOneUser(req, res);
 
@@ -61,7 +61,7 @@ describe('UserControllers', () => {
         });
       });
 
-      describe('And find rejected', () => {
+      describe('And create rejected', () => {
         test('Then call status with 500', async () => {
           req = {
             body: {}
