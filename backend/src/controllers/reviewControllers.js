@@ -22,7 +22,13 @@ async function createOneReview({ body }, res) {
 
 async function getOneReviewById({ params: { reviewId } }, res) {
   try {
-    const foundReview = await Review.findById(reviewId);
+    const foundReview = await Review.findById(reviewId)
+      .populate({
+        path: 'technique'
+      })
+      .populate({
+        path: 'user'
+      });
 
     res.json(foundReview);
     res.send(204);
