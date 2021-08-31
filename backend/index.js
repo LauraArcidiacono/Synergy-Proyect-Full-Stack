@@ -20,6 +20,10 @@ const techniqueRouter = require('./src/routes/techniqueRouter');
 
 server.use('/synergy/technique', techniqueRouter);
 
+const reviewRouter = require('./src/routes/reviewRoutes');
+
+server.use('/synergy/review', reviewRouter);
+
 server.listen(
   port,
   () => debug(`Server is running on ${chalk.blue(`http://localhost:${port}`)}`)
