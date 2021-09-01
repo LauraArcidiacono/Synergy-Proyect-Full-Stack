@@ -58,16 +58,16 @@ function authController() {
     const { token } = req.body;
 
     if (!token) {
-      return res.sendStatus(401);
+      return res.status(401);
     }
 
     if (!refreshTokens.includes(token)) {
-      return res.sendStatus(403);
+      return res.status(403);
     }
 
     return jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
-        return res.sendStatus(403);
+        return res.status(403);
       }
 
       const data = { _id: user._id, email: user.email };
