@@ -33,7 +33,7 @@ async function getOneUserById({ params: { userId } }, res) {
       });
 
     res.json(foundUser);
-    res.send(204);
+    res.status(204);
   } catch (error) {
     res.status(500);
     res.send(error);
