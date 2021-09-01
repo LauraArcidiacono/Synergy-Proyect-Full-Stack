@@ -1,4 +1,5 @@
 const { model, Schema } = require('mongoose');
+const isValidPassword = require('../functions/functions');
 
 const userSchema = Schema({
   name: String,
@@ -11,8 +12,6 @@ const userSchema = Schema({
   techniquesProvided: [{ type: Schema.Types.ObjectId, ref: 'Technique' }]
 });
 
-userSchema.methods.isValidPassword = function isValidPassword(password) {
-  return password === this.password;
-};
+userSchema.methods.isValidPassword = isValidPassword;
 
 module.exports = model('User', userSchema);
