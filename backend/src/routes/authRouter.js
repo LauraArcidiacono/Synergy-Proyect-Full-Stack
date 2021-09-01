@@ -109,7 +109,7 @@ router.post(
       return res.sendStatus(403);
     }
 
-    return jwt.verify(refreshToken, process.env.JWT_SECRET, (err, { user }) => {
+    return jwt.verify(refreshToken, process.env.SECRET_KEY, (err, { user }) => {
       if (err) {
         return res.sendStatus(403);
       }
@@ -118,7 +118,7 @@ router.post(
 
       const token = jwt.sign(
         { user: data },
-        process.env.JWT_SECRET,
+        process.env.SECRET_KEY,
         { expiresIn: '1m' }
       );
 
