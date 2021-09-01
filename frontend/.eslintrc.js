@@ -7,6 +7,7 @@ module.exports = {
     'plugin:vue/vue3-essential',
     '@vue/airbnb',
     '@vue/typescript/recommended',
+    'plugin:vue/vue3-essential', '@vue/typescript/recommended', 'eslint:recommended'
   ],
   parserOptions: {
     ecmaVersion: 2020,
@@ -14,6 +15,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'linebreak-style': 0, 'global-require': 0, 'eslint linebreak-style': [0, 'error', 'windows']
   },
   overrides: [
     {
