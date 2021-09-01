@@ -3,7 +3,6 @@ const express = require('express');
 const debug = require('debug')('synergy');
 const morgan = require('morgan');
 const passport = require('passport');
-const cors = require('cors');
 const chalk = require('chalk');
 
 require('dotenv').config();
@@ -15,7 +14,6 @@ const port = process.env.PORT || 5000;
 
 server.use(express.json());
 server.use(morgan('dev'));
-server.use(cors());
 
 const authRoutes = require('./src/routes/authRouter');
 const userProtectedRoutes = require('./src/routes/userRouter');
