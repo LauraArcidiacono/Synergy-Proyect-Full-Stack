@@ -2,7 +2,17 @@ const Technique = require('../models/techniqueModel');
 
 async function getAllTechniques({ query }, res) {
   try {
-    const techniques = await Technique.find(query);
+    const techniques = await Technique.find(query)
+      .populate({
+        path: 'reviews',
+        select: ['user'],
+        populate: {
+          path: 'user',
+          model: 'User'
+        }
+      });
+    // const userPopulated = await Technique.find(query).reviews.populate('user');
+    // techniques = { techniques, reviews: userPopulated };
     res.json(techniques);
   } catch (error) {
     res.status(500);
