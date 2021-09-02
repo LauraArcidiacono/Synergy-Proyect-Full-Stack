@@ -1,17 +1,30 @@
 <template>
   <div>
-    <div id="nav">
-      <router-link to="/techniques">Techniques</router-link> |
-      <router-link to="/profile">Profile</router-link> |
-      <router-link to="/resources">Resources</router-link>
-    </div>
+    <Header />
     <router-view />
+    <Footer />
   </div>
 </template>
 
+<script>
+import Header from "../src/components/Header.vue";
+import Footer from "../src/components/Footer.vue";
+export default {
+  name: "App",
+  components: {
+    Header,
+    Footer,
+  },
+};
+</script>
+
 <style lang="scss">
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif, Arial, sans-serif;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
