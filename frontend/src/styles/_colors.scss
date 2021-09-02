@@ -1,0 +1,16 @@
+$alpha: .7;
+$beta: .45;
+$gamma: .25;
+
+$blue: rgb(10, 76, 99);
+$aqua: rgb(155, 202, 182);
+$orange: rgb(237, 77, 1);
+$pinkStrong: rgb(237, 77, 1);
+$pinkLight: rgb(254, 226, 202);
+
+$regLogBlue: rgba($blue, $alpha);
+$aquaHeader: rgba($aqua, $beta);
+$orangeMedium: rgba($orange, $beta);
+$pinkStrongOp: rgba($pinkStrong, $beta);
+$pinkLightOp: rgba($pinkLight, $beta);
+$greyBox: rgba(black, $gamma);
