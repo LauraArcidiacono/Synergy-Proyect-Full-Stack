@@ -2,13 +2,13 @@
   <footer class="footer">
     <img
       class="footer__logo"
-      src="../images/LogoSynergy.png"
+      src="../images/DinamicasGrupales.png"
       alt="Logo Synergy"
     />
     <div class="footer__central">
       <img
         class="footer__title"
-        src="../images/NombreTitulo.png"
+        src="../images/Nombre.png"
         alt="Synergy Dinámicas Grupales"
       />
       <span class="footer__span"
@@ -51,15 +51,19 @@ footer {
   height: 90%;
   margin: 1vh;
 }
+.footer__title {
+  width: 25%;
+}
 .footer__central {
   width: 60%;
   height: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .footer__span {
-  font-size: 0.5rem;
+  font-size: 0.8rem;
 }
 .footer__logos {
   display: flex;
