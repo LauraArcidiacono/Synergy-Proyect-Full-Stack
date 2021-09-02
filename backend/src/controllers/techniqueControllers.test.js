@@ -22,7 +22,9 @@ describe('TechniqueControllers', () => {
             query: jest.fn()
           };
 
-          Technique.find.mockResolvedValue();
+          Technique.find.mockReturnValue({
+            populate: jest.fn().mockResolvedValue({})
+          });
 
           await controllers.getAllTechniques(req, res);
 
@@ -36,7 +38,9 @@ describe('TechniqueControllers', () => {
             query: jest.fn()
           };
 
-          Technique.find.mockRejectedValue();
+          Technique.find.mockReturnValue({
+            populate: jest.fn().mockRejectedValue({})
+          });
 
           await controllers.getAllTechniques(req, res);
 
