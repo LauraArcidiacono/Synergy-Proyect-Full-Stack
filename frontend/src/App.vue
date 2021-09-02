@@ -1,10 +1,12 @@
 <template>
-  <div id="nav">
-    <router-link to="/techniques">Techniques</router-link> |
-    <router-link to="/profile">Profile</router-link> |
-    <router-link to="/resources">Resources</router-link> 
+  <div>
+    <div id="nav">
+      <router-link to="/techniques">Techniques</router-link> |
+      <router-link to="/profile">Profile</router-link> |
+      <router-link to="/resources">Resources</router-link>
+    </div>
+    <router-view />
   </div>
-  <router-view/>
 </template>
 
 <style lang="scss">

@@ -7,10 +7,9 @@
 
 <script>
 export default {
-name: 'Resources'
+  name: "Resources",
 };
 </script>
 
 <style>
-
 </style>
