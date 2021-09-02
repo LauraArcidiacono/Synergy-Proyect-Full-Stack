@@ -19,8 +19,12 @@ export default {
 </script>
 
 <style lang="scss">
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif, Arial, sans-serif;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
