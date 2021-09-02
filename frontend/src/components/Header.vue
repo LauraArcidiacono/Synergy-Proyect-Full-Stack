@@ -2,7 +2,7 @@
   <header class="header">
     <img
       class="header__logo"
-      src="../images/LogoSynergy.png"
+      src="../images/DinamicasGrupales.png"
       alt="Logo Synergy"
     />
     <div class="header__nav">
