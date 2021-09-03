@@ -6,7 +6,7 @@
       alt="Imagen tipo Palnificacion"
     />
     <div class="card__info">
-      <h3>Nombre: {{ name }}</h3>
+      <h3>{{ name }}</h3>
       <p>Tipo: {{ type }}</p>
       <p>Objetivo: {{ goal }}</p>
     </div>
@@ -34,6 +34,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
+  flex: wrap;
 }
 
 .button {

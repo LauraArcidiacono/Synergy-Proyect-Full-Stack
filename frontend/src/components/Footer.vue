@@ -11,9 +11,9 @@
         src="../images/Nombre.png"
         alt="Synergy Dinámicas Grupales"
       />
-      <span class="footer__span"
-        >Todos los derechos reservados © 2000-2021</span
-      >
+      <span class="footer__span">by Laura Arcidiacono</span>
+      <span class="footer__span">Todos los derechos reservados</span>
+      <span class="footer__span">© 2000-2021</span>
     </div>
     <div class="footer__logos">
       <img
@@ -43,6 +43,7 @@ export default {
 
 <style>
 footer {
+  width: 100%;
   display: flex;
   height: 30vh;
   background-color: rgb(215, 234, 226);
@@ -66,6 +67,7 @@ footer {
 
 .footer__span {
   font-size: 0.8rem;
+  text-align: center;
 }
 .footer__logos {
   display: flex;

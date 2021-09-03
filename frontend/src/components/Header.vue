@@ -58,6 +58,7 @@ export default {
 header {
   display: flex;
   height: 30vh;
+  width: 100%;
   background-color: $aquaHeader;
   align-items: center;
   justify-content: space-between;
@@ -76,6 +77,7 @@ header {
   text-decoration: none;
   color: rgb(10, 76, 99);
   font-family: "Poppins", sans-serif;
+  font-size: 2rem;
 }
 .button {
   @include button;
