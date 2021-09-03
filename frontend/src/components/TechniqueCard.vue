@@ -1,7 +1,7 @@
 <template>
-  <section class="technique__card">
-    <ul>
-      <li v-for="technique in techniques" :key="technique._id">
+  <section class="techniqueList__card">
+    <ul class="technique__card">
+      <li v-for="technique in techniques" :key="technique._id" class="card__item">
         <img
           class="card__ilustration"
           src="../images/ilustrations/Finances.png"
@@ -39,8 +39,18 @@ export default {
 @import "../styles/_colors.scss";
 @import "../styles/_mixins.scss";
 
+.techniqueList__card {
+display: flex;
+flex-direction:column;
+width: 100%;
+}
 .technique__card {
-  @include technique__card;
+  display: flex;
+  flex-direction: row;
+}
+.card__item {
+  @include technique__item;
+ 
 }
 .button {
   @include button;
