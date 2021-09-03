@@ -4,10 +4,15 @@ import axios from 'axios';
 export default createStore({
   state: {
     techniques: [],
+    isAuthenticate: false,
   },
   mutations: {
     loadTechniques(state, payload) {
       state.techniques = payload;
+    },
+
+    changeIsAuthenticate(state) {
+      state.isAuthenticate = !state.isAuthenticate;
     }
   },
   actions: {
@@ -20,6 +25,7 @@ export default createStore({
       });
       commit('loadTechniques', data);
     },
+
   },
   modules: {
   },
