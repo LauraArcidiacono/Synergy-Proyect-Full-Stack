@@ -1,36 +1,27 @@
 <template>
-  <section class="technique__card">
-    <ul>
-      <li v-for="technique in techniques" :key="technique._id">
-        <img
-          class="card__ilustration"
-          src="../images/ilustrations/Finances.png"
-          alt="Imagen tipo Palnificacion"
-        />
-        <div class="card__info">
-          <h3>Nombre: {{ technique.name }}</h3>
-          <p>Tipo: {{ technique.type }}</p>
-          <p>Objetivo: {{ technique.goal }}</p>
-        </div>
-        <button class="button">Ver Detalles</button>
-      </li>
-    </ul>
+  <section class="techniqueList__card">
+    <img
+      class="card__ilustration"
+      :src="ilustration"
+      alt="Imagen tipo Palnificacion"
+    />
+    <div class="card__info">
+      <h3>Nombre: {{ name }}</h3>
+      <p>Tipo: {{ type }}</p>
+      <p>Objetivo: {{ goal }}</p>
+    </div>
+    <button class="button">Ver Detalles</button>
   </section>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-
 export default {
   name: "TechniqueCard",
-  computed: {
-    ...mapState(["techniques"]),
-  },
-  methods: {
-    ...mapActions(["fetchTechniquesFromApi"]),
-  },
-  mounted() {
-    this.fetchTechniquesFromApi();
+  props: {
+    name: String,
+    type: String,
+    goal: String,
+    ilustration: String,
   },
 };
 </script>
@@ -39,9 +30,12 @@ export default {
 @import "../styles/_colors.scss";
 @import "../styles/_mixins.scss";
 
-.technique__card {
-  @include technique__card;
+.techniqueList__card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
+
 .button {
   @include button;
 }

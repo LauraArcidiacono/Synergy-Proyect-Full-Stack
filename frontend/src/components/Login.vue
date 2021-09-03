@@ -1,5 +1,8 @@
 <template>
-  <h2>LOGIN</h2>
+  <div>
+    <h2>LOGIN</h2>
+    <p>Debes Registrarte para acceder a la información</p>
+  </div>
 </template>
 
 <script>

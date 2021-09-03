@@ -5,24 +5,60 @@
       src="../images/DinamicasGrupales.png"
       alt="Logo Synergy"
     />
-    <div class="header__nav">
-      <router-link to="/techniques" class="nav__item">Techniques</router-link>
-      <router-link to="/profile" class="nav__item">Profile</router-link>
-      <router-link to="/resources" class="nav__item">Resources</router-link>
-      <router-link to="/loginRegister" class="nav__item">Ingresar</router-link>
+    <button @click="changeIsAuthenticate" class="button">Loguearse</button>
+    <div v-if="isAuthenticate" class="header__nav">
+      <router-link to="/synergy/techniques" class="nav__item"
+        >Techniques</router-link
+      >
+      <router-link to="/synergy/profile" class="nav__item">Profile</router-link>
+      <router-link to="/synergy/resources" class="nav__item"
+        >Resources</router-link
+      >
+      <router-link to="/synergy/loginRegister" class="nav__item"
+        >Ingresar</router-link
+      >
+    </div>
+    <div v-else class="header__nav">
+      <router-link to="/synergy/notFound" class="nav__item"
+        >Techniques</router-link
+      >
+
+      <router-link to="/synergy/notFound" class="nav__item"
+        >Profile</router-link
+      >
+
+      <router-link to="/synergy/notFound" class="nav__item"
+        >Resources</router-link
+      >
+
+      <router-link to="/synergy" class="nav__item">Ingresar</router-link>
     </div>
   </header>
 </template>
 
 <script>
-export default {};
+import { mapMutations, mapState } from "vuex";
+
+export default {
+  name: "Header",
+
+  computed: {
+    ...mapState(["isAuthenticate"]),
+  },
+  methods: {
+    ...mapMutations(["changeIsAuthenticate"]),
+  },
+};
 </script>
 
-<style>
+<style lang="scss">
+@import "../styles/_colors.scss";
+@import "../styles/_mixins.scss";
+
 header {
   display: flex;
   height: 30vh;
-  background-color: rgb(215, 234, 226);
+  background-color: $aquaHeader;
   align-items: center;
   justify-content: space-between;
 }
@@ -40,5 +76,8 @@ header {
   text-decoration: none;
   color: rgb(10, 76, 99);
   font-family: "Poppins", sans-serif;
+}
+.button {
+  @include button;
 }
 </style>

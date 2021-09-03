@@ -11,7 +11,7 @@
         margin: 2rem;
 }
 
-@mixin technique__card {
+@mixin technique__item {
     width: 70%;
     display: flex;
   border: solid 0.1rem;
@@ -24,4 +24,7 @@
 }
 @mixin card__ilustration {
     width: 10rem;
+}
+@mixin user__avatar {
+  border-radius: 50%;
 }
