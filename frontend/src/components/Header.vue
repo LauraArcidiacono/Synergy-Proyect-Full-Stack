@@ -4,7 +4,6 @@
       class="header__logo"
       src="../images/DinamicasGrupales.png"
       alt="Logo Synergy"
-      data-test="header__logo"
     />
     <button @click="changeIsAuthenticate" class="button">Loguearse</button>
     <div v-if="isAuthenticate" class="header__nav">
