@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import LandingPage from '../views/LandingPage.vue'
 import Dashboard from '../views/Dashboard.vue';
 import Techniques from '../views/Techniques.vue';
+import TechniqueDetails from'../views/TechniqueDetails.vue';
 import Profile from '../views/Profile.vue';
 import Resources from '../views/Resources.vue';
 import NotFound from '../views/NotFound.vue';
@@ -21,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/synergy/techniques',
     name: 'Techniques',
     component: Techniques,
+  },
+  {
+    path: '/synergy/techniques/details',
+    name: 'TechniqueDetails',
+    component: TechniqueDetails,
   },
   {
     path: '/synergy/profile',

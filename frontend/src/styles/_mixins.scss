@@ -3,28 +3,43 @@
 @mixin button {
         background-color: #0a4c63;
         border: transparent;
-        border-radius: 1.5rem;
-        width: 8rem;
-        padding: 0.5rem;
+        border-radius: 2vw;
+        width: 13vw;
+        padding: 1vw;
         color: white;
-        font-size: 1rem;
-        margin: 2rem;
+        font-size: 1.2rem;
+        margin: 2vw;
 }
 
 @mixin technique__item {
     width: 70%;
     display: flex;
-  border: solid 0.1rem;
+    justify-content: space-between;
+    text-align: center;
+  border: solid 0.1vw;
   border-color: rgba(0, 0, 0, 0.25);
   flex-direction: column;
   align-items: center;
-  margin: 1rem;
-  box-shadow: 0px, 4px;
+  margin: 1vw;
+
 
 }
 @mixin card__ilustration {
-    width: 10rem;
+    width: 10vw;
 }
 @mixin user__avatar {
   border-radius: 50%;
+}
+@mixin article__container{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1.5vw;
+    margin: 2vw;
+    padding: 1vw;
+    background-color: rgba(254, 226, 202, 0.45);
+    align-items: center;
+    flex-wrap: wrap;
+    width: 33%;
 }

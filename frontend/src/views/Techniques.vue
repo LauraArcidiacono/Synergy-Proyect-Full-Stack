@@ -1,7 +1,41 @@
 <template>
-  <div class="about">
-    <h2>This is the TECHNIQUES page</h2>
-    <p>Aquí se verá la lista de técnicas</p>
+  <div class="techniquesList">
+    <img
+      class="dashboard__image"
+      src="../images/Nombre.png"
+      alt="Logo Synergy"
+    />
+    <section class="techniquesList__search">
+      <div class="search__options">
+        <label class="search__options-label" for="techniques__type"
+          >Tipo de Técnica:</label
+        >
+        <select
+          class="search__options-select"
+          name="techniques__type"
+          id="techniques__type"
+        >
+          <option value="palnificacion">Planificación</option>
+          <option value="confianza">Confianza</option>
+          <option value="logro de metas">Logro de metas</option>
+          <option value="comunicacion">Comunicación</option>
+          <option value="presentacion">Presentación</option>
+          <option value="animacion">Animación</option>
+        </select>
+      </div>
+      <div class="search__options">
+        <label class="search__options-label" for="gsearch"
+          >Palabras clave</label
+        >
+        <input
+          class="search__options-input"
+          type="search"
+          id="search"
+          name="search"
+        />
+        <button class="button">Buscar</button>
+      </div>
+    </section>
     <ul class="technique__card">
       <li
         v-for="technique in techniques"
@@ -22,6 +56,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import TechniqueCard from "../components/TechniqueCard.vue";
+
 export default {
   name: "Techniques",
   components: {
@@ -42,11 +77,41 @@ export default {
 <style lang="scss">
 @import "../styles/_colors.scss";
 @import "../styles/_mixins.scss";
+
+.techniquesList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search__options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.search__options-label {
+  margin: 1vw;
+}
+.search__options-select {
+  height: 4vh;
+  font-size: 2.5vh;
+}
+.search__options-input {
+  height: 4vh;
+  font-size: 2.5vh;
+}
 .technique__card {
   display: flex;
   flex-direction: row;
 }
 .card__item {
   @include technique__item;
+}
+.techniquesList__search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2vw;
 }
 </style>

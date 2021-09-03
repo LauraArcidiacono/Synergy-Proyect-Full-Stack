@@ -23,6 +23,4 @@ export default {
   margin: 0;
   font-family: "Poppins", sans-serif, Arial;
 }
-
-
 </style>
