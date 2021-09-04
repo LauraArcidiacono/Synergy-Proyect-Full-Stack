@@ -83,6 +83,10 @@ export default {
   padding: 2vw;
 }
 .container__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   & img {
     width: 20vw;
     margin: 2vw;
