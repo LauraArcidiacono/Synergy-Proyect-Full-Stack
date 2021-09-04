@@ -15,7 +15,7 @@
         >Resources</router-link
       >
       <router-link to="/synergy/loginRegister" class="nav__item"
-        >Ingresar</router-link
+        >Logout</router-link
       >
     </div>
     <div v-else class="header__nav">
@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../styles/_colors.scss";
 @import "../styles/_mixins.scss";
 

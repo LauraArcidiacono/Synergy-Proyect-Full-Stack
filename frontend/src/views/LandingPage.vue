@@ -119,7 +119,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../styles/_colors.scss";
 @import "../styles/_mixins.scss";
 
@@ -195,5 +195,6 @@ export default {
 }
 .reviews__cards {
   @include reviews__cards;
+  margin-bottom: 2vw;
 }
 </style>
