@@ -8,7 +8,7 @@
     <div class="footer__central">
       <img
         class="footer__title"
-        src="../images/Nombre.png"
+        src="../images/Synergy.png"
         alt="Synergy Dinámicas Grupales"
       />
       <span class="footer__span">by Laura Arcidiacono</span>
@@ -18,13 +18,13 @@
     <div class="footer__logos">
       <img
         class="logos__item"
-        src="../images/logoFacebook.png"
-        alt="Logo Facebook"
+        src="../images/logoTwiter.png"
+        alt="Logo Twiter"
       />
       <img
         class="logos__item"
-        src="../images/logoTwiter.png"
-        alt="Logo Twiter"
+        src="../images/logoFacebook.png"
+        alt="Logo Facebook"
       />
       <img
         class="logos__item"
@@ -41,7 +41,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 footer {
   width: 100%;
   display: flex;
@@ -75,7 +75,7 @@ footer {
   align-items: center;
 }
 .logos__item {
-  height: 70%;
+  height: 20vw;
   margin: 1vw;
 }
 </style>

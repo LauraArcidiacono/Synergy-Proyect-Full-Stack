@@ -1,7 +1,7 @@
 <template>
   <div class="techniquesList">
     <img
-      class="dashboard__image"
+      class="techniquesList__title"
       src="../images/Nombre.png"
       alt="Logo Synergy"
     />
@@ -83,6 +83,10 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+.techniquesList__title {
+  width: 60%;
+  margin-top: 2vw;
+}
 .search__options {
   display: flex;
   flex-direction: row;
@@ -102,7 +106,11 @@ export default {
 }
 .technique__card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: 100%;
+  flex: wrap;
+  align-items: center;
+  justify-content: center;
 }
 .card__item {
   @include technique__item;
