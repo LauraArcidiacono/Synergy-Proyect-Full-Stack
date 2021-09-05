@@ -1,10 +1,124 @@
 <template>
-  <h2>FORMULARIO CREAR RESEÑA</h2>
+  <section class="createReviewForm">
+    <h2>Reseñas</h2>
+    <div class="createReviewForm__container">
+      <div class="createReviewForm__profile">
+        <article class="profile__info">
+          <img src="../images/avatar1.png" alt="Avatar de usuario" />
+          <div>
+            <h4>Clara Carzolio</h4>
+            <p>Profesora</p>
+            <p>Madrid</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="createReviewForm__inputs">
+        <h3>Comparte tu experiencia utilizando ésta técnica</h3>
+        <label for="description"
+          >Describe tu experiencia utilizando esta técnica:
+          <textarea
+            name="description"
+            type="text"
+            placeholder="Los participantes han disfrutado mucho..."
+            v-model="description"
+          />
+          <label class="search__options-label" for="techniques__type"
+            >¿Qué puntaje le darías:</label
+          >
+          <select
+            class="createReviewForm__select"
+            name="select__score"
+            id="select__score"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div class="createReviewForm__buttons">
+      <button class="button">Volver sin crear</button>
+      <button class="button">Crear Reseña</button>
+    </div>
+  </section>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "../styles/_colors.scss";
+@import "../styles/_mixins.scss";
+
+.createReviewForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & h2 {
+    margin: 2vw;
+  }
+}
+.createReviewForm__container {
+  display: flex;
+  flex-direction: row;
+}
+.createReviewForm__profile {
+  display: flex;
+  flex-direction: column;
+  margin: 2vw;
+  padding: 2vw;
+}
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & img {
+    width: 20vw;
+    margin: 2vw;
+  }
+  & h4 {
+    font-size: 2rem;
+    color: $regLogBlue;
+    text-align: center;
+  }
+  & p {
+    text-align: center;
+  }
+}
+
+.createReviewForm__inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 2vw;
+  padding: 2vw;
+  border-radius: 1.5vw;
+  background-color: rgba(10, 76, 99, 0.7);
+  & label {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2vh;
+  }
+  & select,
+  textarea {
+    border: transparent;
+    border-radius: 1.5vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin: 1vh;
+    margin-left: 2vw;
+  }
+  & textarea {
+    height: 20vh;
+    width: 70%;
+    margin: 1vh;
+  }
+}
 </style>
