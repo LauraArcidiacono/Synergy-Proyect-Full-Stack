@@ -1,20 +1,20 @@
 <template>
   <section class="techniqueList__card">
-    <img
-      class="card__ilustration"
-      :src="ilustration"
-      alt="Imagen tipo Palnificacion"
-    />
+    <img class="card__ilustration" :src="ilustration" alt="Imagen tipo" />
     <div class="card__info">
       <h3>{{ name }}</h3>
       <p>Tipo: {{ type }}</p>
       <p>Objetivo: {{ goal }}</p>
     </div>
-    <button class="button">Ver Detalles</button>
+    <router-link :to="'synergy/techniques/' + _id">
+      <button class="button">Ver Detalles</button></router-link
+    >
   </section>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: "TechniqueCard",
   props: {
@@ -22,6 +22,16 @@ export default {
     type: String,
     goal: String,
     ilustration: String,
+    _id: String,
+  },
+  computed: {
+    ...mapState(["currentTechnique"]),
+  },
+  methods: {
+    ...mapActions(["fetchOneTechniqueFromApi"]),
+  },
+  mounted() {
+    this.fetchOneTechniqueFromApi();
   },
 };
 </script>
