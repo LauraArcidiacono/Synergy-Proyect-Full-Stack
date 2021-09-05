@@ -47,6 +47,7 @@
           :type="technique.type"
           :goal="technique.goal"
           :ilustration="technique.ilustration"
+          :_id="technique._id"
         />
       </li>
     </ul>
@@ -54,9 +55,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
 import TechniqueCard from "../components/TechniqueCard.vue";
-
+import { mapActions, mapState } from "vuex";
 export default {
   name: "Techniques",
   components: {

@@ -2,65 +2,49 @@
   <div class="resources">
     <h2>Resources</h2>
     <section class="resources__items">
-      <div class="items__book">
-        <div Class="book__image">
-          <img
-            src="../images/resources/pedagogiaDeLaEsperanza.jpg"
-            alt="Portada Libro"
-          />
-        </div>
-        <div class="book__info">
-          <h3>Pedagogía de la Esperanza</h3>
-          <h4>Paulo Freire</h4>
-          <a href="https://www.sigloxxieditores.com/">Siglo XXI Editores</a>
-        </div>
-      </div>
-      <div class="items__book">
-        <div Class="book__image">
-          <img
-            src="../images/resources/pedagogiaDeLaEsperanza.jpg"
-            alt="Portada Libro"
-          />
-        </div>
-        <div class="book__info">
-          <h3>Pedagogía de la Esperanza</h3>
-          <h4>Paulo Freire</h4>
-          <a href="https://www.sigloxxieditores.com/">Siglo XXI Editores</a>
-        </div>
-      </div>
-      <div class="items__book">
-        <div Class="book__image">
-          <img
-            src="../images/resources/pedagogiaDeLaEsperanza.jpg"
-            alt="Portada Libro"
-          />
-        </div>
-        <div class="book__info">
-          <h3>Pedagogía de la Esperanza</h3>
-          <h4>Paulo Freire</h4>
-          <a href="https://www.sigloxxieditores.com/">Siglo XXI Editores</a>
-        </div>
-      </div>
-      <div class="items__book">
-        <div Class="book__image">
-          <img
-            src="../images/resources/pedagogiaDeLaEsperanza.jpg"
-            alt="Portada Libro"
-          />
-        </div>
-        <div class="book__info">
-          <h3>Pedagogía de la Esperanza</h3>
-          <h4>Paulo Freire</h4>
-          <a href="https://www.sigloxxieditores.com/">Siglo XXI Editores</a>
-        </div>
-      </div>
+      <ul class="items__book">
+        <li
+          v-for="resource in resources"
+          :key="resource._id"
+          class="book__item"
+        >
+          <div>
+            <div Class="book__image">
+              <img :src="resource.image" alt="Portada Libro" />
+            </div>
+            <div class="book__info">
+              <h3>{{ resource.title }}</h3>
+              <h4>{{ resource.author }}</h4>
+              <a :href="siteEditorial">Siglo XXI Editores</a>
+            </div>
+          </div>
+        </li>
+      </ul>
     </section>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "Resources",
+  props: {
+    title: String,
+    author: String,
+    editorial: String,
+    siteEditorial: String,
+    image: String,
+  },
+  computed: {
+    ...mapState(["resources"]),
+  },
+  methods: {
+    ...mapActions(["fetchResourcesFormApi"]),
+  },
+  mounted() {
+    this.fetchResourcesFormApi();
+  },
 };
 </script>
 

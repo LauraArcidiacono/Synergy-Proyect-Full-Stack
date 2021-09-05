@@ -32,7 +32,7 @@ async function getOneTechniqueById({ params: { techniqueId } }, res) {
     const foundTechnique = await Technique.findById(techniqueId)
       .populate({
         path: 'reviews',
-        select: ['user'],
+        select: ['user', 'description', 'score'],
         populate: {
           path: 'user',
           model: 'User'

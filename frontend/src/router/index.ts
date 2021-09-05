@@ -24,12 +24,13 @@ const routes: Array<RouteRecordRaw> = [
     component: Techniques,
   },
   {
-    path: '/synergy/techniques/details',
+    path: '/synergy/techniques/:techniqueId',
     name: 'TechniqueDetails',
     component: TechniqueDetails,
+    props: true,
   },
   {
-    path: '/synergy/profile',
+    path: '/synergy/profile/:userId',
     name: 'Profile',
     component: Profile,
   },

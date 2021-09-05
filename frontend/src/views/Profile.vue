@@ -5,33 +5,27 @@
       <article class="container__info">
         <img src="../images/avatar1.png" alt="Avatar de usuario" />
         <div>
-          <h4>Clara Carzolio</h4>
-          <p>Profesora</p>
-          <p>Madrid</p>
+          <h4>{{ currentUser.name }}</h4>
+          <p>{{ currentUser.profession }}</p>
+          <p>{{ currentUser.city }}</p>
         </div>
       </article>
 
       <article class="container__userTechniques">
         <h3>Mis técnicas favoritas</h3>
         <ul class="userTechniques__card">
-          <li class="card__item">
+          <li
+            v-for="favoriteTechniques in currentUser.favoriteTechniques"
+            :key="favoriteTechniques._id"
+            class="card__item"
+          >
             <div>
               <img
                 class="card__ilustration"
-                src="../images/ilustrations/Comunicacion.png"
-                alt="Imagen tipo Palnificacion"
+                :src="favoriteTechniques.ilustration"
+                alt="Ilustration tipo de técnica"
               />
-              <h4>Nombre de una tecnica</h4>
-            </div>
-          </li>
-          <li class="card__item">
-            <div>
-              <img
-                class="card__ilustration"
-                src="../images/ilustrations/Metas.png"
-                alt="Imagen tipo Palnificacion"
-              />
-              <h4>Nombre de una tecnica</h4>
+              <h4>{{ favoriteTechniques.name }}</h4>
             </div>
           </li>
         </ul>
@@ -39,14 +33,18 @@
       <article class="container__userTechniques">
         <h3>Técnicas que he compartido</h3>
         <ul class="userTechniques__card">
-          <li class="card__item">
+          <li
+            v-for="techniquesProvided in currentUser.techniquesProvided"
+            :key="techniquesProvided._id"
+            class="card__item"
+          >
             <div>
               <img
                 class="card__ilustration"
-                src="../images/ilustrations/ventana.png"
-                alt="Imagen tipo Palnificacion"
+                :src="techniquesProvided.ilustration"
+                alt="Ilustration tipo de técnica"
               />
-              <h4>Nombre de una tecnica</h4>
+              <h4>{{ techniquesProvided.name }}</h4>
             </div>
           </li>
         </ul>
@@ -57,8 +55,22 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+import { useRoute } from "vue-router";
+
 export default {
   name: "Profile",
+  computed: {
+    ...mapState(["currentUser"]),
+  },
+  methods: {
+    ...mapActions(["fetchOneUserFromApi"]),
+  },
+  mounted() {
+    const route = useRoute();
+    const { userId } = route.params;
+    this.fetchOneUserFromApi(userId);
+  },
 };
 </script>
 
