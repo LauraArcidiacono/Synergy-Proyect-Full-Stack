@@ -3,55 +3,45 @@
     <section class="techniqueDetails__info">
       <div class="info__ilustration">
         <img
-          src="../images/ilustrations/ventana.png"
+          :src="currentTechnique.ilustration"
           alt="Ilustracion tipo de técnica"
         />
       </div>
       <div>
         <div class="details__header">
-          <h3>Avíso Clasificado</h3>
+          <h3>{{ currentTechnique.name }}</h3>
           <button class="button">Añadir a favoritas</button>
         </div>
         <div class="details__info">
-          <h4>Tipo: Presentación</h4>
-          <h4>Tiempo: ---- minutos</h4>
+          <h4>Tipo: {{ currentTechnique.type }}</h4>
+          <h4>Tiempo: {{ currentTechnique.time }} minutos</h4>
         </div>
         <div class="details__info-details">
-          <article>Objetivo:</article>
-          <article>Materiales:</article>
-          <article>Consigna:</article>
-          <article>Dinámica:</article>
+          <article>Objetivo: {{ currentTechnique.goal }}</article>
+          <article>Materiales: {{ currentTechnique.material }}</article>
+          <article>Consigna: {{ currentTechnique.task }}</article>
+          <article>Dinámica: {{ currentTechnique.workflow }}</article>
         </div>
       </div>
     </section>
     <section class="techniqueDetails__reviews">
       <h3>Reseñas</h3>
-      <div class="reviews__cards">
-        <article class="cards__review">
-          <img src="../images/avatar1.png" alt="Avatar de usuario" />
-          <div>
-            <h4>Clara Carzolio</h4>
-            <p>Profesora</p>
-            <p>Description bla bla bla bla bla bla bla bla</p>
-          </div>
-        </article>
-        <article class="cards__review">
-          <img src="../images/avatar2.png" alt="Avatar de usuario" />
-          <div>
-            <h4>Natalia Landa</h4>
-            <p>Psicologa</p>
-            <p>Description bla bla bla bla bla bla bla bla</p>
-          </div>
-        </article>
-        <article class="cards__review">
-          <img src="../images/avatar3.png" alt="Avatar de usuario" />
-          <div>
-            <h4>Ana Maidana</h4>
-            <p>Tallerista</p>
-            <p>Description bla bla bla bla bla bla bla bla</p>
-          </div>
-        </article>
-      </div>
+      <ul>
+        <li
+          v-for="review in currentTechnique.reviews"
+          :key="review._id"
+          class="reviews__cards"
+        >
+          <article class="cards__review">
+            <img :src="review.user.avatar" alt="Avatar de usuario" />
+            <div>
+              <h4>{{ review.user.name }}</h4>
+              <p>{{ review.user.profession }}</p>
+              <p>{{ review.description }}</p>
+            </div>
+          </article>
+        </li>
+      </ul>
     </section>
     <section class="techniqueDetails__buttons">
       <button class="button">Crear Reseña</button>
@@ -61,8 +51,21 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+import { useRoute } from "vue-router";
 export default {
   name: "TechniqueDetails",
+  computed: {
+    ...mapState(["currentTechnique"]),
+  },
+  methods: {
+    ...mapActions(["fetchOneTechniqueFromApi"]),
+  },
+  mounted() {
+    const route = useRoute();
+    const { techniqueId } = route.params;
+    this.fetchOneTechniqueFromApi(techniqueId);
+  },
 };
 </script>
 
