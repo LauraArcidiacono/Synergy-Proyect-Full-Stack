@@ -6,8 +6,10 @@ export default createStore({
     techniques: [],
     currentTechnique: {},
     currentUser: {},
+    isUserAuthenticate: false,
+    token: "",
+    refreshToken: "",
     resources: [],
-    isAuthenticate: false,
   },
   mutations: {
     loadTechniques(state, payload) {
@@ -18,17 +20,21 @@ export default createStore({
       state.currentTechnique = payload;
     },
 
-    loadOneUser(state, payload) {
-      state.currentUser = payload;
-    },
-
     loadResources(state, payload) {
       state.resources = payload;
     },
 
-    changeIsAuthenticate(state) {
-      state.isAuthenticate = !state.isAuthenticate;
+    loginUser(state, payload) {
+      state.isUserAuthenticate = !state.isUserAuthenticate;
+      state.token = payload.token;
+      state.refreshToken = payload.refreshToken;
+      state.currentUser = payload.user;
+    },
+    
+    loadUser(state, payload) {
+      state.currentUser = payload;
     }
+
   },
   actions: {
     async fetchTechniquesFromApi({commit}) {
@@ -52,18 +58,21 @@ export default createStore({
       console.log(data)
     },
 
-    async fetchOneUserFromApi({commit}) {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmU1NmM4NTdiZmE5Mjc0NjUzZWYyNCIsImVtYWlsIjoibGF1cmFAZ21haWwuY29tIn0sImlhdCI6MTYzMDg0OTAwMiwiZXhwIjoxMjE2MzA4NDkwMDJ9.t_rHvJjmgHKDtD-vRWeujhl9f7tj_MCpSHSoxGfP3_M'
+    async userLogedFromApi({commit}, currentUser) {
+      console.log(currentUser.token);
+      const {token} = currentUser;
+      const {userId} = currentUser;
+      console.log(userId);
       const { data } = await axios({
         method: 'GET',
-        url: 'http://localhost:5000/synergy/users/6134eec9c158ae21f6cd95d4',
+        url: `http://localhost:5000/synergy/users/${userId}`,
         headers: { Authorization: `Bearer ${token}` }
-      }); 
-      commit('loadOneUser', data);
+      });
+      commit('loadUser', data);
     },
 
-    async fetchResourcesFormApi({commit}) {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmU1NmM4NTdiZmE5Mjc0NjUzZWYyNCIsImVtYWlsIjoibGF1cmFAZ21haWwuY29tIn0sImlhdCI6MTYzMDg0OTAwMiwiZXhwIjoxMjE2MzA4NDkwMDJ9.t_rHvJjmgHKDtD-vRWeujhl9f7tj_MCpSHSoxGfP3_M'
+    async fetchResourcesFromApi({commit}, token) {
+      console.log("este es el token", token)
       const { data } = await axios({
         method: 'GET',
         url: 'http://localhost:5000/synergy/resource',
