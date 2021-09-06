@@ -1,11 +1,17 @@
 <template>
-  <section class="register">
+  <form action class="register" @submit.prevent="register">
     <h3>Regístrate</h3>
     <div class="register__userData">
       <label for="name"
         >Nombre y apellido
         <br />
-        <input name="name" type="name" placeholder="Jane Doe" v-model="name" />
+        <input
+          name="name"
+          type="name"
+          placeholder="Jane Doe"
+          v-model.trim="name"
+          required
+        />
       </label>
       <label for="profession"
         >Profesión
@@ -14,13 +20,20 @@
           name="profession"
           type="profession"
           placeholder="Educadora Social"
-          v-model="profession"
+          v-model.trim="profession"
+          required
         />
       </label>
       <label for="city"
         >Ciudad
         <br />
-        <input name="city" type="city" placeholder="Barcelona" v-model="city" />
+        <input
+          name="city"
+          type="city"
+          placeholder="Barcelona"
+          v-model.trim="city"
+          required
+        />
       </label>
       <label for="email"
         >Ingresa tu email
@@ -29,7 +42,8 @@
           name="email"
           type="email"
           placeholder="jane_doe@gmail.com"
-          v-model="email"
+          v-model.trim="email"
+          required
         />
       </label>
       <label for="password"
@@ -39,16 +53,49 @@
           name="password"
           type="password"
           placeholder="****************"
-          v-model="password"
+          v-model.trim="password"
+          required
         />
       </label>
-      <button class="button">Ingresa</button>
+      <button type="submit" class="button">Ingresa</button>
     </div>
-  </section>
+  </form>
 </template>
 
 <script>
-export default {};
+import auth from "../logic/auth";
+
+export default {
+  data() {
+    return {
+      userData: {
+        name: "",
+        profession: "",
+        city: "",
+        email: "",
+        password: "",
+      },
+      error: false,
+    };
+  },
+
+  methods: {
+    async register() {
+      try {
+        await auth.register(
+          this.name,
+          this.profession,
+          this.city,
+          this.email,
+          this.password
+        );
+        this.$router.push("/synergy/dashboard");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
