@@ -2,16 +2,6 @@
   <section class="createTechniqueForm">
     <h2>Crea una nueva técnica para compartir</h2>
     <div class="createTechniqueForm__container">
-      <div class="createTechniqueForm__profile">
-        <article class="profile__info">
-          <img src="../images/avatar1.png" alt="Avatar de usuario" />
-          <div>
-            <h4>Clara Carzolio</h4>
-            <p>Profesora</p>
-            <p>Madrid</p>
-          </div>
-        </article>
-      </div>
       <div class="createTechniqueForm__inputs">
         <label for="name"
           >Nombre:
@@ -102,6 +92,7 @@ export default {};
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
   & h2 {
     margin: 2vw;
   }
@@ -110,30 +101,6 @@ export default {};
   display: flex;
   flex-direction: row;
   & span {
-    text-align: center;
-  }
-}
-.createTechniqueForm__profile {
-  display: flex;
-  flex-direction: column;
-  margin: 2vw;
-  padding: 2vw;
-}
-.profile__info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  & img {
-    width: 20vw;
-    margin: 2vw;
-  }
-  & h4 {
-    font-size: 2rem;
-    color: $regLogBlue;
-    text-align: center;
-  }
-  & p {
     text-align: center;
   }
 }

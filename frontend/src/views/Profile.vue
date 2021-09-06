@@ -50,16 +50,28 @@
         </ul>
       </article>
     </div>
-    <button class="button">Crear Técnica</button>
+    <button @click="modal = !modal" class="button">Crear Técnica</button>
+    <teleport to="#modals">
+      <CreateTechniqueForm v-if="modal" class="modal" />
+    </teleport>
   </section>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import { useRoute } from "vue-router";
+import CreateTechniqueForm from "../components/CreateTechniqueForm.vue";
 
 export default {
   name: "Profile",
+  data() {
+    return {
+      modal: false,
+    };
+  },
+  components: {
+    CreateTechniqueForm,
+  },
   computed: {
     ...mapState(["currentUser"]),
   },
@@ -147,5 +159,14 @@ export default {
     text-align: center;
     margin-left: 0.5vw;
   }
+}
+
+.modal {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
 }
 </style>
