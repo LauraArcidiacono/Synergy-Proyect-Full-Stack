@@ -3,7 +3,7 @@
     <h2>Mi Perfil</h2>
     <div class="profile__container">
       <article class="container__info">
-        <img src="../images/avatar1.png" alt="Avatar de usuario" />
+        <img :src="currentUser.avatar" alt="Avatar de usuario" />
         <div>
           <h4>{{ currentUser.name }}</h4>
           <p>{{ currentUser.profession }}</p>
@@ -73,15 +73,15 @@ export default {
     CreateTechniqueForm,
   },
   computed: {
-    ...mapState(["currentUser"]),
+    ...mapState(["currentUser", "token"]),
   },
   methods: {
-    ...mapActions(["fetchOneUserFromApi"]),
+    ...mapActions(["userLogedFromApi"]),
   },
   mounted() {
     const route = useRoute();
     const { userId } = route.params;
-    this.fetchOneUserFromApi(userId);
+    this.userLogedFromApi({ userId, token: this.token });
   },
 };
 </script>
