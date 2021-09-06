@@ -40,10 +40,10 @@ export default {
     ...mapState(["resources"]),
   },
   methods: {
-    ...mapActions(["fetchResourcesFormApi"]),
+    ...mapActions(["fetchResourcesFromApi"]),
   },
   mounted() {
-    this.fetchResourcesFormApi();
+    this.fetchResourcesFromApi();
   },
 };
 </script>
