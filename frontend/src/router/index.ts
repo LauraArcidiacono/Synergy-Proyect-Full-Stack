@@ -6,12 +6,25 @@ import TechniqueDetails from'../views/TechniqueDetails.vue';
 import Profile from '../views/Profile.vue';
 import Resources from '../views/Resources.vue';
 import NotFound from '../views/NotFound.vue';
+import Login from '../components/Login.vue';
+import Register from '../components/Register.vue';
+
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/synergy',
     name: 'LandingPage',
     component: LandingPage,
+  },
+  {
+    path: '/synergy/login',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/synergy/register',
+    name: 'Register',
+    component: Register,
   },
   {
     path: '/synergy/dashboard',
