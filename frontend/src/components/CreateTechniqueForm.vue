@@ -1,5 +1,5 @@
 <template>
-  <section class="createTechniqueForm">
+  <form @submit.prevent="saveNewTechniqueData" class="createTechniqueForm">
     <h2>Crea una nueva técnica para compartir</h2>
     <div class="createTechniqueForm__container">
       <div class="createTechniqueForm__inputs">
@@ -7,9 +7,9 @@
           >Nombre:
           <input
             name="name"
-            type="name"
+            type="text"
             placeholder="Planificación de tareas"
-            v-model="name"
+            v-model.trim="newTechnique.name"
           />
         </label>
 
@@ -20,6 +20,7 @@
           class="search__options-select"
           name="techniques__type"
           id="techniques__type"
+          v-model="newTechnique.type"
         >
           <option value="palnificacion">Planificación</option>
           <option value="confianza">Confianza</option>
@@ -31,7 +32,12 @@
 
         <label for="time"
           >Tiempo:
-          <input name="time" type="time" placeholder="35" v-model="time" />
+          <input
+            name="time"
+            type="number"
+            placeholder="35"
+            v-model.number="newTechnique.time"
+          />
         </label>
 
         <label for="goal"
@@ -40,7 +46,7 @@
             name="goal"
             type="text"
             placeholder="Analizar la forma en que..."
-            v-model="goal"
+            v-model.trim="newTechnique.goal"
           />
         </label>
 
@@ -50,7 +56,7 @@
             name="material"
             type="text"
             placeholder="Folios, bolis..."
-            v-model="material"
+            v-model.trim="newTechnique.material"
           />
         </label>
 
@@ -60,7 +66,7 @@
             name="task"
             type="text"
             placeholder="Formar grupos de..."
-            v-model="task"
+            v-model.trim="newTechnique.task"
           />
         </label>
 
@@ -70,18 +76,37 @@
             name="workflow"
             type="text"
             placeholder="Esta tecnica moviliza reflexiones acerca de..."
-            v-model="workflow"
+            v-model.trim="newTechnique.workflow"
           />
         </label>
         <span>Completa todos los campos</span>
       </div>
     </div>
-    <button class="button">Crear Técnica</button>
-  </section>
+    <button type="submit" class="button">Crear Técnica</button>
+  </form>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      newTechnique: {
+        name: "",
+        type: "",
+        time: 0,
+        goal: "",
+        material: "",
+        task: "",
+        workflow: "",
+      },
+    };
+  },
+  methods: {
+    saveNewTechniqueData() {
+      console.log(this.newTechnique); //TODO create function to send info to DDBB
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
