@@ -20,17 +20,13 @@
       <router-link to="/synergy" class="nav__item">Logout</router-link>
     </div>
     <div v-else class="header__nav">
-      <router-link to="/synergy/notFound" class="nav__item"
+      <router-link to="/synergy/login" class="nav__item"
         >Techniques</router-link
       >
 
-      <router-link to="/synergy/notFound" class="nav__item"
-        >Profile</router-link
-      >
+      <router-link to="/synergy/login" class="nav__item">Profile</router-link>
 
-      <router-link to="/synergy/notFound" class="nav__item"
-        >Resources</router-link
-      >
+      <router-link to="/synergy/login" class="nav__item">Resources</router-link>
 
       <router-link to="/synergy/login" class="nav__item">Ingresar</router-link>
     </div>
