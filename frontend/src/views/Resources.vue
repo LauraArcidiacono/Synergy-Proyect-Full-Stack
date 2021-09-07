@@ -37,13 +37,13 @@ export default {
     image: String,
   },
   computed: {
-    ...mapState(["resources"]),
+    ...mapState(["resources", "token"]),
   },
   methods: {
     ...mapActions(["fetchResourcesFromApi"]),
   },
   mounted() {
-    this.fetchResourcesFromApi();
+    this.fetchResourcesFromApi(this.token);
   },
 };
 </script>
