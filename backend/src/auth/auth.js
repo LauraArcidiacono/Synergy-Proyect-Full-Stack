@@ -18,7 +18,7 @@ passport.use(
 
         if (!user) {
           const newUser = await UserModel.create({
-            username: req.body.name,
+            name: req.body.name,
             profession: req.body.profession,
             city: req.body.city,
             email: email.toLowerCase(),
