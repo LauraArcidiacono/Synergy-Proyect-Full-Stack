@@ -37,12 +37,14 @@ const actions = {
         
       },
   
-    async userLogedFromApi({commit}: ActionContext<State, State>, {user, token}: UserWithToken):  Promise<void> { 
+    async userLogedFromApi({commit}: ActionContext<State, State>, {user, token, refreshToken}: UserWithToken):  Promise<void> { 
       const { data } = await axios({
           method: 'GET',
           url: `http://localhost:5000/synergy/users/${user._id}`,
           headers: { Authorization: `Bearer ${token}` }
         });
+        data.token = token;
+        data.refreshDataToken = refreshToken;
         commit("loginUser", data);
         commit('loadUser', data);
       },
