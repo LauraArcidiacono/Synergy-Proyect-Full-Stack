@@ -9,8 +9,11 @@
         color: white;
         font-size: 1.1rem;
         margin: 2vw;
+        cursor: pointer;
 }
-
+@mixin input {
+  outline: none;
+}
 @mixin technique__item {
     width: 70%;
     display: flex;
