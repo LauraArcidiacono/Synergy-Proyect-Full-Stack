@@ -63,7 +63,7 @@ export default {
     TechniqueCard,
   },
   computed: {
-    ...mapState(["techniques"]),
+    ...mapState(["techniques", "token"]),
   },
   methods: {
     ...mapActions(["fetchTechniquesFromApi"]),

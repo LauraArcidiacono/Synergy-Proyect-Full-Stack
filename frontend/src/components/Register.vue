@@ -1,11 +1,17 @@
 <template>
-  <section class="register">
+  <form action class="register" @submit.prevent="handleSubmit()">
     <h3>Regístrate</h3>
     <div class="register__userData">
       <label for="name"
         >Nombre y apellido
         <br />
-        <input name="name" type="name" placeholder="Jane Doe" v-model="name" />
+        <input
+          name="name"
+          type="name"
+          placeholder="Jane Doe"
+          v-model.trim="userData.name"
+          required
+        />
       </label>
       <label for="profession"
         >Profesión
@@ -14,13 +20,20 @@
           name="profession"
           type="profession"
           placeholder="Educadora Social"
-          v-model="profession"
+          v-model.trim="userData.profession"
+          required
         />
       </label>
       <label for="city"
         >Ciudad
         <br />
-        <input name="city" type="city" placeholder="Barcelona" v-model="city" />
+        <input
+          name="city"
+          type="city"
+          placeholder="Barcelona"
+          v-model.trim="userData.city"
+          required
+        />
       </label>
       <label for="email"
         >Ingresa tu email
@@ -29,7 +42,8 @@
           name="email"
           type="email"
           placeholder="jane_doe@gmail.com"
-          v-model="email"
+          v-model.trim="userData.email"
+          required
         />
       </label>
       <label for="password"
@@ -39,16 +53,43 @@
           name="password"
           type="password"
           placeholder="****************"
-          v-model="password"
+          v-model.trim="userData.password"
+          required
         />
       </label>
-      <button class="button">Ingresa</button>
+      <button type="submit" class="button">Ingresa</button>
     </div>
-  </section>
+  </form>
 </template>
 
 <script>
-export default {};
+// import auth from "../logic/auth";
+import { mapActions } from "vuex";
+
+export default {
+  data() {
+    return {
+      userData: {
+        name: "",
+        profession: "",
+        city: "",
+        email: "",
+        password: "",
+      },
+      error: false,
+    };
+  },
+
+  methods: {
+    ...mapActions(["register", "login"]),
+
+    handleSubmit() {
+      this.register(this.userData);
+      this.login(this.userData);
+      this.$router.push("/synergy/dashboard");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

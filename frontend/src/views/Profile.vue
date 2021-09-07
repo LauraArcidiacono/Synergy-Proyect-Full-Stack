@@ -3,7 +3,7 @@
     <h2>Mi Perfil</h2>
     <div class="profile__container">
       <article class="container__info">
-        <img src="../images/avatar1.png" alt="Avatar de usuario" />
+        <img :src="currentUser.avatar" alt="Avatar de usuario" />
         <div>
           <h4>{{ currentUser.name }}</h4>
           <p>{{ currentUser.profession }}</p>
@@ -58,8 +58,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import { useRoute } from "vue-router";
+import { mapState } from "vuex";
 import CreateTechniqueForm from "../components/CreateTechniqueForm.vue";
 
 export default {
@@ -73,16 +72,9 @@ export default {
     CreateTechniqueForm,
   },
   computed: {
-    ...mapState(["currentUser"]),
+    ...mapState(["currentUser", "token"]),
   },
-  methods: {
-    ...mapActions(["fetchOneUserFromApi"]),
-  },
-  mounted() {
-    const route = useRoute();
-    const { userId } = route.params;
-    this.fetchOneUserFromApi(userId);
-  },
+  methods: {},
 };
 </script>
 

@@ -6,7 +6,7 @@
       <p>Tipo: {{ type }}</p>
       <p>Objetivo: {{ goal }}</p>
     </div>
-    <router-link :to="'synergy/techniques/' + _id">
+    <router-link :to="'/synergy/techniques/' + _id">
       <button class="button">Ver Detalles</button></router-link
     >
   </section>
