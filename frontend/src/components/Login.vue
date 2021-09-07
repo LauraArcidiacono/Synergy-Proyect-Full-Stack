@@ -1,5 +1,5 @@
 <template>
-  <form action class="login" @submit.prevent="login">
+  <form action class="login" @submit.prevent="handleSubmit()">
     <h3>Login</h3>
     <div class="login__userData">
       <label for="email"
@@ -9,7 +9,7 @@
           name="email"
           type="email"
           placeholder="jane_doe@gmail.com"
-          v-model.trim="email"
+          v-model.trim="userData.email"
           required
         />
       </label>
@@ -20,7 +20,7 @@
           name="password"
           type="password"
           placeholder="****************"
-          v-model.trim="password"
+          v-model.trim="userData.password"
           required
         />
       </label>
@@ -37,8 +37,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import auth from "../logic/auth";
+import { mapMutations, mapActions } from "vuex";
 
 export default {
   name: "Login",
@@ -46,21 +45,20 @@ export default {
   methods: {
     ...mapMutations(["loginUser"]),
 
-    async login() {
-      try {
-        const loggedUser = await auth.login(this.email, this.password);
-        console.log("este es el loggedUser", loggedUser);
-        this.loginUser(loggedUser);
-        this.$router.push("/synergy/dashboard");
-      } catch (error) {
-        this.error = true;
-      }
+    ...mapActions(["login"]),
+
+    handleSubmit() {
+      this.login(this.userData);
+      this.$router.push("/synergy/dashboard");
     },
   },
+
   data() {
     return {
-      email: "",
-      password: "",
+      userData: {
+        email: "",
+        password: "",
+      },
       error: false,
     };
   },
