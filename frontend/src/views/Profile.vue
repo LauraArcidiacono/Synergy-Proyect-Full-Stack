@@ -58,8 +58,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import { useRoute } from "vue-router";
+import { mapState } from "vuex";
 import CreateTechniqueForm from "../components/CreateTechniqueForm.vue";
 
 export default {
@@ -75,14 +74,7 @@ export default {
   computed: {
     ...mapState(["currentUser", "token"]),
   },
-  methods: {
-    ...mapActions(["userLogedFromApi"]),
-  },
-  mounted() {
-    const route = useRoute();
-    const { userId } = route.params;
-    this.userLogedFromApi({ userId, token: this.token });
-  },
+  methods: {},
 };
 </script>
 
