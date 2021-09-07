@@ -44,7 +44,8 @@ const actions = {
           headers: { Authorization: `Bearer ${token}` }
         });
         data.token = token;
-        data.refreshDataToken = refreshToken;
+        data.refreshToken = refreshToken;
+        console.log("esta es data", data)
         commit("loginUser", data);
         commit('loadUser', data);
       },
