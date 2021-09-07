@@ -1,5 +1,5 @@
 <template>
-  <form action class="register" @submit.prevent="register">
+  <form action class="register" @submit.prevent="handleSubmit()">
     <h3>Regístrate</h3>
     <div class="register__userData">
       <label for="name"
@@ -9,7 +9,7 @@
           name="name"
           type="name"
           placeholder="Jane Doe"
-          v-model.trim="name"
+          v-model.trim="userData.name"
           required
         />
       </label>
@@ -20,7 +20,7 @@
           name="profession"
           type="profession"
           placeholder="Educadora Social"
-          v-model.trim="profession"
+          v-model.trim="userData.profession"
           required
         />
       </label>
@@ -31,7 +31,7 @@
           name="city"
           type="city"
           placeholder="Barcelona"
-          v-model.trim="city"
+          v-model.trim="userData.city"
           required
         />
       </label>
@@ -42,7 +42,7 @@
           name="email"
           type="email"
           placeholder="jane_doe@gmail.com"
-          v-model.trim="email"
+          v-model.trim="userData.email"
           required
         />
       </label>
@@ -53,7 +53,7 @@
           name="password"
           type="password"
           placeholder="****************"
-          v-model.trim="password"
+          v-model.trim="userData.password"
           required
         />
       </label>
@@ -63,7 +63,8 @@
 </template>
 
 <script>
-import auth from "../logic/auth";
+// import auth from "../logic/auth";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -80,19 +81,12 @@ export default {
   },
 
   methods: {
-    async register() {
-      try {
-        await auth.register(
-          this.name,
-          this.profession,
-          this.city,
-          this.email,
-          this.password
-        );
-        this.$router.push("/synergy/dashboard");
-      } catch (error) {
-        console.log(error);
-      }
+    ...mapActions(["register", "login"]),
+
+    handleSubmit() {
+      this.register(this.userData);
+      this.login(this.userData);
+      this.$router.push("/synergy/dashboard");
     },
   },
 };
