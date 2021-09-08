@@ -47,6 +47,26 @@ async function getOneTechniqueById({ params: { techniqueId } }, res) {
   }
 }
 
+async function getTechniquesByUserProviderId(req, res) {
+  const { userProviderId } = req.params;
+  try {
+    const foundTechniques = await Technique.find({ userProvider: { $eq: userProviderId } })
+      .populate({
+        path: 'reviews',
+        select: ['user', 'description', 'score'],
+        populate: {
+          path: 'user',
+          model: 'User'
+        }
+      });
+    res.json(foundTechniques);
+    res.send(204);
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+}
+
 async function updateOneTechniqueById(req, res) {
   const { techniqueId } = req.params;
   const dataToUpdate = req.body;
@@ -78,6 +98,7 @@ module.exports = {
   getAllTechniques,
   createOneTechnique,
   getOneTechniqueById,
+  getTechniquesByUserProviderId,
   updateOneTechniqueById,
   deleteOneTechniqueById
 };
