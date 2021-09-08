@@ -19,14 +19,20 @@ export default createStore({
     },
 
     loginUser(state, payload) {
-      state.isUserAuthenticate = !state.isUserAuthenticate;
+      state.isUserAuthenticate = true;
       state.token = payload.token;
       state.refreshToken = payload.refreshToken;
     },
     
     loadUser(state, payload) {
       state.currentUser = payload;
-    }
+    },
+
+    logoutUser(state, payload) {
+      state.isUserAuthenticate = false;
+      state.token = payload.token;
+      state.refreshToken = payload.refreshToken;
+    },
 
   },
   actions,
