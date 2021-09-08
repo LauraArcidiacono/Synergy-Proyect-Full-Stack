@@ -34,7 +34,7 @@
         <h3>Técnicas que he compartido</h3>
         <ul class="userTechniques__card">
           <li
-            v-for="techniquesProvided in currentUser.techniquesProvided"
+            v-for="techniquesProvided in currentUserTechniquesProvided"
             :key="techniquesProvided._id"
             class="card__item"
           >
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import CreateTechniqueForm from "../components/CreateTechniqueForm.vue";
 
 export default {
@@ -72,9 +72,15 @@ export default {
     CreateTechniqueForm,
   },
   computed: {
-    ...mapState(["currentUser", "token"]),
+    ...mapState(["currentUser", "currentUserTechniquesProvided"]),
   },
-  methods: {},
+  methods: {
+    ...mapActions(["fetchCurrentUserTechniquesProvided"]),
+  },
+
+  mounted() {
+    this.fetchCurrentUserTechniquesProvided(this.currentUser._id);
+  },
 };
 </script>
 
