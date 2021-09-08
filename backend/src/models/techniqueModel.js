@@ -10,7 +10,7 @@ const techniqueSchema = Schema({
   workflow: String,
   ilustration: String,
   reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
-  userProvider: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  userProvider: String
 });
 
 module.exports = model('Technique', techniqueSchema);
