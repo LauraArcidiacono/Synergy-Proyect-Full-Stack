@@ -9,24 +9,21 @@
 
     <div v-if="isUserAuthenticate" class="header__nav">
       <router-link to="/synergy/techniques" class="nav__item"
-        >Techniques</router-link
-      >
-      <router-link :to="'/synergy/profile/' + currentUser._id" class="nav__item"
-        >Profile</router-link
+        >Tecnicas</router-link
       >
       <router-link to="/synergy/resources" class="nav__item"
-        >Resources</router-link
+        >Recursos</router-link
       >
-      <router-link to="/synergy" class="nav__item">Logout</router-link>
+      <router-link :to="'/synergy/profile/' + currentUser._id" class="nav__item"
+        >Perfil</router-link
+      >
+
+      <button @click="handleLogout()" class="button">Logout</button>
     </div>
     <div v-else class="header__nav">
-      <router-link to="/synergy/login" class="nav__item"
-        >Techniques</router-link
-      >
-
-      <router-link to="/synergy/login" class="nav__item">Profile</router-link>
-
-      <router-link to="/synergy/login" class="nav__item">Resources</router-link>
+      <router-link to="/synergy/login" class="nav__item">Tecnicas</router-link>
+      <router-link to="/synergy/login" class="nav__item">Recursos</router-link>
+      <router-link to="/synergy/login" class="nav__item">Perfil</router-link>
 
       <router-link to="/synergy/login" class="nav__item">Ingresar</router-link>
     </div>
@@ -34,7 +31,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Header",
@@ -42,7 +39,18 @@ export default {
   computed: {
     ...mapState(["isUserAuthenticate", "currentUser"]),
   },
-  methods: {},
+  methods: {
+    ...mapActions(["getUserFromLocalStorage", "deleteDataFromLocalStorage"]),
+
+    handleLogout() {
+      this.deleteDataFromLocalStorage();
+      this.$router.push("/synergy/");
+    },
+  },
+
+  mounted() {
+    this.getUserFromLocalStorage();
+  },
 };
 </script>
 
