@@ -2,7 +2,7 @@
   <section class="dashboard">
     <img
       class="dashboard__image"
-      src="../images/Nombre.png"
+      src="../images/Synergy.png"
       alt="Logo Synergy"
     />
     <div class="dashboard__articles">
@@ -18,7 +18,9 @@
           dejar tu propia reseña y guardarlas en tu lista de favoritas para
           tenerlas siempre a mano
         </p>
-        <button class="button">Ver Técnicas</button>
+        <router-link to="/synergy/techniques">
+          <button class="button">Ver Técnicas</button></router-link
+        >
       </article>
       <article class="articles_resources">
         <h3>Recursos</h3>
@@ -31,25 +33,34 @@
           Tambien encontrarás el link a las editoriales para que puedas acceder
           fácilmente a consultar por la disponibilidad de cada libro.
         </p>
-        <button class="button">Ver Recursos</button>
+        <router-link to="/synergy/resources">
+          <button class="button">Ver Recursos</button></router-link
+        >
       </article>
       <article class="articles__profile">
         <h3>Perfil</h3>
         <p>
           En este apartado encontrarás tus datos personales, las técnicas que
           has seleccionado como favoritas y podrás compartir técnicas que
-          conoces y consideras valiosas para que otras personas tamcién puedan
+          conoces y consideras valiosas para que otras personas también puedan
           implementarlas.
         </p>
-        <button class="button">Ver mi Perfil</button>
+        <router-link :to="'/synergy/profile/' + currentUser._id">
+          <button class="button">Ver mi Perfil</button></router-link
+        >
       </article>
     </div>
   </section>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Dashboard",
+  computed: {
+    ...mapState(["currentUser"]),
+  },
 };
 </script>
 
@@ -63,7 +74,7 @@ export default {
   align-items: center;
 }
 .dashboard__image {
-  width: 70%;
+  width: 10%;
   margin-top: 2vw;
 }
 .dashboard__articles {
