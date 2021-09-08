@@ -63,7 +63,6 @@
 </template>
 
 <script>
-// import auth from "../logic/auth";
 import { mapActions } from "vuex";
 
 export default {
