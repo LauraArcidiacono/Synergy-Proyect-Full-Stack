@@ -3,6 +3,7 @@ const {
   getAllTechniques,
   createOneTechnique,
   getOneTechniqueById,
+  getTechniquesByUserProviderId,
   updateOneTechniqueById,
   deleteOneTechniqueById
 } = require('../controllers/techniqueControllers');
@@ -13,6 +14,10 @@ techniqueRouter
   .route('/')
   .get(getAllTechniques)
   .post(createOneTechnique);
+
+techniqueRouter
+  .route('/userprovider/:userProviderId')
+  .get(getTechniquesByUserProviderId);
 
 techniqueRouter
   .route('/:techniqueId')

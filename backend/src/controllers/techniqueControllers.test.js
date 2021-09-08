@@ -117,7 +117,45 @@ describe('TechniqueControllers', () => {
       });
     });
   });
+  /// ///
+  describe('Given a getTechniquesByUserProviderId function', () => {
+    beforeEach(() => {
+      req = {
+        params: { userProviderId: '612cdc22f51271a5127ca260' }
+      };
+    });
+    describe('When is triggered', () => {
+      describe('And find resolves', () => {
+        test('Then res.json is called', async () => {
+          Technique.find
+            .mockReturnValue({
+              populate: jest.fn().mockResolvedValue({
+                name: '',
+                reviews: [{ technique: {}, user: '', score: 4 }]
+              })
+            });
 
+          await controllers.getTechniquesByUserProviderId(req, res);
+
+          expect(res.json).toHaveBeenCalled();
+        });
+      });
+
+      describe('And find rejects', () => {
+        test('Then call status with 500', async () => {
+          Technique.find
+            .mockReturnValue({
+              populate: jest.fn().mockRejectedValue()
+            });
+
+          await controllers.getTechniquesByUserProviderId(req, res);
+
+          expect(res.status).toHaveBeenCalledWith(500);
+        });
+      });
+    });
+  });
+  /// /
   describe('Given a updateOneTechniqueById function', () => {
     beforeEach(() => {
       req = {

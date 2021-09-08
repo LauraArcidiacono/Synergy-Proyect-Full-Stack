@@ -1,23 +1,12 @@
 import { createStore } from 'vuex';
-import actions from '@/store/actions';
 import state from '@/store/state';
+import actions from '@/store/actions';
 
 
 export default createStore({
   state,
   mutations: {
-    loadTechniques(state, payload) {
-      state.techniques = payload;
-    },
-
-    loadOneTechnique(state, payload) {
-      state.currentTechnique = payload;
-    },
-
-    loadResources(state, payload) {
-      state.resources = payload;
-    },
-
+    
     loginUser(state, payload) {
       state.isUserAuthenticate = true;
       state.token = payload.token;
@@ -34,6 +23,26 @@ export default createStore({
       state.refreshToken = payload.refreshToken;
     },
 
+    updateUserTechniquesProvided(state, payload) {
+      state.currentUser.techniquesProvided.push(payload);
+
+    },
+
+    loadTechniques(state, payload) {
+      state.techniques = payload;
+    },
+
+    loadOneTechnique(state, payload) {
+      state.currentTechnique = payload;
+    },
+
+    loadCurrentUserTechniquesProvided(state, payload) {
+      state.currentUserTechniquesProvided = payload;
+    },
+
+    loadResources(state, payload) {
+      state.resources = payload;
+    },
   },
   actions,
   modules: {

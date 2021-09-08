@@ -1,4 +1,5 @@
 interface Technique {
+  _id: string;
   name: string,
   type: string,
   time: number,
@@ -103,6 +104,7 @@ refreshToken: string,
 interface State {
   techniques: [DataBaseTechnique],
   currentTechnique: Technique,
+  currentUserTechniquesProvided: [DataBaseTechnique],
   currentUser: User,
   isUserAuthenticate: Boolean,
   token: string,
