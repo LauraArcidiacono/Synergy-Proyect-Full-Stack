@@ -104,6 +104,7 @@ refreshToken: string,
 interface State {
   techniques: [DataBaseTechnique],
   currentTechnique: Technique,
+  currentUserTechniquesProvided: [DataBaseTechnique],
   currentUser: User,
   isUserAuthenticate: Boolean,
   token: string,
