@@ -1,5 +1,8 @@
 <template>
-  <form @submit.prevent="saveNewTechniqueData" class="createTechniqueForm">
+  <form
+    @submit.prevent="handleSaveNewTechnique(currentUser._id)"
+    class="createTechniqueForm"
+  >
     <h2>Crea una nueva técnica para compartir</h2>
     <div class="createTechniqueForm__container">
       <div class="createTechniqueForm__inputs">
@@ -7,9 +10,10 @@
           >Nombre:
           <input
             name="name"
-            type="text"
+            type="name"
             placeholder="Planificación de tareas"
             v-model.trim="newTechnique.name"
+            required
           />
         </label>
 
@@ -87,7 +91,19 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState(["currentUser"]),
+  },
+  methods: {
+    ...mapActions(["createNewTechnique"]),
+
+    handleSaveNewTechnique(userId) {
+      this.createNewTechnique({ ...this.newTechnique, userProvider: userId });
+      this.$router.push(`/synergy/prifile/${userId}`);
+    },
+  },
   data() {
     return {
       newTechnique: {
@@ -98,13 +114,9 @@ export default {
         material: "",
         task: "",
         workflow: "",
+        ilustration: "",
       },
     };
-  },
-  methods: {
-    saveNewTechniqueData() {
-      console.log(this.newTechnique); //TODO create function to send info to DDBB
-    },
   },
 };
 </script>
