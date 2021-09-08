@@ -24,7 +24,7 @@ const actions: any = {
       dispatch("login", {email: localStorageUser.email, password: localStorageUser.password});
     },
 
-    async userLogedFromApi({commit}: ActionContext<State, State>, {user, token, refreshToken}: UserWithToken):  Promise<void> { 
+    async userLogedFromApi({commit, dispatch}: ActionContext<State, State>, {user, token, refreshToken}: UserWithToken):  Promise<void> { 
       const { data } = await axios({
           method: 'GET',
           url: `http://localhost:5000/synergy/users/${user._id}`,
@@ -35,6 +35,7 @@ const actions: any = {
         localStorage.setItem("userData", JSON.stringify({email: data.email, password: data.password}));
         commit("loginUser", data);
         commit('loadUser', data);
+        dispatch("fetchCurrentUserTechniquesProvided", user._id);
       },
 
     deleteDataFromLocalStorage({commit}: ActionContext<State, State>) {
@@ -61,28 +62,28 @@ const actions: any = {
         commit('loadOneTechnique', data);
         
       },
+
+    async fetchCurrentUserTechniquesProvided({commit, state}: ActionContext<State, State>, id: string) {
+        const { data } = await axios({
+          method: 'GET',
+          url: `http://localhost:5000/synergy/technique/userprovider/${id}`,
+          headers: { Authorization: `Bearer ${state.token}` }
+        })
+      commit("loadCurrentUserTechniquesProvided", data)
+
+    },
   
     async createNewTechnique({ commit, state}: ActionContext<State, State>, user: UserWithToken, newTechnique: Technique):  Promise<void> {
-    console.log("esto es newTechnique", newTechnique)
       const { data } = await axios({
         method: 'POST',
         url: 'http://localhost:5000/synergy/technique', 
         headers: { Authorization: `Bearer ${state.token}`},
         data: newTechnique
       });
-      console.log("esto es data", data)
       commit("updateUserTechniquesProvided", data)
-
-
-      
-      // dispatch("loginWithoutTechniquesPopulated", { email: state.currentUser.email, password: state.currentUser.password})
     },
 
-    // async loginWithoutTechniquesPopulated({ commit }: ActionContext<State, State>, userData: UserWithToken):  Promise<void> {
-    //   const {data} = await axios.get("http://localhost:5000/synergy/auth/login", userData);
-    //   commit("loadUser", data)
-    // },
-
+  
     async fetchResourcesFromApi({commit, state}: ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({
           method: 'GET',
