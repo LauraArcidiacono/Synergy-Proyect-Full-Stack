@@ -1,103 +1,103 @@
 interface Technique {
-  name: String,
-  type: String,
-  time: Number,
-  goal: String,
-  material: String,
-  task: String,
-  workflow: String,
-  ilustration: String,
+  name: string,
+  type: string,
+  time: number,
+  goal: string,
+  material: string,
+  task: string,
+  workflow: string,
+  ilustration: string,
   reviews: [Review],
-  userProvider: [String]
+  userProvider: [string]
 }
 
 interface DataBaseTechnique {
-    _id: String,
-    name: String,
-    type: String,
-    time: Number,
-    goal: String,
-    material: String,
-    task: String,
-    workflow: String,
-    ilustration:String,
+    _id: string,
+    name: string,
+    type: string,
+    time: number,
+    goal: string,
+    material: string,
+    task: string,
+    workflow: string,
+    ilustration:string,
     reviews: [
         {
-            _id: String,
+            _id: string,
             user: {
-                _id: String,
-                name: String,
-                profession: String,
-                city: String,
-                avatar: String,
-                email: String,
-                password: String,
+                _id: string,
+                name: string,
+                profession: string,
+                city: string,
+                avatar: string,
+                email: string,
+                password: string,
                 favoriteTechniques: [
-                    String
+                    string
                 ],
                 techniquesProvided: [
-                    String,
+                    string,
                 ],
             },
-            description: String,
-            score: Number,
+            description: string,
+            score: number,
         }
     ],
-    userProvider: [String]
+    userProvider: [string]
 
 }
 
 interface Review {
   technique: Technique,
   user: User,
-  description: String,
-  score: Number
+  description: string,
+  score: number
 }
 interface User {
-  name: String,
-  profession: String,
-  city: String,
-  avatar: String, 
-  email: String,
-  password: String,
+  name: string,
+  profession: string,
+  city: string,
+  avatar: string, 
+  email: string,
+  password: string,
   favoriteTechniques: [Technique],
   techniquesProvided: [Technique]
 }
 interface Resource {
-  title: String,
-  author: String,
-  editorial: String,
-  siteEditorial: String,
-  image: String
+  title: string,
+  author: string,
+  editorial: string,
+  siteEditorial: string,
+  image: string
 }
 interface UserRegisterData {
-  name: String,
-  profession: String,
-  city: String,
-  email: String,
-  password: String,
+  name: string,
+  profession: string,
+  city: string,
+  email: string,
+  password: string,
 }
 interface UserLoginData {
-  email: String,
-  password: String,
+  email: string,
+  password: string,
 }
 
 interface UserWithToken {
   
     user: {
-      _id: String,
-      name: String,
-      profession: String,
-      city: String,
-      avatar: String,
-      email: String,
-      password: String,
+      _id: string,
+      name: string,
+      profession: string,
+      city: string,
+      avatar: string,
+      email: string,
+      password: string,
       favoriteTechniques: [{}],
       techniquesProvided: [{}],
     }
 
-token: String,
-refreshToken: String,
+token: string,
+refreshToken: string,
 }
 
 interface State {
@@ -105,8 +105,8 @@ interface State {
   currentTechnique: Technique,
   currentUser: User,
   isUserAuthenticate: Boolean,
-  token: String,
-  refreshToken: String,
+  token: string,
+  refreshToken: string,
   resources: [Resource]
 }
 
