@@ -18,6 +18,12 @@ const actions = {
         dispatch("userLogedFromApi", data);
     },
 
+    getUserFromLocalStorage({dispatch}: ActionContext<State, State>)  {
+      const localStorageUser = JSON.parse(localStorage.getItem("userData") || "")
+      dispatch("login", {email: localStorageUser.email, password: localStorageUser.password});
+    },
+
+
     async fetchTechniquesFromApi({commit, state}:ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({
           method: 'GET',
@@ -45,11 +51,17 @@ const actions = {
         });
         data.token = token;
         data.refreshToken = refreshToken;
-        console.log("esta es data", data)
+        localStorage.setItem("userData", JSON.stringify({email: data.email, password: data.password}));
         commit("loginUser", data);
         commit('loadUser', data);
       },
   
+    async deleteDataFromLocalStorage({commit}: ActionContext<State, State>):  Promise<void> {
+        localStorage.setItem("userData", JSON.stringify(""));
+        const logedOutUser = {token: "", refreshToken: ""};
+        commit("logoutUser", logedOutUser)
+    },
+
     async fetchResourcesFromApi({commit, state}: ActionContext<State, State>,):  Promise<void> {
         const { data } = await axios({
           method: 'GET',
