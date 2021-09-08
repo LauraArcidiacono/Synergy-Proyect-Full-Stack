@@ -15,7 +15,9 @@
             <div class="book__info">
               <h3>{{ resource.title }}</h3>
               <h4>{{ resource.author }}</h4>
-              <a :href="siteEditorial">Siglo XXI Editores</a>
+              <a :href="resource.siteEditorial" target="_blank">{{
+                resource.editorial
+              }}</a>
             </div>
           </div>
         </li>
