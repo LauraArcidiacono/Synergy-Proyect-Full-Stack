@@ -36,6 +36,10 @@ export default createStore({
       state.currentTechnique = payload;
     },
 
+    loadCurrentUserTechniquesProvided(state, payload) {
+      state.currentUserTechniquesProvided = payload;
+    },
+
     loadResources(state, payload) {
       state.resources = payload;
     },
