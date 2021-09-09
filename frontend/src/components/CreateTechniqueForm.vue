@@ -10,7 +10,7 @@
           >Nombre:
           <input
             name="name"
-            type="name"
+            type="text"
             placeholder="Planificación de tareas"
             v-model.trim="newTechnique.name"
             required
@@ -28,7 +28,7 @@
         >
           <option value="palnificacion">Planificación</option>
           <option value="confianza">Confianza</option>
-          <option value="logro de metas">Logro de metas</option>
+          <option value="metas">Logro de metas</option>
           <option value="comunicacion">Comunicación</option>
           <option value="presentacion">Presentación</option>
           <option value="animacion">Animación</option>
@@ -92,6 +92,8 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import imagesURLs from "../assets/constants";
+
 export default {
   computed: {
     ...mapState(["currentUser"]),
@@ -100,8 +102,12 @@ export default {
     ...mapActions(["createNewTechnique"]),
 
     handleSaveNewTechnique(userId) {
-      this.createNewTechnique({ ...this.newTechnique, userProvider: userId });
-      this.$router.push(`/synergy/prifile/${userId}`);
+      this.createNewTechnique({
+        ...this.newTechnique,
+        userProvider: userId,
+        ilustration: this.ilustrationsSRC[`${this.newTechnique.type}`],
+      });
+      this.$router.push(`/synergy/profile/${userId}`);
     },
   },
   data() {
@@ -114,8 +120,8 @@ export default {
         material: "",
         task: "",
         workflow: "",
-        ilustration: "",
       },
+      ilustrationsSRC: imagesURLs,
     };
   },
 };
@@ -167,6 +173,9 @@ export default {
     height: 10vh;
     width: 70%;
     margin: 1vh;
+  }
+  & img {
+    display: none;
   }
 }
 </style>
