@@ -150,6 +150,36 @@ describe('UserControllers', () => {
     });
   });
 
+  describe('Given a addFavoriteTechniqueToUser function', () => {
+    beforeEach(() => {
+      req = {
+        params: { userId: '612cdc22f51271a5127ca260' },
+        body: { _id: '29387298392398479023749237498' }
+      };
+    });
+    describe('When is triggered', () => {
+      describe('And findByIdAndUpdate response', () => {
+        test('Then res.json is called', async () => {
+          User.findByIdAndUpdate.mockResolvedValue({});
+
+          await controllers.addFavoriteTechniqueToUser(req, res);
+
+          expect(res.json).toHaveBeenCalled();
+        });
+      });
+
+      describe('And findByIdAndUpdate rejects', () => {
+        test('Then res.status is called with 500', async () => {
+          User.findByIdAndUpdate.mockRejectedValue();
+
+          await controllers.addFavoriteTechniqueToUser(req, res);
+
+          expect(res.status).toHaveBeenCalledWith(500);
+        });
+      });
+    });
+  });
+
   describe('Given a deleteOneUserById function', () => {
     describe('When is triggered', () => {
       describe('And findByIdAndDelete response', () => {
