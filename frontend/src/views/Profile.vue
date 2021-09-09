@@ -54,16 +54,15 @@
         </ul>
       </article>
     </div>
-    <button @click="modal = !modal" class="button">Crear Técnica</button>
-    <teleport to="#modals">
-      <CreateTechniqueForm v-if="modal" class="modal" />
-    </teleport>
+
+    <router-link to="/synergy/techniques/createtechniqueform">
+      <button class="button">Crear Técnica</button>
+    </router-link>
   </section>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import CreateTechniqueForm from "../components/CreateTechniqueForm.vue";
 
 export default {
   name: "Profile",
@@ -71,9 +70,6 @@ export default {
     return {
       modal: false,
     };
-  },
-  components: {
-    CreateTechniqueForm,
   },
   computed: {
     ...mapState(["currentUser", "currentUserTechniquesProvided"]),
