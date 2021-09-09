@@ -73,7 +73,7 @@ const actions: any = {
 
     },
   
-    async createNewTechnique({ commit, state}: ActionContext<State, State>, user: UserWithToken, newTechnique: Technique):  Promise<void> {
+    async createNewTechnique({ commit, state}: ActionContext<State, State>, newTechnique: Technique):  Promise<void> {
       const { data } = await axios({
         method: 'POST',
         url: 'http://localhost:5000/synergy/technique', 
