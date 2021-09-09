@@ -55,7 +55,6 @@ export default createStore({
   
     isTechniqueInFavorites(state) {
       const favorita = state.currentUser.favoriteTechniques.some((favoriteTechnique) => favoriteTechnique._id === state.currentTechnique._id);
-      console.log("esto es favorita", favorita);
       return favorita;
       
     }
