@@ -19,14 +19,16 @@
             :key="favoriteTechniques._id"
             class="card__item"
           >
-            <div>
-              <img
-                class="card__ilustration"
-                :src="favoriteTechniques.ilustration"
-                alt="Ilustration tipo de técnica"
-              />
-              <h4>{{ favoriteTechniques.name }}</h4>
-            </div>
+            <router-link :to="'/synergy/techniques/' + favoriteTechniques._id">
+              <div>
+                <img
+                  class="card__ilustration"
+                  :src="favoriteTechniques.ilustration"
+                  alt="Ilustration tipo de técnica"
+                />
+                <h4>{{ favoriteTechniques.name }}</h4>
+              </div>
+            </router-link>
           </li>
         </ul>
       </article>
@@ -38,28 +40,29 @@
             :key="techniquesProvided._id"
             class="card__item"
           >
-            <div>
-              <img
-                class="card__ilustration"
-                :src="techniquesProvided.ilustration"
-                alt="Ilustration tipo de técnica"
-              />
-              <h4>{{ techniquesProvided.name }}</h4>
-            </div>
+            <router-link :to="'/synergy/techniques/' + techniquesProvided._id">
+              <div>
+                <img
+                  class="card__ilustration"
+                  :src="techniquesProvided.ilustration"
+                  alt="Ilustration tipo de técnica"
+                />
+                <h4>{{ techniquesProvided.name }}</h4>
+              </div>
+            </router-link>
           </li>
         </ul>
       </article>
     </div>
-    <button @click="modal = !modal" class="button">Crear Técnica</button>
-    <teleport to="#modals">
-      <CreateTechniqueForm v-if="modal" class="modal" />
-    </teleport>
+
+    <router-link to="/synergy/techniques/createtechniqueform">
+      <button class="button">Crear Técnica</button>
+    </router-link>
   </section>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import CreateTechniqueForm from "../components/CreateTechniqueForm.vue";
 
 export default {
   name: "Profile",
@@ -67,9 +70,6 @@ export default {
     return {
       modal: false,
     };
-  },
-  components: {
-    CreateTechniqueForm,
   },
   computed: {
     ...mapState(["currentUser", "currentUserTechniquesProvided"]),
@@ -144,6 +144,7 @@ export default {
   padding-inline-start: 0;
 }
 .card__item {
+  text-decoration-line: none;
   & div {
     display: flex;
     flex-direction: row;

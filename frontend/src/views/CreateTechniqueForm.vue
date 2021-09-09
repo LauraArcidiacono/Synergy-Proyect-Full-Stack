@@ -10,7 +10,7 @@
           >Nombre:
           <input
             name="name"
-            type="name"
+            type="text"
             placeholder="Planificación de tareas"
             v-model.trim="newTechnique.name"
             required
@@ -28,7 +28,7 @@
         >
           <option value="palnificacion">Planificación</option>
           <option value="confianza">Confianza</option>
-          <option value="logro de metas">Logro de metas</option>
+          <option value="metas">Logro de metas</option>
           <option value="comunicacion">Comunicación</option>
           <option value="presentacion">Presentación</option>
           <option value="animacion">Animación</option>
@@ -86,12 +86,19 @@
         <span>Completa todos los campos</span>
       </div>
     </div>
-    <button type="submit" class="button">Crear Técnica</button>
+    <div class="createTechniqueForm__buttons">
+      <router-link to="/synergy/profile/:userId">
+        <button class="button">Volver sin crear</button>
+      </router-link>
+      <button type="submit" class="button">Crear Técnica</button>
+    </div>
   </form>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import imagesURLs from "../assets/constants";
+
 export default {
   computed: {
     ...mapState(["currentUser"]),
@@ -100,8 +107,12 @@ export default {
     ...mapActions(["createNewTechnique"]),
 
     handleSaveNewTechnique(userId) {
-      this.createNewTechnique({ ...this.newTechnique, userProvider: userId });
-      this.$router.push(`/synergy/prifile/${userId}`);
+      this.createNewTechnique({
+        ...this.newTechnique,
+        userProvider: userId,
+        ilustration: this.ilustrationsSRC[`${this.newTechnique.type}`],
+      });
+      this.$router.push(`/synergy/profile/${userId}`);
     },
   },
   data() {
@@ -114,8 +125,8 @@ export default {
         material: "",
         task: "",
         workflow: "",
-        ilustration: "",
       },
+      ilustrationsSRC: imagesURLs,
     };
   },
 };
@@ -168,5 +179,12 @@ export default {
     width: 70%;
     margin: 1vh;
   }
+  & img {
+    display: none;
+  }
+}
+.createTechniqueForm__buttons {
+  display: flex;
+  flex-direction: row;
 }
 </style>

@@ -2,10 +2,11 @@ import axios from 'axios';
 import { ActionContext } from 'vuex';
 import {
   Technique,
+  FavoriteTechniques,
   UserWithToken,
   UserRegisterData,
   UserLoginData,
-  State,  
+  State, 
 } from '@/types/interfaces';
 
 const actions: any = {
@@ -73,7 +74,7 @@ const actions: any = {
 
     },
   
-    async createNewTechnique({ commit, state}: ActionContext<State, State>, user: UserWithToken, newTechnique: Technique):  Promise<void> {
+    async createNewTechnique({ commit, state}: ActionContext<State, State>, newTechnique: Technique):  Promise<void> {
       const { data } = await axios({
         method: 'POST',
         url: 'http://localhost:5000/synergy/technique', 
@@ -83,6 +84,15 @@ const actions: any = {
       commit("updateUserTechniquesProvided", data)
     },
 
+    async putOnUserFavoriteTechniques({ commit, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {
+      const { data } = await axios({
+        method: 'PUT',
+        url: `http://localhost:5000/synergy/users/favoriteTechniques/${favoriteTechnique.userId}`, 
+        headers: { Authorization: `Bearer ${state.token}`},
+        data: {_id: favoriteTechnique.techniqueId}
+      });
+      commit("updateUserFavoriteTechniques", data.favoriteTechnique.techniqueId)
+    },
   
     async fetchResourcesFromApi({commit, state}: ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({

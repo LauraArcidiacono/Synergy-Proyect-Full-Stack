@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const User = require('../models/userModel');
 
 async function getAllUsers({ query }, res) {
@@ -56,6 +57,22 @@ async function updateOneUserById(req, res) {
   }
 }
 
+async function addFavoriteTechniqueToUser(req, res) {
+  const { userId } = req.params;
+  const techniqueToAdd = req.body;
+  try {
+    const addedTechnique = await User.findByIdAndUpdate(
+      userId,
+      { $addToSet: { favoriteTechniques: techniqueToAdd._id } },
+      { new: true }
+    );
+    res.json(addedTechnique);
+  } catch (error) {
+    res.status(500);
+    res.send('The technique hasn´t been added');
+  }
+}
+
 async function deleteOneUserById(req, res) {
   const { userId } = req.params;
   try {
@@ -72,5 +89,6 @@ module.exports = {
   createOneUser,
   getOneUserById,
   updateOneUserById,
+  addFavoriteTechniqueToUser,
   deleteOneUserById
 };

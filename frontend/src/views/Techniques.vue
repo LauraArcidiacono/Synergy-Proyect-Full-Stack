@@ -24,9 +24,7 @@
         </select>
       </div>
       <div class="search__options">
-        <label class="search__options-label" for="gsearch"
-          >Palabras clave</label
-        >
+        <label class="search__options-label" for="search">Palabras clave</label>
         <input
           class="search__options-input"
           type="search"

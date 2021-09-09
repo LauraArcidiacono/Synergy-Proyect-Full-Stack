@@ -12,6 +12,11 @@ interface Technique {
   userProvider: [string]
 }
 
+interface FavoriteTechniques {
+  userId: string,
+  techniqueId: string
+}
+
 interface DataBaseTechnique {
     _id: string,
     name: string,
@@ -114,6 +119,7 @@ interface State {
 
 export {
   Technique,
+  FavoriteTechniques,
   Review,
   User,
   Resource,
