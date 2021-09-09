@@ -86,7 +86,12 @@
         <span>Completa todos los campos</span>
       </div>
     </div>
-    <button type="submit" class="button">Crear Técnica</button>
+    <div class="createTechniqueForm__buttons">
+      <router-link to="/synergy/profile/:userId">
+        <button class="button">Volver sin crear</button>
+      </router-link>
+      <button type="submit" class="button">Crear Técnica</button>
+    </div>
   </form>
 </template>
 
@@ -177,5 +182,9 @@ export default {
   & img {
     display: none;
   }
+}
+.createTechniqueForm__buttons {
+  display: flex;
+  flex-direction: row;
 }
 </style>

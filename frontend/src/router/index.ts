@@ -3,6 +3,8 @@ import LandingPage from '../views/LandingPage.vue'
 import Dashboard from '../views/Dashboard.vue';
 import Techniques from '../views/Techniques.vue';
 import TechniqueDetails from'../views/TechniqueDetails.vue';
+import CreateTechniqueForm from '@/views/CreateTechniqueForm.vue';
+import CreateReviewForm from '@/views/CreateReviewForm.vue';
 import Profile from '../views/Profile.vue';
 import Resources from '../views/Resources.vue';
 import NotFound from '../views/NotFound.vue';
@@ -43,9 +45,19 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
   },
   {
+    path: '/synergy/techniques/createtechniqueform',
+    name: 'CreateTechniqueForm',
+    component: CreateTechniqueForm,
+  },
+  {
     path: '/synergy/profile/:userId',
     name: 'Profile',
     component: Profile,
+  },
+  {
+    path: '/synergy/techniques/createtereviewform',
+    name: 'CreateREviewForm',
+    component: CreateReviewForm,
   },
   {
     path: '/synergy/resources',

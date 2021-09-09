@@ -41,7 +41,9 @@
       </div>
     </div>
     <div class="createReviewForm__buttons">
-      <button class="button">Volver sin crear</button>
+      <router-link to="/synergy/techniques/:techniqueId">
+        <button class="button">Volver sin crear</button>
+      </router-link>
       <button class="button">Crear Reseña</button>
     </div>
   </section>
