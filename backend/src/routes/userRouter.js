@@ -4,20 +4,24 @@ const {
   createOneUser,
   getOneUserById,
   updateOneUserById,
+  addFavoriteTechniqueToUser,
   deleteOneUserById
 } = require('../controllers/userControllers');
 
 const userRouter = new Router();
 
 userRouter
-  .route('/')
-  .get(getAllUsers)
-  .post(createOneUser);
+  .route('/favoriteTechniques/:userId')
+  .put(addFavoriteTechniqueToUser);
 
 userRouter
   .route('/:userId')
   .get(getOneUserById)
   .put(updateOneUserById)
   .delete(deleteOneUserById);
+userRouter
+  .route('/')
+  .get(getAllUsers)
+  .post(createOneUser);
 
 module.exports = userRouter;
