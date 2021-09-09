@@ -25,7 +25,10 @@ export default createStore({
 
     updateUserTechniquesProvided(state, payload) {
       state.currentUser.techniquesProvided.push(payload);
+    },
 
+    updateUserFavoriteTechniques(state, payload) {
+      state.currentUser.favoriteTechniques.push(payload);
     },
 
     loadTechniques(state, payload) {
@@ -45,6 +48,19 @@ export default createStore({
     },
   },
   actions,
+  getters: {
+    // isTechniqueInFavorites:
+    // (state) => (id: Technique) => state.currentUser.favoriteTechniques
+    //   .some(favoriteTechniquesId => favoriteTechniquesId === id),
+  
+    isTechniqueInFavorites(state) {
+      const favorita = state.currentUser.favoriteTechniques.some((favoriteTechnique) => favoriteTechnique._id === state.currentTechnique._id);
+      console.log("esto es favorita", favorita);
+      return favorita;
+      
+    }
+  
+  },
   modules: {
   },
 });
