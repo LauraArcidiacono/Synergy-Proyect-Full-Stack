@@ -130,7 +130,6 @@ const actions: any = {
         url: `http://localhost:5000/synergy/review/${reviewId}`,
         headers: { Authorization: `Bearer ${state.token}`},
       })
-      console.log("esto es data", data)
       commit("loadTechniqueReview", data);
     },
 

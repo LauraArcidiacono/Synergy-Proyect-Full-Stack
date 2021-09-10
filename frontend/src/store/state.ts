@@ -142,21 +142,20 @@ const state = {
 
     currentUser: {
         _id: "",
-                    name:"",
-                    profession: "",
-                    city: "",
-                    avatar: "",
-                    email: "",
-                    password: "",
-                    favoriteTechniques: [
-                        "",
-                    ],
-                    techniquesProvided: [
-                        "",
-                    ],
-                    token: "",
-                    refreshToken: ""
-
+        name:"",
+        profession: "",
+        city: "",
+        avatar: "",
+        email: "",
+        password: "",
+        favoriteTechniques: [
+            "",
+        ],
+        techniquesProvided: [
+            "",
+        ],
+        token: "",
+        refreshToken: ""
     },
 
     isUserAuthenticate: false,
