@@ -4,6 +4,7 @@ import {
   Technique,
   FavoriteTechniques,
   UserWithToken,
+  UserId,
   UserRegisterData,
   UserLoginData,
   NewReview,
@@ -94,6 +95,24 @@ const actions: any = {
       });
       commit("updateUserFavoriteTechniques", data.favoriteTechniques[data.favoriteTechniques.length-1])
     },
+
+    async deleteTechniqueFromFavorite({ commit, dispatch, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {
+      const techniqueId = favoriteTechnique.techniqueId;
+      const userId = favoriteTechnique.userId;
+      const updatedFavorites = state.currentUser.favoriteTechniques.filter((favoriteTechnique) => favoriteTechnique._id !== techniqueId)
+      commit("updateFavoriteTechniques", updatedFavorites)
+      dispatch("deleteFevoriteTechniquesFromApi", userId)
+    },
+
+    async deleteFevoriteTechniquesFromApi({ state }: ActionContext<State, State>, userId:  UserId): Promise<void> {
+      await axios({
+        method: 'PUT',
+        url: `http://localhost:5000/synergy/users/${userId}`,
+        headers: { Authorization: `Bearer ${state.token}`},
+        data: {favoriteTechniques: state.currentUser.favoriteTechniques}
+      })
+    },
+
 
     async createNewReview({dispatch, state}:ActionContext<State, State>, newReview: NewReview):  Promise<void> {
       const { data} = await axios({

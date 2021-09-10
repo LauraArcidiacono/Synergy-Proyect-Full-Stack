@@ -17,6 +17,14 @@ interface FavoriteTechniques {
   techniqueId: string
 }
 
+interface UpdatedFavorites {
+  dataIds: {
+    userId: string,
+    techniqueId: string
+  }
+  favoriteTechniques: [Technique]
+}
+
 interface DataBaseTechnique {
     _id: string,
     name: string,
@@ -94,6 +102,10 @@ interface UserLoginData {
   password: string,
 }
 
+interface UserId {
+  userId: string
+}
+
 interface UserWithToken {
   
     user: {
@@ -126,11 +138,13 @@ interface State {
 export {
   Technique,
   FavoriteTechniques,
+  UpdatedFavorites,
   Review,
   NewReview,
   User,
   Resource,
   UserWithToken,
+  UserId,
   UserRegisterData,
   UserLoginData,
   State,   
