@@ -1,27 +1,31 @@
 <template>
-  <section class="createReviewForm">
+  <form
+    @submit.prevent="handleSaveNewReview(currentUser, currentTechnique)"
+    class="createReviewForm"
+  >
     <h2>Reseñas</h2>
     <div class="createReviewForm__container">
       <div class="createReviewForm__profile">
         <article class="profile__info">
-          <img src="../images/avatar1.png" alt="Avatar de usuario" />
+          <img :src="currentUser.avatar" alt="Avatar de usuario" />
           <div>
-            <h4>Clara Carzolio</h4>
-            <p>Profesora</p>
-            <p>Madrid</p>
+            <h4>{{ currentUser.name }}</h4>
+            <p>{{ currentUser.profession }}</p>
+            <p>{{ currentUser.city }}</p>
           </div>
         </article>
       </div>
 
       <div class="createReviewForm__inputs">
-        <h3>Comparte tu experiencia utilizando ésta técnica</h3>
+        <h3>{{ currentTechnique.name }}</h3>
+        <h4>Comparte tu experiencia utilizando ésta técnica</h4>
         <label for="description"
           >Describe tu experiencia utilizando esta técnica:
           <textarea
             name="description"
             type="text"
             placeholder="Los participantes han disfrutado mucho..."
-            v-model="description"
+            v-model="newReview.description"
           />
           <label class="search__options-label" for="techniques__type"
             >¿Qué puntaje le darías:</label
@@ -30,6 +34,7 @@
             class="createReviewForm__select"
             name="select__score"
             id="select__score"
+            v-model="newReview.score"
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -44,13 +49,40 @@
       <router-link to="/synergy/techniques/:techniqueId">
         <button class="button">Volver sin crear</button>
       </router-link>
-      <button class="button">Crear Reseña</button>
+
+      <button type="submit" class="button">Crear Reseña</button>
     </div>
-  </section>
+  </form>
 </template>
 
 <script>
-export default {};
+import { mapActions, mapState } from "vuex";
+
+export default {
+  computed: {
+    ...mapState(["currentUser", "currentTechnique"]),
+  },
+  methods: {
+    ...mapActions(["createNewReview"]),
+
+    handleSaveNewReview(user, technique) {
+      this.createNewReview({
+        ...this.newReview,
+        user: user,
+        technique: technique,
+      });
+      this.$router.push(`/synergy/techniques/${technique._id}`);
+    },
+  },
+  data() {
+    return {
+      newReview: {
+        description: "",
+        score: 0,
+      },
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
