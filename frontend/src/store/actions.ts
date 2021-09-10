@@ -105,7 +105,7 @@ const actions: any = {
     },
 
     async deleteFevoriteTechniquesFromApi({ state }: ActionContext<State, State>, userId:  UserId): Promise<void> {
-      const {data} = await axios({
+      await axios({
         method: 'PUT',
         url: `http://localhost:5000/synergy/users/${userId}`,
         headers: { Authorization: `Bearer ${state.token}`},
