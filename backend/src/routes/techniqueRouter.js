@@ -5,15 +5,15 @@ const {
   getOneTechniqueById,
   getTechniquesByUserProviderId,
   updateOneTechniqueById,
+  getTechniquesByUserReviewrId,
   deleteOneTechniqueById
 } = require('../controllers/techniqueControllers');
 
 const techniqueRouter = new Router();
 
 techniqueRouter
-  .route('/')
-  .get(getAllTechniques)
-  .post(createOneTechnique);
+  .route('/userreviewer/:userReviewerId')
+  .get(getTechniquesByUserReviewrId);
 
 techniqueRouter
   .route('/userprovider/:userProviderId')
@@ -25,4 +25,8 @@ techniqueRouter
   .put(updateOneTechniqueById)
   .delete(deleteOneTechniqueById);
 
+techniqueRouter
+  .route('/')
+  .get(getAllTechniques)
+  .post(createOneTechnique);
 module.exports = techniqueRouter;
