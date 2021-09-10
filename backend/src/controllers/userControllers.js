@@ -65,7 +65,8 @@ async function addFavoriteTechniqueToUser(req, res) {
       userId,
       { $addToSet: { favoriteTechniques: techniqueToAdd._id } },
       { new: true }
-    );
+    )
+      .populate('favoriteTechniques');
     res.json(addedTechnique);
   } catch (error) {
     res.status(500);
