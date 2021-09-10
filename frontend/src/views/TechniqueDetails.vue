@@ -10,7 +10,22 @@
       <div>
         <div class="details__header">
           <h3>{{ currentTechnique.name }}</h3>
-          <button class="button">Añadir a favoritas</button>
+
+          <div>
+            <button v-if="isTechniqueInFavorites()" class="button">
+              Favorita
+            </button>
+
+            <button
+              v-else
+              @click="
+                handleAddToFavoriteTechniques(currentUser, currentTechnique)
+              "
+              class="button"
+            >
+              Añadir a favoritas
+            </button>
+          </div>
         </div>
         <div class="details__info">
           <h4>Tipo: {{ currentTechnique.type }}</h4>
@@ -44,22 +59,35 @@
       </ul>
     </section>
     <section class="techniqueDetails__buttons">
-      <button class="button">Crear Reseña</button>
-      <button class="button">Volver</button>
+      <router-link to="/synergy/profile/:userId">
+        <button class="button">Volver a mi Perfil</button>
+      </router-link>
+      <router-link to="/synergy/techniques/createtereviewform">
+        <button class="button">Crear Reseña</button>
+      </router-link>
     </section>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapGetters, mapActions, mapState } from "vuex";
 import { useRoute } from "vue-router";
 export default {
   name: "TechniqueDetails",
   computed: {
-    ...mapState(["currentTechnique"]),
+    ...mapState(["currentUser", "currentTechnique"]),
   },
   methods: {
-    ...mapActions(["fetchOneTechniqueFromApi"]),
+    ...mapActions(["fetchOneTechniqueFromApi", "putOnUserFavoriteTechniques"]),
+
+    ...mapGetters(["isTechniqueInFavorites"]),
+
+    handleAddToFavoriteTechniques(currentUser, currentTechnique) {
+      this.putOnUserFavoriteTechniques({
+        userId: currentUser._id,
+        techniqueId: currentTechnique._id,
+      });
+    },
   },
   mounted() {
     const route = useRoute();

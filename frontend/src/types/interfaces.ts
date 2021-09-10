@@ -54,11 +54,17 @@ interface DataBaseTechnique {
 }
 
 interface Review {
-  technique: Technique,
+  technique: string,
   user: User,
   description: string,
   score: number
 }
+
+interface NewReview {
+  technique: Technique,
+  user: User
+}
+
 interface User {
   name: string,
   profession: string,
@@ -121,6 +127,7 @@ export {
   Technique,
   FavoriteTechniques,
   Review,
+  NewReview,
   User,
   Resource,
   UserWithToken,

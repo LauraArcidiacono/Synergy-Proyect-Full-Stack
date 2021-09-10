@@ -24,10 +24,12 @@ async function getOneReviewById({ params: { reviewId } }, res) {
   try {
     const foundReview = await Review.findById(reviewId)
       .populate({
-        path: 'technique'
+        path: 'technique',
+        model: 'Technique'
       })
       .populate({
-        path: 'user'
+        path: 'user',
+        model: 'User'
       });
 
     res.json(foundReview);

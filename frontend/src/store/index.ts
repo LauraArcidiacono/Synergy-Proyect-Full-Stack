@@ -31,6 +31,10 @@ export default createStore({
       state.currentUser.favoriteTechniques.push(payload);
     },
 
+    loadTechniqueReview(state, payload) {
+      state.currentTechnique.reviews.push(payload);
+},
+
     loadTechniques(state, payload) {
       state.techniques = payload;
     },

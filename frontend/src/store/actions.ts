@@ -6,6 +6,7 @@ import {
   UserWithToken,
   UserRegisterData,
   UserLoginData,
+  NewReview,
   State, 
 } from '@/types/interfaces';
 
@@ -91,9 +92,29 @@ const actions: any = {
         headers: { Authorization: `Bearer ${state.token}`},
         data: {_id: favoriteTechnique.techniqueId}
       });
-      commit("updateUserFavoriteTechniques", data.favoriteTechnique.techniqueId)
+      commit("updateUserFavoriteTechniques", data.favoriteTechniques[data.favoriteTechniques.length-1])
     },
-  
+
+    async createNewReview({dispatch, state}:ActionContext<State, State>, newReview: NewReview):  Promise<void> {
+      const { data} = await axios({
+        method: 'POST',
+        url: 'http://localhost:5000/synergy/review',
+        headers: { Authorization: `Bearer ${state.token}`},
+        data: newReview
+      });
+      dispatch("getNewReview", data._id)
+    },
+
+    async getNewReview({commit, state}:ActionContext<State, State>, reviewId: string):  Promise<void> {
+      const {data} = await axios({
+        method: 'GET',
+        url: `http://localhost:5000/synergy/review/${reviewId}`,
+        headers: { Authorization: `Bearer ${state.token}`},
+      })
+      console.log("esto es data", data)
+      commit("loadTechniqueReview", data);
+    },
+
     async fetchResourcesFromApi({commit, state}: ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({
           method: 'GET',

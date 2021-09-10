@@ -5,10 +5,13 @@ async function getAllTechniques({ query }, res) {
     const techniques = await Technique.find(query)
       .populate({
         path: 'reviews',
-        select: ['user'],
         populate: {
-          path: 'user',
-          model: 'User'
+          path: 'user'
+        }
+      }).populate({
+        path: 'reviews',
+        populate: {
+          path: 'technique'
         }
       });
     res.json(techniques);
@@ -67,6 +70,21 @@ async function getTechniquesByUserProviderId(req, res) {
   }
 }
 
+///
+async function getTechniquesByUserReviewrId(req, res) {
+  const { userReviewrId } = req.params;
+  try {
+    const foundTechniqueReview = await Technique
+      .find({ reviews: { user: { _id: { $eq: userReviewrId } } } })
+      .populate('reviews');
+    res.json(foundTechniqueReview);
+    res.send(204);
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+}
+///
 async function updateOneTechniqueById(req, res) {
   const { techniqueId } = req.params;
   const dataToUpdate = req.body;
@@ -100,5 +118,6 @@ module.exports = {
   getOneTechniqueById,
   getTechniquesByUserProviderId,
   updateOneTechniqueById,
+  getTechniquesByUserReviewrId,
   deleteOneTechniqueById
 };
