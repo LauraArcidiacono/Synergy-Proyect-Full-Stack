@@ -11,21 +11,30 @@
         <div class="details__header">
           <h3>{{ currentTechnique.name }}</h3>
 
-          <div>
-            <button v-if="isTechniqueInFavorites()" class="button">
-              Favorita
-            </button>
-
+          <div v-if="isTechniqueInFavorites()">
             <button
-              v-else
+              v-if="isTechniqueInFavorites()"
+              class="header__deleteButton"
               @click="
-                handleAddToFavoriteTechniques(currentUser, currentTechnique)
+                handleDeleteTechniqueFromFavorites(
+                  currentUser,
+                  currentTechnique
+                )
               "
-              class="button"
             >
-              Añadir a favoritas
+              X
             </button>
+            <button class="header__favoriteButton">Favorita</button>
           </div>
+          <button
+            v-else
+            @click="
+              handleAddToFavoriteTechniques(currentUser, currentTechnique)
+            "
+            class="button"
+          >
+            Añadir a favoritas
+          </button>
         </div>
         <div class="details__info">
           <h4>Tipo: {{ currentTechnique.type }}</h4>
@@ -78,7 +87,11 @@ export default {
     ...mapState(["currentUser", "currentTechnique"]),
   },
   methods: {
-    ...mapActions(["fetchOneTechniqueFromApi", "putOnUserFavoriteTechniques"]),
+    ...mapActions([
+      "fetchOneTechniqueFromApi",
+      "putOnUserFavoriteTechniques",
+      "deleteTechniqueFromFavorite",
+    ]),
 
     ...mapGetters(["isTechniqueInFavorites"]),
 
@@ -87,6 +100,14 @@ export default {
         userId: currentUser._id,
         techniqueId: currentTechnique._id,
       });
+    },
+
+    handleDeleteTechniqueFromFavorites(currentUser, currentTechnique) {
+      this.deleteTechniqueFromFavorite({
+        userId: currentUser._id,
+        techniqueId: currentTechnique._id,
+      });
+      this.$router.push(`/synergy/profile/${currentUser._id}`);
     },
   },
   mounted() {
@@ -127,6 +148,20 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.header__deleteButton {
+  border-radius: 50%;
+  border: solid 0.5vw $blue;
+  color: $pinkStrong;
+  background-color: $aquaHeader;
+}
+
+.header__favoriteButton {
+  @include button;
+  background-color: $aquaHeader;
+  color: $blue;
+  border: solid 0.5vw $blue;
+}
+
 .details__info {
   display: flex;
   flex-direction: row;
