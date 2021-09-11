@@ -2,13 +2,13 @@
   <footer class="footer">
     <img
       class="footer__logo"
-      src="../images/DinamicasGrupales.png"
+      :src="this.images.logoSynergy"
       alt="Logo Synergy"
     />
     <div class="footer__central">
       <img
         class="footer__title"
-        src="../images/Synergy.png"
+        :src="this.images.nombre"
         alt="Synergy Dinámicas Grupales"
       />
       <span class="footer__span">by Laura Arcidiacono</span>
@@ -16,19 +16,15 @@
       <span class="footer__span">© 2000-2021</span>
     </div>
     <div class="footer__logos">
+      <img class="logos__item" :src="this.images.twiter" alt="Logo Twiter" />
       <img
         class="logos__item"
-        src="../images/logoTwiter.png"
-        alt="Logo Twiter"
-      />
-      <img
-        class="logos__item"
-        src="../images/logoFacebook.png"
+        :src="this.images.facebook"
         alt="Logo Facebook"
       />
       <img
         class="logos__item"
-        src="../images/logoInstagram.png"
+        :src="this.images.instagram"
         alt="Logo Instagram"
       />
     </div>
@@ -36,8 +32,15 @@
 </template>
 
 <script>
+import imagesURLs from "../assets/constants";
+
 export default {
   name: "Footer",
+  data() {
+    return {
+      images: imagesURLs,
+    };
+  },
 };
 </script>
 

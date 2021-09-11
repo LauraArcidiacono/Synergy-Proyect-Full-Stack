@@ -2,7 +2,7 @@
   <section class="dashboard">
     <img
       class="dashboard__image"
-      src="../images/Synergy.png"
+      :src="this.images.tituloSynergy"
       alt="Logo Synergy"
     />
     <div class="dashboard__articles">
@@ -55,11 +55,17 @@
 
 <script>
 import { mapState } from "vuex";
+import imagesURLs from "../assets/constants";
 
 export default {
   name: "Dashboard",
   computed: {
     ...mapState(["currentUser"]),
+  },
+  data() {
+    return {
+      images: imagesURLs,
+    };
   },
 };
 </script>
