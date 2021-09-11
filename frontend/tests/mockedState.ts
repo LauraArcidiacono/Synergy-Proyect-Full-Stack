@@ -136,18 +136,18 @@ const stateMock = {
 
     currentUser: {
         _id: "612cdf2cfa97f2e5c4f1f107",
-                    name:"Jordi",
-                    profession: "Sensei",
-                    city: "Vic",
-                    avatar: "https://i.ibb.co/GPnrGDw/Default-profile-picture-avatar-photo-placeholder-Vector-illustration.jpg",
-                    email: "jordi.sensei@gmail.com",
-                    password: "jordi1234",
-                    favoriteTechniques: [
-                        "613140ccf8aab565c3e56081",
-                    ],
-                    techniquesProvided: [],
-                    token: "hfdkisdfoisdfk490323423hj423bjk5245b3453k4534",
-                    refreshToken: "j234kj345bhkj34b6hk34jb6oi89v0sf8'0ds9fsjwrjr"
+        name:"Jordi",
+        profession: "Sensei",
+        city: "Vic",
+        avatar: "https://i.ibb.co/GPnrGDw/Default-profile-picture-avatar-photo-placeholder-Vector-illustration.jpg",
+        email: "jordi.sensei@gmail.com",
+        password: "jordi1234",
+        favoriteTechniques: [
+            "613140ccf8aab565c3e56081",
+        ],
+        techniquesProvided: [],
+        token: "hfdkisdfoisdfk490323423hj423bjk5245b3453k4534",
+        refreshToken: "j234kj345bhkj34b6hk34jb6oi89v0sf8'0ds9fsjwrjr"
     },
 
     isUserAuthenticate: true,
