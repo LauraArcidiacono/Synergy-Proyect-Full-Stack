@@ -23,7 +23,10 @@ describe('TechniqueControllers', () => {
           };
 
           Technique.find.mockReturnValue({
-            populate: jest.fn().mockResolvedValue({})
+            populate: jest.fn().mockReturnValue({
+              populate: jest.fn()
+                .mockResolvedValue({})
+            })
           });
 
           await controllers.getAllTechniques(req, res);
