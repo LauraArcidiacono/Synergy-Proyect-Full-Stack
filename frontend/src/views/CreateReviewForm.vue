@@ -26,6 +26,7 @@
             type="text"
             placeholder="Los participantes han disfrutado mucho..."
             v-model="newReview.description"
+            required
           />
           <label class="search__options-label" for="techniques__type"
             >¿Qué puntaje le darías:</label
@@ -35,6 +36,7 @@
             name="select__score"
             id="select__score"
             v-model="newReview.score"
+            required
           >
             <option value="1">1</option>
             <option value="2">2</option>

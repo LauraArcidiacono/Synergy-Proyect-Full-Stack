@@ -14,34 +14,16 @@
         </p>
       </div>
       <div class="landingPage__logo">
-        <img src="../images/DinamicasGrupales.png" alt="Logo Synergy" />
+        <img :src="this.images.logoSynergy" alt="Logo Synergy" />
       </div>
     </article>
     <section class="landingPage__cardExamples">
-      <img
-        src="../images/ilustrations/ventana.png"
-        alt="Ilustracion tipo de técnica"
-      />
-      <img
-        src="../images/ilustrations/Animacion.png"
-        alt="Ilustracion tipo de técnica"
-      />
-      <img
-        src="../images/ilustrations/Comunicacion.png"
-        alt="Ilustracion tipo de técnica"
-      />
-      <img
-        src="../images/ilustrations/Friends.png"
-        alt="Ilustracion tipo de técnica"
-      />
-      <img
-        src="../images/ilustrations/Planificacion.png"
-        alt="Ilustracion tipo de técnica"
-      />
-      <img
-        src="../images/ilustrations/Metas.png"
-        alt="Ilustracion tipo de técnica"
-      />
+      <img :src="this.images.presentacion" alt="Ilustracion tipo de técnica" />
+      <img :src="this.images.animacion" alt="Ilustracion tipo de técnica" />
+      <img :src="this.images.comunicacion" alt="Ilustracion tipo de técnica" />
+      <img :src="this.images.metas" alt="Ilustracion tipo de técnica" />
+      <img :src="this.images.confianza" alt="Ilustracion tipo de técnica" />
+      <img :src="this.images.planificacion" alt="Ilustracion tipo de técnica" />
     </section>
     <section class="landingPage__fundamentals">
       <div class="fundamentals__info">
@@ -56,7 +38,7 @@
       <div>
         <img
           class="landingPage__logo"
-          src="../images/ilustrations/escalera.jpg"
+          :src="this.images.escalera"
           alt="Ilustracion tipo de técnica"
         />
       </div>
@@ -82,14 +64,14 @@
       <h3>Reseñas</h3>
       <div class="reviews__cards">
         <article class="cards__review">
-          <img src="../images/avatar1.png" alt="Avatar de usuario" />
+          <img :src="this.images.avatarClara" alt="Avatar de usuario" />
           <div>
             <h4>Clara Carzolio</h4>
             <p>Soy profesora y la uso siempre al preparar mis clases!</p>
           </div>
         </article>
         <article class="cards__review">
-          <img src="../images/avatar2.png" alt="Avatar de usuario" />
+          <img :src="this.images.avatarNatalia" alt="Avatar de usuario" />
           <div>
             <h4>Natalia Landa</h4>
             <p>
@@ -99,9 +81,9 @@
           </div>
         </article>
         <article class="cards__review">
-          <img src="../images/avatar3.png" alt="Avatar de usuario" />
+          <img :src="this.images.avatarAldana" alt="Avatar de usuario" />
           <div>
-            <h4>Ana Maidana</h4>
+            <h4>Aldana Arci</h4>
             <p>
               Increible herramienta! Me ayuda mucho con mi trabajo y los grupos
               realmente se potencian.
@@ -114,8 +96,15 @@
 </template>
 
 <script>
+import imagesURLs from "../assets/constants";
+
 export default {
   name: "LandingPage",
+  data() {
+    return {
+      images: imagesURLs,
+    };
+  },
 };
 </script>
 

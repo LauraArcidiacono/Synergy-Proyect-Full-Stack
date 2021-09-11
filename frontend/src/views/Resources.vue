@@ -1,6 +1,6 @@
 <template>
   <div class="resources">
-    <h2>Resources</h2>
+    <h2>Recursos</h2>
     <section class="resources__items">
       <ul class="items__book">
         <li

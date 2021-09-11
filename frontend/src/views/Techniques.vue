@@ -2,7 +2,7 @@
   <div class="techniquesList">
     <img
       class="techniquesList__title"
-      src="../images/Nombre.png"
+      :src="this.images.tituloSynergy"
       alt="Logo Synergy"
     />
     <section class="techniquesList__search">
@@ -55,6 +55,8 @@
 <script>
 import TechniqueCard from "../components/TechniqueCard.vue";
 import { mapActions, mapState } from "vuex";
+import imagesURLs from "../assets/constants";
+
 export default {
   name: "Techniques",
   components: {
@@ -68,6 +70,11 @@ export default {
   },
   mounted() {
     this.fetchTechniquesFromApi();
+  },
+  data() {
+    return {
+      images: imagesURLs,
+    };
   },
 };
 </script>

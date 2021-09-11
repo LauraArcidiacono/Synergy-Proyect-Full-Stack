@@ -160,7 +160,10 @@ describe('UserControllers', () => {
     describe('When is triggered', () => {
       describe('And findByIdAndUpdate response', () => {
         test('Then res.json is called', async () => {
-          User.findByIdAndUpdate.mockResolvedValue({});
+          User.findByIdAndUpdate.mockReturnValue({
+            populate: jest.fn()
+              .mockResolvedValue({})
+          });
 
           await controllers.addFavoriteTechniqueToUser(req, res);
 

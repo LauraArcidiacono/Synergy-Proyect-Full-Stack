@@ -3,7 +3,7 @@
     <router-link to="/synergy">
       <img
         class="header__logo"
-        src="../images/DinamicasGrupales.png"
+        :src="this.images.logoSynergy"
         alt="Logo Synergy"
     /></router-link>
 
@@ -32,6 +32,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import imagesURLs from "../assets/constants";
 
 export default {
   name: "Header",
@@ -47,7 +48,11 @@ export default {
       this.$router.push("/synergy/");
     },
   },
-
+  data() {
+    return {
+      images: imagesURLs,
+    };
+  },
   mounted() {
     this.getUserFromLocalStorage();
   },
