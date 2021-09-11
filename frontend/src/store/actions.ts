@@ -13,12 +13,12 @@ import {
 
 const actions: any = {
     async register({dispatch}: ActionContext<State, State>, userData: UserRegisterData):  Promise<void> {
-        const {data} = await axios.post("http://localhost:5000/synergy/auth/signup", userData);
-        dispatch("login", {email: data.user.email, password: data.user.password});
+      const {data} = await axios.post(process.env.VUE_APP_DDBB_URL_SIGNUP, userData);
+      dispatch("login", {email: data.user.email, password: data.user.password});
     },
   
-    async login({ dispatch }: ActionContext<State, State>, userData: UserLoginData):  Promise<void> {
-        const {data} = await axios.post("http://localhost:5000/synergy/auth/login", userData);
+    async login({ dispatch }: ActionContext<State, State>, userData: UserLoginData):  Promise<void> { 
+      const {data} = await axios.post(process.env.VUE_APP_DDBB_URL_LOGIN, userData);
         dispatch("userLogedFromApi", data);
     },
 
@@ -30,7 +30,7 @@ const actions: any = {
     async userLogedFromApi({commit, dispatch}: ActionContext<State, State>, {user, token, refreshToken}: UserWithToken):  Promise<void> { 
       const { data } = await axios({
           method: 'GET',
-          url: `http://localhost:5000/synergy/users/${user._id}`,
+          url: `${process.env.VUE_APP_DDBB_URL}/users/${user._id}`,
           headers: { Authorization: `Bearer ${token}` }
         });
         data.token = token;
@@ -50,7 +50,7 @@ const actions: any = {
     async fetchTechniquesFromApi({commit, state}:ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({
           method: 'GET',
-          url: 'http://localhost:5000/synergy/technique',
+          url: `${process.env.VUE_APP_DDBB_URL}/technique`,
           headers: { Authorization: `Bearer ${state.token}` }
         });
         commit('loadTechniques', data);
@@ -59,7 +59,7 @@ const actions: any = {
     async fetchOneTechniqueFromApi({commit, state}: ActionContext<State, State>, id: string):  Promise<void> {
         const { data } = await axios({
           method: 'GET',
-          url: `http://localhost:5000/synergy/technique/${id}`,
+          url: `${process.env.VUE_APP_DDBB_URL}/technique/${id}`,
           headers: { Authorization: `Bearer ${state.token}` }
         }); 
         commit('loadOneTechnique', data);
@@ -69,17 +69,16 @@ const actions: any = {
     async fetchCurrentUserTechniquesProvided({commit, state}: ActionContext<State, State>, id: string) {
         const { data } = await axios({
           method: 'GET',
-          url: `http://localhost:5000/synergy/technique/userprovider/${id}`,
+          url: `${process.env.VUE_APP_DDBB_URL}/technique/userprovider/${id}`,
           headers: { Authorization: `Bearer ${state.token}` }
         })
       commit("loadCurrentUserTechniquesProvided", data)
-
     },
   
     async createNewTechnique({ commit, state}: ActionContext<State, State>, newTechnique: Technique):  Promise<void> {
       const { data } = await axios({
         method: 'POST',
-        url: 'http://localhost:5000/synergy/technique', 
+        url: `${process.env.VUE_APP_DDBB_URL}/technique`, 
         headers: { Authorization: `Bearer ${state.token}`},
         data: newTechnique
       });
@@ -89,7 +88,7 @@ const actions: any = {
     async putOnUserFavoriteTechniques({ commit, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {
       const { data } = await axios({
         method: 'PUT',
-        url: `http://localhost:5000/synergy/users/favoriteTechniques/${favoriteTechnique.userId}`, 
+        url: `${process.env.VUE_APP_DDBB_URL}/users/favoriteTechniques/${favoriteTechnique.userId}`, 
         headers: { Authorization: `Bearer ${state.token}`},
         data: {_id: favoriteTechnique.techniqueId}
       });
@@ -99,7 +98,7 @@ const actions: any = {
     async deleteTechniqueFromFavorite({ commit, dispatch, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {
       const techniqueId = favoriteTechnique.techniqueId;
       const userId = favoriteTechnique.userId;
-      const updatedFavorites = state.currentUser.favoriteTechniques.filter((favoriteTechnique) => favoriteTechnique._id !== techniqueId)
+      const updatedFavorites = state.currentUser.favoriteTechniques.filter((techniqueItem) => techniqueItem._id !== techniqueId)
       commit("updateFavoriteTechniques", updatedFavorites)
       dispatch("deleteFevoriteTechniquesFromApi", userId)
     },
@@ -107,7 +106,7 @@ const actions: any = {
     async deleteFevoriteTechniquesFromApi({ state }: ActionContext<State, State>, userId:  UserId): Promise<void> {
       await axios({
         method: 'PUT',
-        url: `http://localhost:5000/synergy/users/${userId}`,
+        url: `${process.env.VUE_APP_DDBB_URL}/users/${userId}`,
         headers: { Authorization: `Bearer ${state.token}`},
         data: {favoriteTechniques: state.currentUser.favoriteTechniques}
       })
@@ -117,7 +116,7 @@ const actions: any = {
     async createNewReview({dispatch, state}:ActionContext<State, State>, newReview: NewReview):  Promise<void> {
       const { data} = await axios({
         method: 'POST',
-        url: 'http://localhost:5000/synergy/review',
+        url: `${process.env.VUE_APP_DDBB_URL}/review`,
         headers: { Authorization: `Bearer ${state.token}`},
         data: newReview
       });
@@ -127,7 +126,7 @@ const actions: any = {
     async getNewReview({commit, state}:ActionContext<State, State>, reviewId: string):  Promise<void> {
       const {data} = await axios({
         method: 'GET',
-        url: `http://localhost:5000/synergy/review/${reviewId}`,
+        url: `${process.env.VUE_APP_DDBB_URL}/review/${reviewId}`,
         headers: { Authorization: `Bearer ${state.token}`},
       })
       commit("loadTechniqueReview", data);
@@ -136,7 +135,7 @@ const actions: any = {
     async fetchResourcesFromApi({commit, state}: ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({
           method: 'GET',
-          url: 'http://localhost:5000/synergy/resource',
+          url: `${process.env.VUE_APP_DDBB_URL}/resource`,
           headers: { Authorization: `Bearer ${state.token}`}
         });
         commit('loadResources', data);
