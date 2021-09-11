@@ -107,8 +107,7 @@ interface UserId {
 }
 
 interface UserWithToken {
-  
-    user: {
+  user: {
       _id: string,
       name: string,
       profession: string,
@@ -116,12 +115,11 @@ interface UserWithToken {
       avatar: string,
       email: string,
       password: string,
-      favoriteTechniques: [{}],
-      techniquesProvided: [{}],
+      favoriteTechniques: [DataBaseTechnique],
+      techniquesProvided: [DataBaseTechnique],
     }
-
-token: string,
-refreshToken: string,
+    token: string,
+    refreshToken: string,
 }
 
 interface State {
