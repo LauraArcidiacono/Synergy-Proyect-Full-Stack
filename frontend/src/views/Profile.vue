@@ -40,16 +40,28 @@
             :key="techniquesProvided._id"
             class="card__item"
           >
-            <router-link :to="'/synergy/techniques/' + techniquesProvided._id">
-              <div>
-                <img
-                  class="card__ilustration"
-                  :src="techniquesProvided.ilustration"
-                  alt="Ilustration tipo de técnica"
-                />
-                <h4>{{ techniquesProvided.name }}</h4>
-              </div>
-            </router-link>
+            <div>
+              <button
+                @click="
+                  handleDeleteTechniqueProvided(currentUser, techniquesProvided)
+                "
+                class="card__deleteButton"
+              >
+                X
+              </button>
+              <router-link
+                :to="'/synergy/techniques/' + techniquesProvided._id"
+              >
+                <div>
+                  <img
+                    class="card__ilustration"
+                    :src="techniquesProvided.ilustration"
+                    alt="Ilustration tipo de técnica"
+                  />
+                  <h4>{{ techniquesProvided.name }}</h4>
+                </div>
+              </router-link>
+            </div>
           </li>
         </ul>
       </article>
@@ -75,7 +87,17 @@ export default {
     ...mapState(["currentUser", "currentUserTechniquesProvided"]),
   },
   methods: {
-    ...mapActions(["fetchCurrentUserTechniquesProvided"]),
+    ...mapActions([
+      "fetchCurrentUserTechniquesProvided",
+      "deleteTechniqueProvided",
+    ]),
+
+    handleDeleteTechniqueProvided(currentUser, techniquesProvided) {
+      this.deleteTechniqueProvided({
+        userId: currentUser._id,
+        techniqueId: techniquesProvided._id,
+      });
+    },
   },
 
   mounted() {
@@ -160,12 +182,10 @@ export default {
   }
 }
 
-.modal {
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: auto;
+.card__deleteButton {
+  border-radius: 50%;
+  border: solid 0.5vw $blue;
+  color: $pinkStrong;
+  background-color: $aquaHeader;
 }
 </style>
