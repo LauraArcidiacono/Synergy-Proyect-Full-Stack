@@ -1,4 +1,4 @@
-import { UserWithToken, Technique, Review, State } from '@/types/interfaces';
+import { UserWithToken, Technique, TechniquesProvided, Review, State } from '@/types/interfaces';
 
 const mutations = {
     loginUser(state: State, payload: UserWithToken) {
@@ -18,6 +18,10 @@ const mutations = {
       },
   
       updateUserTechniquesProvided(state: State, payload: Technique) {
+        state.currentUserTechniquesProvided.push(payload);        
+      },
+
+      updateTechniquesProvidedByThisUser(state: State, payload: TechniquesProvided) {
         state.currentUser.techniquesProvided.push(payload);
       },
   
