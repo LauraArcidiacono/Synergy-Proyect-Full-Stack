@@ -10,7 +10,7 @@ interface Technique {
   ilustration: string,
   reviews: Array<Review>,
   __v: number,
-  userProvider: Array<string>
+  userProvider: string
 }
 
 interface FavoriteTechniques {
@@ -48,7 +48,7 @@ interface DataBaseTechnique {
                 email: string,
                 password: string,
                 favoriteTechniques: Array<Technique>,
-                techniquesProvided: Array<Technique>,
+                techniquesProvided: Array<TechniquesProvided>,
             },
             description: string,
             score: number,
@@ -78,7 +78,7 @@ interface User {
   email: string,
   password: string,
   favoriteTechniques: Array<Technique>,
-  techniquesProvided: Array<Technique>
+  techniquesProvided: Array<TechniquesProvided>
 }
 interface Resource {
   title: string,
@@ -113,7 +113,7 @@ interface UserWithToken {
       email: string,
       password: string,
       favoriteTechniques: Array<DataBaseTechnique>,
-      techniquesProvided: Array<DataBaseTechnique>,
+      techniquesProvided: Array<TechniquesProvided>,
     }
   token: string,
   refreshToken: string,
@@ -128,7 +128,7 @@ interface TechniquesProvided {
 interface State {
   techniques: Array<Technique>,
   currentTechnique: Technique,
-  currentUserTechniquesProvided: Array<TechniquesProvided>,
+  currentUserTechniquesProvided: Array<Technique>,
   currentUser: User,
   isUserAuthenticate: Boolean,
   token: string,
@@ -139,6 +139,7 @@ interface State {
 export {
   Technique,
   FavoriteTechniques,
+  TechniquesProvided,
   UpdatedFavorites,
   Review,
   NewReview,
