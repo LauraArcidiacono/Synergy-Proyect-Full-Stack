@@ -3,6 +3,8 @@ import { ActionContext } from 'vuex';
 import {
   Technique,
   FavoriteTechniques,
+  TechniqueProvidedToDelete,
+  TechniqueId,
   UserWithToken,
   UserId,
   UserRegisterData,
@@ -85,6 +87,22 @@ const actions: any = {
       commit("updateUserTechniquesProvided", data)
       commit("updateTechniquesProvidedByThisUser", {_id: data._id, ilustration: data.ilustration, name: data.name})
       },
+
+    async deleteTechniqueProvided({ commit, dispatch, state }: ActionContext<State, State>, techniqueToDelete: TechniqueProvidedToDelete): Promise<void> {
+      const techniqueId = techniqueToDelete.techniqueId;
+      const updateProvided = state.currentUserTechniquesProvided.filter((techniqueItem) => techniqueItem._id !== techniqueId)
+      commit("updateTechniquesProvidedByThisUser", updateProvided)
+      commit("loadCurrentUserTechniquesProvided", updateProvided)
+      dispatch("deleteProvidedTechniqueFromApi", techniqueId)
+    },  
+
+    async deleteProvidedTechniqueFromApi({state}: ActionContext<State, State>, techniqueId:  TechniqueId): Promise<void> {
+      await axios({
+        method:'DELETE',
+        url: `${process.env.VUE_APP_DDBB_URL}/technique/${techniqueId}`,
+        headers: { Authorization: `Bearer ${state.token}`},
+      })
+    },
 
     async putOnUserFavoriteTechniques({ commit, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {
       const { data } = await axios({
