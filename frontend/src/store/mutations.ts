@@ -24,6 +24,10 @@ const mutations = {
       updateTechniquesProvidedByThisUser(state: State, payload: TechniquesProvided) {
         state.currentUser.techniquesProvided.push(payload);
       },
+        
+      loadCurrentUserTechniquesProvided(state: State, payload: any) {
+        state.currentUserTechniquesProvided = payload;
+      },
   
       updateUserFavoriteTechniques(state: State, payload: Technique) {
         state.currentUser.favoriteTechniques.push(payload);
@@ -44,10 +48,7 @@ const mutations = {
       loadOneTechnique(state: State, payload: Technique) {
         state.currentTechnique = payload;
       },
-  
-      loadCurrentUserTechniquesProvided(state: State, payload: any) {
-        state.currentUserTechniquesProvided = payload;
-      },
+
   
       loadResources(state: State, payload: any) {
         state.resources = payload;
