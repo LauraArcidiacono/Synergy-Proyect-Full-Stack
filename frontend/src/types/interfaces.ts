@@ -1,5 +1,5 @@
 interface Technique {
-  _id: string;
+  _id: string,
   name: string,
   type: string,
   time: number,
@@ -9,6 +9,7 @@ interface Technique {
   workflow: string,
   ilustration: string,
   reviews: Array<Review>,
+  __v: number,
   userProvider: Array<string>
 }
 
@@ -118,10 +119,16 @@ interface UserWithToken {
   refreshToken: string,
 }
 
+interface TechniquesProvided {
+  _id: string,
+  ilustration: string,
+  name: string
+}
+
 interface State {
-  techniques: Array<DataBaseTechnique>,
+  techniques: Array<Technique>,
   currentTechnique: Technique,
-  currentUserTechniquesProvided: Array<DataBaseTechnique>,
+  currentUserTechniquesProvided: Array<TechniquesProvided>,
   currentUser: User,
   isUserAuthenticate: Boolean,
   token: string,
