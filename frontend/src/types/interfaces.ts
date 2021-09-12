@@ -18,6 +18,11 @@ interface FavoriteTechniques {
   techniqueId: string
 }
 
+interface TechniqueProvidedToDelete {
+  userId: string,
+  techniqueId: string
+}
+
 interface UpdatedFavorites {
   dataIds: {
     userId: string,
@@ -103,6 +108,10 @@ interface UserId {
   userId: string
 }
 
+interface TechniqueId {
+  techniqueId: string
+}
+
 interface UserWithToken {
   user: {
       _id: string,
@@ -128,7 +137,7 @@ interface TechniquesProvided {
 interface State {
   techniques: Array<Technique>,
   currentTechnique: Technique,
-  currentUserTechniquesProvided: Array<Technique>,
+  currentUserTechniquesProvided: Array<Technique> | Array<TechniquesProvided>,
   currentUser: User,
   isUserAuthenticate: Boolean,
   token: string,
@@ -140,6 +149,8 @@ export {
   Technique,
   FavoriteTechniques,
   TechniquesProvided,
+  TechniqueId,
+  TechniqueProvidedToDelete,
   UpdatedFavorites,
   Review,
   NewReview,
