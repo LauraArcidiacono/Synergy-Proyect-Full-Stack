@@ -83,7 +83,8 @@ const actions: any = {
         data: newTechnique
       });
       commit("updateUserTechniquesProvided", data)
-    },
+      commit("updateTechniquesProvidedByThisUser", {_id: data._id, ilustration: data.ilustration, name: data.name})
+      },
 
     async putOnUserFavoriteTechniques({ commit, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {
       const { data } = await axios({
