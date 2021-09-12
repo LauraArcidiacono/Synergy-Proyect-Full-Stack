@@ -13,19 +13,18 @@ describe('Given a mutations file', () => {
             test('State.isUserAuthenticate should be true', () => {
                 const payload = {
                     user: {
-                    _id: "612cdf2cfa97f2e5c4f1f107",
-                    name:"Jordi",
-                    profession: "Sensei",
-                    city: "Vic",
-                    avatar: "https://i.ibb.co/GPnrGDw/Default-profile-picture-avatar-photo-placeholder-Vector-illustration.jpg",
-                    email: "jordi.sensei@gmail.com",
-                    password: "jordi1234",
-                    favoriteTechniques: [""],
-                    techniquesProvided: [""],
-                    __v: 0
+                    _id: "",
+                    name:"",
+                    profession: "",
+                    city: "",
+                    avatar: "",
+                    email: "",
+                    password: "",
+                    favoriteTechniques: [],
+                    techniquesProvided: [],
                 },
-                    token: "hfdkisdfoisdfk490323423hj423bjk5245b3453k4534",
-                    refreshToken: "j234kj345bhkj34b6hk34jb6oi89v0sf8'0ds9fsjwrjr"
+                    token: "hfdkisdfoisdfk490323423hj423",
+                    refreshToken: "j234kj345bhkj34b6hk34"
                 }
     
                 mutations.loginUser(mockedState, payload);
@@ -36,47 +35,45 @@ describe('Given a mutations file', () => {
             test('State.token must be updated', () => {
                 const payload = {
                     user: {
-                    _id: "612cdf2cfa97f2e5c4f1f107",
-                    name:"Jordi",
-                    profession: "Sensei",
-                    city: "Vic",
-                    avatar: "https://i.ibb.co/GPnrGDw/Default-profile-picture-avatar-photo-placeholder-Vector-illustration.jpg",
-                    email: "jordi.sensei@gmail.com",
-                    password: "jordi1234",
-                    favoriteTechniques: [""],
-                    techniquesProvided: [""],
-                    __v: 0
+                    _id: "",
+                    name:"",
+                    profession: "",
+                    city: "",
+                    avatar: "",
+                    email: "",
+                    password: "",
+                    favoriteTechniques: [],
+                    techniquesProvided: [],
                 },
-                    token: "hfdkisdfoisdfk49034",
-                    refreshToken: "j234kj345bhjr"
+                    token: "hfdkisdfoisdfk490323423hj423",
+                    refreshToken: "j234kj345bhkj34b6hk34"
                 }
     
                 mutations.loginUser(mockedState, payload);
     
-                expect(mockedState.token).toBe("hfdkisdfoisdfk49034")
+                expect(mockedState.token).toBe( "hfdkisdfoisdfk490323423hj423")
             })
 
             test('State.refreshToken must be updated', () => {
                 const payload = {
                     user: {
-                    _id: "612cdf2cfa97f2e5c4f1f107",
-                    name:"Jordi",
-                    profession: "Sensei",
-                    city: "Vic",
-                    avatar: "https://i.ibb.co/GPnrGDw/Default-profile-picture-avatar-photo-placeholder-Vector-illustration.jpg",
-                    email: "jordi.sensei@gmail.com",
-                    password: "jordi1234",
-                    favoriteTechniques: [""],
-                    techniquesProvided: [""],
-                    __v: 0
+                    _id: "",
+                    name:"",
+                    profession: "",
+                    city: "",
+                    avatar: "",
+                    email: "",
+                    password: "",
+                    favoriteTechniques: [],
+                    techniquesProvided: [],
                 },
-                    token: "hfdkisdfoisdfk49034",
-                    refreshToken: "j234kj345bhjr"
+                    token: "hfdkisdfoisdfk490323423hj423",
+                    refreshToken: "j234kj345bhkj34b6hk34"
                 }
     
                 mutations.loginUser(mockedState, payload);
     
-                expect(mockedState.refreshToken).toBe("j234kj345bhjr")
+                expect(mockedState.refreshToken).toBe("j234kj345bhkj34b6hk34")
             })
         })
 
@@ -86,25 +83,22 @@ describe('Given a mutations file', () => {
         describe('Then state must be updated', () => {
             test('State.currentUser must be updated', () => {
                 const payload = {
-                    user: {
-                    _id: "612cdf2cfa97f2e5c4f1f107",
+                    _id: "",
                     name:"Jordi",
-                    profession: "Sensei",
-                    city: "Vic",
-                    avatar: "https://i.ibb.co/GPnrGDw/Default-profile-picture-avatar-photo-placeholder-Vector-illustration.jpg",
-                    email: "jordi.sensei@gmail.com",
-                    password: "jordi1234",
-                    favoriteTechniques: [""],
-                    techniquesProvided: [""],
-                    __v: 0
-                },
-                    token: "hfdkisdfoisdfk49034",
-                    refreshToken: "j234kj345bhjr"
+                    profession: "",
+                    city: "",
+                    avatar: "",
+                    email: "",
+                    password: "",
+                    favoriteTechniques: [],
+                    techniquesProvided: [],
+                    token: "hfdkisdfoisdfk490323423hj423",
+                    refreshToken: "j234kj345bhkj34b6hk34"
                 }
 
                 mutations.loadUser(mockedState, payload);
 
-            expect(mockedState.currentUser.name).toBe("Jordi")
+            expect(mockedState.currentUser.name).toEqual("Jordi")
             })
         })
     })
@@ -121,9 +115,8 @@ describe('Given a mutations file', () => {
                     avatar: "",
                     email: "",
                     password: "",
-                    favoriteTechniques: [""],
-                    techniquesProvided: [""],
-                    __v: 0
+                    favoriteTechniques: [],
+                    techniquesProvided: [],
                 },
                     token: "",
                     refreshToken: ""
@@ -146,9 +139,8 @@ describe('Given a mutations file', () => {
                         avatar: "",
                         email: "",
                         password: "",
-                        favoriteTechniques: [""],
-                        techniquesProvided: [""],
-                        __v: 0
+                        favoriteTechniques: [],
+                        techniquesProvided: [],
                     },
                         token: "",
                         refreshToken: ""
@@ -170,10 +162,9 @@ describe('Given a mutations file', () => {
                         avatar: "",
                         email: "",
                         password: "",
-                        favoriteTechniques: [""],
-                        techniquesProvided: [""],
-                        __v: 0
-                        },
+                        favoriteTechniques: [],
+                        techniquesProvided: [],
+                    },
                         token: "",
                         refreshToken: ""
                     }
@@ -195,8 +186,8 @@ describe('Given a mutations file', () => {
                         time: 30,
                         goal: "Caldeamiento y animación del grupo.",
                         material: "Sillas en ronda.",
-                        task: "Se forma una ronda de...",
-                        workflow: "Dinamiza y anima al grupo",
+                        task: "Se forma una ronda de sillas y una persona...",
+                        workflow: "Dinamiza y anima al grupo, genera muchas...",
                         ilustration: "https://i.ibb.co/qptF73V/Music-Celebrate.png",
                         reviews: [],
                         __v: 0,
@@ -212,8 +203,8 @@ describe('Given a mutations file', () => {
                         time: 30,
                         goal: "Caldeamiento y animación del grupo.",
                         material: "Sillas en ronda.",
-                        task: "Se forma una ronda de...",
-                        workflow: "Dinamiza y anima al grupo",
+                        task: "Se forma una ronda de sillas y una persona...",
+                        workflow: "Dinamiza y anima al grupo, genera muchas...",
                         ilustration: "https://i.ibb.co/qptF73V/Music-Celebrate.png",
                         reviews: [],
                         __v: 0,
