@@ -13,13 +13,13 @@ import {
 
 const actions: any = {
     async register({dispatch}: ActionContext<State, State>, userData: UserRegisterData):  Promise<void> {
-      const {data} = await axios.post(process.env.VUE_APP_DDBB_URL_SIGNUP, userData);
+      const {data} = await axios.post("http://localhost:5000/synergy/auth/signup", userData);
       dispatch("login", {email: data.user.email, password: data.user.password});
     },
   
     async login({ dispatch }: ActionContext<State, State>, userData: UserLoginData):  Promise<void> { 
       const {data} = await axios.post(process.env.VUE_APP_DDBB_URL_LOGIN, userData);
-        dispatch("userLogedFromApi", data);
+      dispatch("userLogedFromApi", data);
     },
 
     getUserFromLocalStorage({dispatch}: ActionContext<State, State>)  {
@@ -67,7 +67,7 @@ const actions: any = {
       },
 
     async fetchCurrentUserTechniquesProvided({commit, state}: ActionContext<State, State>, id: string) {
-        const { data } = await axios({
+      const { data } = await axios({
           method: 'GET',
           url: `${process.env.VUE_APP_DDBB_URL}/technique/userprovider/${id}`,
           headers: { Authorization: `Bearer ${state.token}` }

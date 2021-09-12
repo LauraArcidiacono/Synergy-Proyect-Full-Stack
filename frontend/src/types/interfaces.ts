@@ -8,8 +8,8 @@ interface Technique {
   task: string,
   workflow: string,
   ilustration: string,
-  reviews: [Review],
-  userProvider: [string]
+  reviews: Array<Review>,
+  userProvider: Array<string>
 }
 
 interface FavoriteTechniques {
@@ -22,7 +22,7 @@ interface UpdatedFavorites {
     userId: string,
     techniqueId: string
   }
-  favoriteTechniques: [Technique]
+  favoriteTechniques: Array<Technique>
 }
 
 interface DataBaseTechnique {
@@ -46,18 +46,14 @@ interface DataBaseTechnique {
                 avatar: string,
                 email: string,
                 password: string,
-                favoriteTechniques: [
-                    string
-                ],
-                techniquesProvided: [
-                    string,
-                ],
+                favoriteTechniques: Array<Technique>,
+                techniquesProvided: Array<Technique>,
             },
             description: string,
             score: number,
         }
     ],
-    userProvider: [string]
+    userProvider: Array<string>
 
 }
 
@@ -80,8 +76,8 @@ interface User {
   avatar: string, 
   email: string,
   password: string,
-  favoriteTechniques: [Technique],
-  techniquesProvided: [Technique]
+  favoriteTechniques: Array<Technique>,
+  techniquesProvided: Array<Technique>
 }
 interface Resource {
   title: string,
@@ -115,22 +111,22 @@ interface UserWithToken {
       avatar: string,
       email: string,
       password: string,
-      favoriteTechniques: [DataBaseTechnique],
-      techniquesProvided: [DataBaseTechnique],
+      favoriteTechniques: Array<DataBaseTechnique>,
+      techniquesProvided: Array<DataBaseTechnique>,
     }
-    token: string,
-    refreshToken: string,
+  token: string,
+  refreshToken: string,
 }
 
 interface State {
-  techniques: [DataBaseTechnique],
+  techniques: Array<DataBaseTechnique>,
   currentTechnique: Technique,
-  currentUserTechniquesProvided: [DataBaseTechnique],
+  currentUserTechniquesProvided: Array<DataBaseTechnique>,
   currentUser: User,
   isUserAuthenticate: Boolean,
   token: string,
   refreshToken: string,
-  resources: [Resource]
+  resources: Array<Resource>
 }
 
 export {
