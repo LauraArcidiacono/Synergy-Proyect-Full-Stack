@@ -4,16 +4,23 @@ import router from '@/router/index';
 import state from '../mockedState';
 
 
-test('displays message', () => {
-    const wrapper = mount(App, {
-      global: {
-        plugins: [router],
-        mocks: {
-          $store: {
-            state,
+describe('Given a app.vue file', () => {
+  describe('When is rendered', () => {
+    test('Should mount Header component', () => {
+      const wrapper = mount(App, {
+        global: {
+          plugins: [router],
+          mocks: {
+            $store: {
+              state,
+              getters: {
+                isTechniqueInFavorites: false,
+              }
+            },
           },
         },
-      },
-    });
+      });
     expect(wrapper.html()).toContain('<header class="header">');
-  });
+    })
+  })
+});
