@@ -1,14 +1,43 @@
 import { mount } from '@vue/test-utils';
 import Login from '@/components/Login.vue';
-
+import router from '@/router';
+import state from '../mockedState';
 describe('Given a Login component', () => {
     describe('When is rendered', () => {
         test('Then should render a div with the class "login__userData"', () => {
-            const wrapper = mount(Login)
+            const wrapper = mount(Login, {
+                global: {
+                    plugins: [router],
+                    mocks: {
+                        $store: {
+                            state,
+                            methods: {
+                                handleSubmit: jest.fn(),
+                                this: jest.fn(),
+                            },
+                        }
+                    }
+                },
+
+            })
             expect(wrapper.html()).toContain('<div class="login__userData">')
         })
         test('Then should render a h3 with the text "Login"', () => {
-            const wrapper = mount(Login)
+            const wrapper = mount(Login, {
+                global: {
+                    plugins: [router],
+                    mocks: {
+                        $store: {
+                            state,
+                            methods: {
+                                handleSubmit: jest.fn(),
+                                this: jest.fn(),
+                            },
+                        }
+                    }
+                },
+
+            })
             expect(wrapper.text()).toContain('Login')
         })
     })
