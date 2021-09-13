@@ -64,10 +64,12 @@ interface DataBaseTechnique {
 }
 
 interface Review {
+  _id: string,
   technique: string,
-  user: User,
+  user: string,
   description: string,
-  score: number
+  score: number,
+  __v: number
 }
 
 interface NewReview {
@@ -137,7 +139,7 @@ interface TechniquesProvided {
 interface State {
   techniques: Array<Technique>,
   currentTechnique: Technique,
-  currentUserTechniquesProvided: Array<Technique> | Array<TechniquesProvided>,
+  currentUserTechniquesProvided: Array<Technique>,
   currentUser: User,
   isUserAuthenticate: Boolean,
   token: string,
