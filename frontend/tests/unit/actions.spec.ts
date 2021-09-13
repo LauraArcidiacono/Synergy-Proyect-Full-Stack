@@ -8,7 +8,6 @@ import {
   configActionContextDispatch,
   localStorageMock,
 } from '../test-utils';
-
 import mockedState from '../mockedState';
 
 
@@ -17,7 +16,23 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 const commit = jest.fn() as jest. MockedFunction<Commit>;
 const dispatch = jest.fn() as jest. MockedFunction<Dispatch>;
 
-const user = {} as UserWithToken;
+let mockStorage = {};
+let user = {
+    user: {
+        _id: "612cdf2cfa97f2e5c4f1f107",
+        name: "Jordi",
+        profession: "Sensei",
+        city: "Vic",
+        avatar: "https://i.ibb.co/jh5JVzY/Jordi1.jpg",
+        email: "jordi.sensei@gmail.com",
+        password: "jordi1234",
+        favoriteTechniques: [],
+        techniquesProvided: [],
+        __v: 0,
+    },
+    token: "48943895kjyjry895645h43",
+    refreshToken: "409534509gdgfoihf09wutrfidj"
+} as UserWithToken;
 describe('Given an object of actions', () => {
     
     describe('When is invoqued with one action', () => {
@@ -53,9 +68,8 @@ describe('Given an object of actions', () => {
 
         describe('And the action getUserFromLocalStorag is executed successfully', () => {
             test('Action getUserFromLocalStorage should call dispatch', async () => {
-                const userData = "";
-     
-                await actions.deleteDataFromLocalStorage(configActionContext (commit), userData);
+                     
+                await actions.deleteDataFromLocalStorage(configActionContext (commit), user);
 
                 expect(commit).toHaveBeenCalled();
             })
@@ -63,15 +77,25 @@ describe('Given an object of actions', () => {
 
         ////////////////////falla
         describe('And the action userLogedFromApi is executed successfully', () => {
-            test('userLogedFromApi should call dispatch', async () => {
+            
+            test('Then userLogedFromApi should call axios.get', async () => {
+                mockedAxios.get.mockResolvedValue({
+                    data: {user: mockedState.currentUser},
+                });  
+     
+                await actions.userLogedFromApi(configActionContextDispatch(dispatch), user);
+
+                expect(axios.get).toHaveBeenCalled();
+                
+            })
+            test('Then userLogedFromApi should call dispatch', async () => {
                 mockedAxios.get.mockResolvedValue({
                     data: {},
                 });  
      
                 await actions.userLogedFromApi(configActionContextDispatch(dispatch), user);
 
-                expect(axios.get).toHaveBeenCalled();
-                // expect(dispatch).toHaveBeenCalled();
+                expect(dispatch).toHaveBeenCalled();
             })
 
             ////////////////////falla
@@ -98,9 +122,8 @@ describe('Given an object of actions', () => {
             test('userLogedFromApi should call commit', async () => {
                 mockedAxios.get.mockResolvedValue({});
               
-                const userData = mockedState.currentUser;
               
-                await actions.userLogedFromApi(configActionContext(commit), userData);
+                await actions.userLogedFromApi(configActionContext(commit), user);
 
                 expect(commit).toHaveBeenCalledWith('loadUser');
             })
