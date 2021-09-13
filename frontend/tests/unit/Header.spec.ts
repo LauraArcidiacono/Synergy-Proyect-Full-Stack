@@ -1,7 +1,6 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import Header from '@/components/Header.vue';
 import router from '@/router';
-import state from '../mockedState';
 describe('Given a Header component', () => {
     describe('When is rendered', () => {
         test('Then should render the logo', () => {
@@ -13,7 +12,12 @@ describe('Given a Header component', () => {
                             state: {
                                 techniques: [],
                                 isAuthenticate: true,
-                            }
+                            },
+                            methods: {
+                                handleLogout: jest.fn(),
+                                mounted: jest.fn(),
+                                this: jest.fn(),
+                            },
                         }
                     }
                 },
