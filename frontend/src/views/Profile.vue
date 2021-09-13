@@ -97,6 +97,7 @@ export default {
         userId: currentUser._id,
         techniqueId: techniquesProvided._id,
       });
+      this.$router.push(`/synergy/profile/${currentUser._id}`);
     },
   },
 
