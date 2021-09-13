@@ -25,8 +25,8 @@ const mutations = {
         state.currentUser.techniquesProvided.push(payload);
       },
         
-      loadCurrentUserTechniquesProvided(state: State, payload: any) {
-        state.currentUserTechniquesProvided = payload;
+      loadCurrentUserTechniquesProvided(state: State, payload: Technique ) {
+        state.currentUserTechniquesProvided = [payload];
       },
   
       updateUserFavoriteTechniques(state: State, payload: Technique) {
