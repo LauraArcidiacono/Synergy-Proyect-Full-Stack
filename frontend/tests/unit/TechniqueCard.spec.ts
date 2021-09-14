@@ -2,7 +2,6 @@ import { mount } from '@vue/test-utils';
 import TechniqueCard from '@/components/TechniqueCard.vue';
 import router from '@/router';
 import state from '../mockedState';
-import actions from '@/store/actions';
 import mutations from '@/store/mutations';
 describe('Given a TechniqueCard component', () => {
     describe('When is rendered', () => {
