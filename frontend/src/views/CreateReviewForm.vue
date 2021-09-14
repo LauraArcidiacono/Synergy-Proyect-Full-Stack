@@ -2,6 +2,7 @@
   <form
     @submit.prevent="handleSaveNewReview(currentUser, currentTechnique)"
     class="createReviewForm"
+    data-test="createReviewForm__submit"
   >
     <h2>Reseñas</h2>
     <div class="createReviewForm__container">

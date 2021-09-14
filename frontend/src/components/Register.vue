@@ -1,5 +1,10 @@
 <template>
-  <form action class="register" @submit.prevent="handleSubmit()">
+  <form
+    action
+    class="register"
+    @submit.prevent="handleSubmit()"
+    data-test="handleSubmit__register"
+  >
     <h3>Regístrate</h3>
     <div class="register__userData">
       <label for="name"

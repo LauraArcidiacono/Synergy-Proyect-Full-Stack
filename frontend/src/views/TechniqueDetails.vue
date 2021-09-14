@@ -9,12 +9,13 @@
       </div>
       <div>
         <div class="details__header">
-          <h3>{{ currentTechnique.name }}</h3>
+          <h2>{{ currentTechnique.name }}</h2>
 
           <div v-if="isTechniqueInFavorites()">
             <button
               v-if="isTechniqueInFavorites()"
               class="header__deleteButton"
+              data-test="deleteTechniqueFromFavorite__button"
               @click="
                 handleDeleteTechniqueFromFavorites(
                   currentUser,
@@ -28,6 +29,7 @@
           </div>
           <button
             v-else
+            data-test="addTechniqueToFavorite__button"
             @click="
               handleAddToFavoriteTechniques(currentUser, currentTechnique)
             "
@@ -37,8 +39,8 @@
           </button>
         </div>
         <div class="details__info">
-          <h4>Tipo: {{ currentTechnique.type }}</h4>
-          <h4>Tiempo: {{ currentTechnique.time }} minutos</h4>
+          <h3>Tipo: {{ currentTechnique.type }}</h3>
+          <h3>Tiempo: {{ currentTechnique.time }} minutos</h3>
         </div>
         <div class="details__info-details">
           <article>Objetivo: {{ currentTechnique.goal }}</article>
@@ -49,7 +51,7 @@
       </div>
     </section>
     <section class="techniqueDetails__reviews">
-      <h3>Reseñas</h3>
+      <h2>Reseñas</h2>
       <ul>
         <li
           v-for="review in currentTechnique.reviews"
@@ -59,7 +61,7 @@
           <article class="cards__review">
             <img :src="review.user.avatar" alt="Avatar de usuario" />
             <div>
-              <h4>{{ review.user.name }}</h4>
+              <h3>{{ review.user.name }}</h3>
               <p>{{ review.user.profession }}</p>
               <p>{{ review.description }}</p>
             </div>
@@ -165,7 +167,7 @@ export default {
 .details__info {
   display: flex;
   flex-direction: row;
-  & h4 {
+  & h3 {
     margin: 2vw;
   }
 }
@@ -181,6 +183,10 @@ export default {
 }
 .techniqueDetails__reviews {
   @include reviews__container;
+  & h2 {
+    text-align: center;
+    font-size: 3vw;
+  }
 }
 .reviews__cards {
   @include reviews__cards;

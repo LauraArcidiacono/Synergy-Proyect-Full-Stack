@@ -1,5 +1,5 @@
 interface Technique {
-  _id: string;
+  _id: string,
   name: string,
   type: string,
   time: number,
@@ -8,11 +8,17 @@ interface Technique {
   task: string,
   workflow: string,
   ilustration: string,
-  reviews: [Review],
-  userProvider: [string]
+  reviews: Array<Review>,
+  __v: number,
+  userProvider: string
 }
 
 interface FavoriteTechniques {
+  userId: string,
+  techniqueId: string
+}
+
+interface TechniqueProvidedToDelete {
   userId: string,
   techniqueId: string
 }
@@ -22,7 +28,7 @@ interface UpdatedFavorites {
     userId: string,
     techniqueId: string
   }
-  favoriteTechniques: [Technique]
+  favoriteTechniques: Array<Technique>
 }
 
 interface DataBaseTechnique {
@@ -46,26 +52,25 @@ interface DataBaseTechnique {
                 avatar: string,
                 email: string,
                 password: string,
-                favoriteTechniques: [
-                    string
-                ],
-                techniquesProvided: [
-                    string,
-                ],
+                favoriteTechniques: Array<Technique>,
+                techniquesProvided: Array<TechniquesProvided>,
             },
             description: string,
             score: number,
         }
     ],
-    userProvider: [string]
+    __v: number,
+    userProvider: Array<string>
 
 }
 
 interface Review {
+  _id: string,
   technique: string,
-  user: User,
+  user: string,
   description: string,
-  score: number
+  score: number,
+  __v: number
 }
 
 interface NewReview {
@@ -80,8 +85,8 @@ interface User {
   avatar: string, 
   email: string,
   password: string,
-  favoriteTechniques: [Technique],
-  techniquesProvided: [Technique]
+  favoriteTechniques: Array<Technique>,
+  techniquesProvided: Array<TechniquesProvided>
 }
 interface Resource {
   title: string,
@@ -106,6 +111,10 @@ interface UserId {
   userId: string
 }
 
+interface TechniqueId {
+  techniqueId: string
+}
+
 interface UserWithToken {
   user: {
       _id: string,
@@ -115,27 +124,36 @@ interface UserWithToken {
       avatar: string,
       email: string,
       password: string,
-      favoriteTechniques: [DataBaseTechnique],
-      techniquesProvided: [DataBaseTechnique],
+      favoriteTechniques: Array<DataBaseTechnique>,
+      techniquesProvided: Array<TechniquesProvided>,
     }
-    token: string,
-    refreshToken: string,
+  token: string,
+  refreshToken: string,
+}
+
+interface TechniquesProvided {
+  _id: string,
+  ilustration: string,
+  name: string
 }
 
 interface State {
-  techniques: [DataBaseTechnique],
+  techniques: Array<Technique>,
   currentTechnique: Technique,
-  currentUserTechniquesProvided: [DataBaseTechnique],
+  currentUserTechniquesProvided: Array<Technique>,
   currentUser: User,
-  isUserAuthenticate: Boolean,
+  isUserAuthenticate: boolean,
   token: string,
   refreshToken: string,
-  resources: [Resource]
+  resources: Array<Resource>
 }
 
 export {
   Technique,
   FavoriteTechniques,
+  TechniquesProvided,
+  TechniqueId,
+  TechniqueProvidedToDelete,
   UpdatedFavorites,
   Review,
   NewReview,

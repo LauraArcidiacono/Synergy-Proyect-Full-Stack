@@ -3,6 +3,8 @@ import { ActionContext } from 'vuex';
 import {
   Technique,
   FavoriteTechniques,
+  TechniqueProvidedToDelete,
+  TechniqueId,
   UserWithToken,
   UserId,
   UserRegisterData,
@@ -19,7 +21,7 @@ const actions: any = {
   
     async login({ dispatch }: ActionContext<State, State>, userData: UserLoginData):  Promise<void> { 
       const {data} = await axios.post(process.env.VUE_APP_DDBB_URL_LOGIN, userData);
-        dispatch("userLogedFromApi", data);
+      dispatch("userLogedFromApi", data);
     },
 
     getUserFromLocalStorage({dispatch}: ActionContext<State, State>)  {
@@ -67,7 +69,7 @@ const actions: any = {
       },
 
     async fetchCurrentUserTechniquesProvided({commit, state}: ActionContext<State, State>, id: string) {
-        const { data } = await axios({
+      const { data } = await axios({
           method: 'GET',
           url: `${process.env.VUE_APP_DDBB_URL}/technique/userprovider/${id}`,
           headers: { Authorization: `Bearer ${state.token}` }
@@ -83,6 +85,23 @@ const actions: any = {
         data: newTechnique
       });
       commit("updateUserTechniquesProvided", data)
+      commit("updateTechniquesProvidedByThisUser", {_id: data._id, ilustration: data.ilustration, name: data.name})
+      },
+
+    async deleteTechniqueProvided({ commit, dispatch, state }: ActionContext<State, State>, techniqueToDelete: TechniqueProvidedToDelete): Promise<void> {
+      const techniqueId = techniqueToDelete.techniqueId;
+      const updateProvided = state.currentUserTechniquesProvided.filter((techniqueItem) => techniqueItem._id !== techniqueId)
+      commit("updateTechniquesProvidedByThisUser", updateProvided)
+      commit("loadCurrentUserTechniquesProvided", updateProvided)
+      dispatch("deleteProvidedTechniqueFromApi", techniqueId)
+    },  
+
+    async deleteProvidedTechniqueFromApi({state}: ActionContext<State, State>, techniqueId:  TechniqueId): Promise<void> {
+      await axios({
+        method:'DELETE',
+        url: `${process.env.VUE_APP_DDBB_URL}/technique/${techniqueId}`,
+        headers: { Authorization: `Bearer ${state.token}`},
+      })
     },
 
     async putOnUserFavoriteTechniques({ commit, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {

@@ -1,5 +1,6 @@
 <template>
   <div class="techniquesList">
+    <h2>Lista de Técnicas disponibles</h2>
     <img
       class="techniquesList__title"
       :src="this.images.tituloSynergy"
@@ -87,9 +88,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  & h2 {
+    display: none;
+  }
 }
 .techniquesList__title {
-  width: 60%;
+  width: 14%;
   margin-top: 2vw;
 }
 .search__options {

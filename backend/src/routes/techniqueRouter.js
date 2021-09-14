@@ -5,7 +5,7 @@ const {
   getOneTechniqueById,
   getTechniquesByUserProviderId,
   updateOneTechniqueById,
-  getTechniquesByUserReviewrId,
+  getTechniquesByUserReviewerId,
   deleteOneTechniqueById
 } = require('../controllers/techniqueControllers');
 
@@ -13,7 +13,7 @@ const techniqueRouter = new Router();
 
 techniqueRouter
   .route('/userreviewer/:userReviewerId')
-  .get(getTechniquesByUserReviewrId);
+  .get(getTechniquesByUserReviewerId);
 
 techniqueRouter
   .route('/userprovider/:userProviderId')

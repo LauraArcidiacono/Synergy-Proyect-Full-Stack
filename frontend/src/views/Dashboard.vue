@@ -7,7 +7,7 @@
     />
     <div class="dashboard__articles">
       <article class="articles__techniques">
-        <h3>Técnicas</h3>
+        <h2>Técnicas</h2>
         <p>
           En este apartado podrás encontrar diversas técnicas para trabajar con
           tus grupos.
@@ -23,7 +23,7 @@
         >
       </article>
       <article class="articles_resources">
-        <h3>Recursos</h3>
+        <h2>Recursos</h2>
         <p>
           En este apartado encontrarás bibliografía muy úitl para seguir
           investigando acerca de lo grupal y diversas técnicas que puedes
@@ -38,7 +38,7 @@
         >
       </article>
       <article class="articles__profile">
-        <h3>Perfil</h3>
+        <h2>Perfil</h2>
         <p>
           En este apartado encontrarás tus datos personales, las técnicas que
           has seleccionado como favoritas y podrás compartir técnicas que
@@ -86,7 +86,7 @@ export default {
 .dashboard__articles {
   display: flex;
   flex-direction: row;
-  & h3 {
+  & h2 {
     font-size: 2.5rem;
     margin-bottom: 1vw;
   }

@@ -2,6 +2,7 @@
   <form
     @submit.prevent="handleSaveNewTechnique(currentUser._id)"
     class="createTechniqueForm"
+    data-test="createTechniqueForm__submit"
   >
     <h2>Crea una nueva técnica para compartir</h2>
     <div class="createTechniqueForm__container">

@@ -13,6 +13,10 @@ import Register from '../components/Register.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
+  { 
+    path: '/', 
+    redirect: '/synergy'
+},
   {
     path: '/synergy',
     name: 'LandingPage',
