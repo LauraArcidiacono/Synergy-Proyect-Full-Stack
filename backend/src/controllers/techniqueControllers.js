@@ -71,11 +71,11 @@ async function getTechniquesByUserProviderId(req, res) {
 }
 
 ///
-async function getTechniquesByUserReviewrId(req, res) {
-  const { userReviewrId } = req.params;
+async function getTechniquesByUserReviewerId(req, res) {
+  const { userReviewerId } = req.params;
   try {
     const foundTechniqueReview = await Technique
-      .find({ reviews: { user: { _id: { $eq: userReviewrId } } } })
+      .find({ reviews: { user: { _id: { $eq: userReviewerId } } } })
       .populate('reviews');
     res.json(foundTechniqueReview);
     res.send(204);
@@ -118,6 +118,6 @@ module.exports = {
   getOneTechniqueById,
   getTechniquesByUserProviderId,
   updateOneTechniqueById,
-  getTechniquesByUserReviewrId,
+  getTechniquesByUserReviewerId,
   deleteOneTechniqueById
 };
