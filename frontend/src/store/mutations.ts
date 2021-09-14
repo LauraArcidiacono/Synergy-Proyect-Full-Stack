@@ -1,4 +1,4 @@
-import { UserWithToken, Resource, Technique, TechniquesProvided, Review, State } from '@/types/interfaces';
+import { UserWithToken, Technique, TechniquesProvided, Review, State } from '@/types/interfaces';
 
 const mutations = {
     loginUser(state: State, payload: UserWithToken) {
