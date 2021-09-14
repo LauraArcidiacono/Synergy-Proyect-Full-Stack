@@ -1,4 +1,4 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Header from '@/components/Header.vue';
 import router from '@/router';
 describe('Given a Header component', () => {
