@@ -59,7 +59,7 @@ describe('Given a CreateTechniqueForm component', () => {
         })
 
         describe('And submit is call', () => {
-          test('Then should call handleSaveNewReview', async () => {
+          test('Then should call handleSaveNewTechnique', async () => {
             const wrapper = mount(CreateTechniqueForm, {
                 global: {
                   plugins: [router],
@@ -75,7 +75,7 @@ describe('Given a CreateTechniqueForm component', () => {
                       dispatch: jest.fn(),
                     },
                     methods: {
-                        handleSaveNewReview: jest.fn(),
+                      handleSaveNewTechnique: jest.fn(),
                         mounted: jest.fn(),
                         this: jest.fn(),
                     }, 
