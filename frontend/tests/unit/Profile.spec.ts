@@ -58,5 +58,40 @@ describe('Given a Profile component', () => {
               })
             expect(wrapper.text()).toContain('Crear Técnica')
         })
+
+
+        describe('And button X is triggered', () => {
+          test('Then should call handleDeleteTechniqueProvided', async () => {
+            const wrapper = mount(Profile, {
+                global: {
+                  plugins: [router],
+                  mocks: {
+                    $store: {
+                      state,
+                      getters: {
+                        isTechniqueInFavorites: false,
+                      },
+                      actions,
+                      mutations,
+                      commit: jest.fn(),
+                      dispatch: jest.fn(),
+                    },
+                    methods: {
+                      handleDeleteTechniqueProvided: jest.fn(),
+                        mounted: jest.fn(),
+                        this: jest.fn(),
+                    }, 
+                    data: jest.fn(),
+                  },
+                },
+              })
+              const deleteTchniqueProvided = jest.fn();
+              deleteTchniqueProvided();
+              const buttonBeleteTchniqueProvided = wrapper.get('[data-test="deleteTechniqueProvided__button"]');
+              await buttonBeleteTchniqueProvided.trigger('click')
+              
+            expect(deleteTchniqueProvided).toHaveBeenCalled()
+        })
+        })
     })
 })

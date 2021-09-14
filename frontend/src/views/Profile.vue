@@ -46,6 +46,7 @@
                   handleDeleteTechniqueProvided(currentUser, techniquesProvided)
                 "
                 class="card__deleteButton"
+                data-test="deleteTechniqueProvided__button"
               >
                 X
               </button>
