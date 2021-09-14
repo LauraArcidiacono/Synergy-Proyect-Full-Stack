@@ -142,7 +142,7 @@ interface State {
   currentTechnique: Technique,
   currentUserTechniquesProvided: Array<Technique>,
   currentUser: User,
-  isUserAuthenticate: Boolean,
+  isUserAuthenticate: boolean,
   token: string,
   refreshToken: string,
   resources: Array<Resource>
