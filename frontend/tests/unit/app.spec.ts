@@ -15,7 +15,9 @@ describe('Given a app.vue file', () => {
               state,
               getters: {
                 isTechniqueInFavorites: false,
-              }
+              }, 
+              commit: jest.fn(),
+              dispatch: jest.fn(),
             },
           },
         },
