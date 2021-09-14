@@ -15,6 +15,7 @@
             <button
               v-if="isTechniqueInFavorites()"
               class="header__deleteButton"
+              data-test="deleteTechniqueFromFavorite__button"
               @click="
                 handleDeleteTechniqueFromFavorites(
                   currentUser,
@@ -28,6 +29,7 @@
           </div>
           <button
             v-else
+            data-test="addTechniqueToFavorite__button"
             @click="
               handleAddToFavoriteTechniques(currentUser, currentTechnique)
             "
