@@ -62,7 +62,7 @@ describe('Given a TechniqueDetails component', () => {
         })
 
         describe('And addTechniqueToFavorite button is triggered', () => {
-          test('Then should call handleDeleteTechniqueProvided', async () => {
+          test('Then should call handleAddToFavoriteTechniques', async () => {
             const wrapper = mount(TechniqueDetails, {
                 global: {
                   plugins: [router],
@@ -88,7 +88,7 @@ describe('Given a TechniqueDetails component', () => {
                 },
               })
               const addToFavoriteTechniques = jest.fn();
-             addToFavoriteTechniques();
+              addToFavoriteTechniques();
               const buttonAddToFavoriteTechniques = wrapper.get('[data-test="addTechniqueToFavorite__button"]');
               await buttonAddToFavoriteTechniques.trigger('click')
               
@@ -123,7 +123,7 @@ describe('Given a TechniqueDetails component', () => {
                 },
               })
               const deleteTechniqueFromFavorite = jest.fn();
-             deleteTechniqueFromFavorite();
+              deleteTechniqueFromFavorite();
               const buttonDeleteTechniqueFromFavorite = wrapper.get('[data-test="deleteTechniqueFromFavorite__button"]');
               await buttonDeleteTechniqueFromFavorite.trigger('click')
               
