@@ -1,5 +1,10 @@
 <template>
-  <form action class="login" @submit.prevent="handleSubmit()">
+  <form
+    action
+    class="login"
+    @submit.prevent="handleSubmit()"
+    data-test="handleSubmit__login"
+  >
     <h3>Login</h3>
     <div class="login__userData">
       <label for="email"

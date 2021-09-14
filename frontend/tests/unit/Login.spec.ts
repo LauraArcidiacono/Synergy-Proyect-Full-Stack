@@ -40,5 +40,33 @@ describe('Given a Login component', () => {
             })
             expect(wrapper.text()).toContain('Login')
         })
+
+        describe('And the form is submited', () => {
+            test('Then handleSubmit should be call', () => {
+                const wrapper = mount(Login, {
+                    global: {
+                        plugins: [router],
+                        mocks: {
+                            $store: {
+                                state,
+                                methods: {
+                                    handleSubmit: jest.fn(),
+                                    this: jest.fn(),
+                                },
+                                commit: jest.fn(),
+                                dispatch: jest.fn(),
+                            }
+                        }
+                    },
+    
+                })
+                const handleSubmit = jest.fn();
+                handleSubmit();
+                const loginButton = wrapper.get('[data-test="handleSubmit__login"]');
+                loginButton.trigger('submit')
+                
+              expect(handleSubmit).toHaveBeenCalled()
+            })
+            })
+        })
     })
-})
