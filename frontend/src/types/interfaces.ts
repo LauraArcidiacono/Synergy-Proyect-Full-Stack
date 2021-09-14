@@ -59,6 +59,7 @@ interface DataBaseTechnique {
             score: number,
         }
     ],
+    __v: number,
     userProvider: Array<string>
 
 }
