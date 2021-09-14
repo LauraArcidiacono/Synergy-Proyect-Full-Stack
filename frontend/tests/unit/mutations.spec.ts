@@ -238,7 +238,7 @@ describe('Given a mutations file', () => {
     describe('When loadCurrentUserTechniquesProvided is commited with payload', () => {
         describe('Then state must be updated', () => {
             test('State.currentUserTechniquesProvided', () => {
-                const payload = {
+                const payload = [{
                     _id: "61314337f8aab565c3e56087",
                     name: "¿Te gusta tu compañia?",
                     type: "Animación",
@@ -251,7 +251,7 @@ describe('Given a mutations file', () => {
                     reviews: [],
                     __v: 0,
                     userProvider: "6134eec9c158ae21f6cd95d4"
-                }
+                }]
         
                 mutations.loadCurrentUserTechniquesProvided(mockedState, payload);
         
@@ -314,19 +314,19 @@ describe('Given a mutations file', () => {
     describe('When updateFavoriteTechniques is commited with payload', () => {
         describe('Then state must be updated', () => {
             test('State.currentUser.favoriteTechniques', () => {
-                const payload = {
+                const payload = [{
                     _id: "61314337f8aab565c3e56087",
                     ilustration: "https://i.ibb.co/qptF73V/Music-Celebrate.png",
                     name: "¿Te gusta tu compañia?",
-                }
+                }]
         
                 mutations.updateFavoriteTechniques(mockedState, payload);
         
-                expect(mockedState.currentUser.favoriteTechniques).toStrictEqual({
+                expect(mockedState.currentUser.favoriteTechniques).toStrictEqual([{
                     _id: "61314337f8aab565c3e56087",
                     ilustration: "https://i.ibb.co/qptF73V/Music-Celebrate.png",
                     name: "¿Te gusta tu compañia?",
-                })
+                }])
             })
         })
     })
@@ -361,7 +361,7 @@ describe('Given a mutations file', () => {
     describe('When loadTechniques is commited with payload', () => {
         describe('Then state must be updated', () => {
             test('State.techniques', () => {
-                const payload =  {
+                const payload =  [{
                     _id: "61314337f8aab565c3e56087",
                     name: "¿Te gusta tu compañia?",
                     type: "Animación",
@@ -374,11 +374,11 @@ describe('Given a mutations file', () => {
                     reviews: [],
                     __v: 0,
                     userProvider: "6134eec9c158ae21f6cd95d4"
-                }
+                }]
         
                 mutations.loadTechniques(mockedState, payload);
         
-                expect(mockedState.techniques).toStrictEqual({
+                expect(mockedState.techniques).toStrictEqual([{
                     _id: "61314337f8aab565c3e56087",
                     name: "¿Te gusta tu compañia?",
                     type: "Animación",
@@ -391,7 +391,7 @@ describe('Given a mutations file', () => {
                     reviews: [],
                     __v: 0,
                     userProvider: "6134eec9c158ae21f6cd95d4"
-                })
+                }])
             })
         })
     })

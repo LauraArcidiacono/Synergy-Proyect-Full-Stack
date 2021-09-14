@@ -1,4 +1,4 @@
-import { UserWithToken, Technique, TechniquesProvided, Review, State } from '@/types/interfaces';
+import { UserWithToken, Resource, Technique, TechniquesProvided, Review, State } from '@/types/interfaces';
 
 const mutations = {
     loginUser(state: State, payload: UserWithToken) {
@@ -25,8 +25,8 @@ const mutations = {
         state.currentUser.techniquesProvided.push(payload);
       },
         
-      loadCurrentUserTechniquesProvided(state: State, payload: Technique ) {
-        state.currentUserTechniquesProvided = [payload];
+      loadCurrentUserTechniquesProvided(state: State, payload: Array<Technique> ) {
+        state.currentUserTechniquesProvided = payload;
       },
   
       updateUserFavoriteTechniques(state: State, payload: Technique) {
@@ -41,7 +41,7 @@ const mutations = {
         state.currentTechnique.reviews.push(payload);
   },
   
-      loadTechniques(state: State, payload: any) {
+      loadTechniques(state: State, payload: Array<Technique>) {
         state.techniques = payload;
       },
   
