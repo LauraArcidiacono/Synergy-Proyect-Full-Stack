@@ -2,7 +2,6 @@ import { mount } from '@vue/test-utils';
 import Resources from '@/views/Resources.vue';
 import router from '@/router';
 import state from '../mockedState';
-import actions from '@/store/actions';
 import mutations from '@/store/mutations';
 
 describe('Given a Resources component', () => {
