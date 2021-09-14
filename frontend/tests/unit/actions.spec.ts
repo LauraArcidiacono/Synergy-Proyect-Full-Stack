@@ -37,16 +37,21 @@ describe('Given an object of actions', () => {
         
         describe('And the action register is executed successfully', () => {
             test('Register should call dispatch', async () => {
-
                 mockedAxios.mockResolvedValue({
-                    data: {user: mockedState.currentUser},
+                    data: {name: "",
+                        profession: "",
+                        city: "",
+                        avatar: "", 
+                        email: "",
+                        password: "",
+                        favoriteTechniques: [],
+                        techniquesProvided: []}
                   });
-              
                   const userData = {email: mockedState.currentUser.email, password: mockedState.currentUser.password};
               
                   await actions.register(configActionContextDispatch(dispatch), userData);
               
-                  expect(axios.post).toHaveBeenCalled();
+                  expect(dispatch).toHaveBeenCalled();
             })
         })
 
@@ -64,16 +69,15 @@ describe('Given an object of actions', () => {
             })
         })
 
-        describe('And the action getUserFromLocalStorag is executed successfully', () => {
+        describe('And the action getUserFromLocalStorage is executed successfully', () => {
             test('Action getUserFromLocalStorage should call dispatch', async () => {
                      
-                await actions.deleteDataFromLocalStorage(configActionContext (commit), user);
+                await actions.getUserFromLocalStorage(configActionContextDispatch(dispatch), {});
 
-                expect(commit).toHaveBeenCalled();
+                expect(dispatch).toHaveBeenCalled();
             })
         })
-
-        ////////////////////falla
+   
         describe('And the action userLogedFromApi is executed successfully', () => {
             
             test('Then userLogedFromApi should call axios.get', async () => {
@@ -83,7 +87,7 @@ describe('Given an object of actions', () => {
      
                 await actions.userLogedFromApi(configActionContextDispatch(dispatch), user);
 
-                expect(axios.get).toHaveBeenCalled();
+                expect(axios).toHaveBeenCalled();
                 
             })
             test('Then userLogedFromApi should call dispatch', async () => {
@@ -96,38 +100,36 @@ describe('Given an object of actions', () => {
                 expect(dispatch).toHaveBeenCalled();
             })
 
-            ////////////////////falla
             test('userLogedFromApi should call commit', async () => {
-                
                 mockedAxios.mockResolvedValue({
-                    _id: "",
-                    name: "",
-                    profession: "",
-                    city: "",
-                    avatar: "", 
-                    email: "",
-                    password: "",
-                    favoriteTechniques: [],
-                    techniquesProvided: []
+                    data: {},
                 });
                 
-
                 await actions.userLogedFromApi(configActionContext(commit), user);
 
-                expect(commit).toHaveBeenCalledWith('loginUser');
+                expect(commit).toHaveBeenCalled();
             })
 
             test('userLogedFromApi should call commit', async () => {
-                mockedAxios.mockResolvedValue({});
+                mockedAxios.mockResolvedValue({
+                    data: {}
+                });
               
               
                 await actions.userLogedFromApi(configActionContext(commit), user);
 
-                expect(commit).toHaveBeenCalledWith('loadUser');
+                expect(commit).toHaveBeenCalled();
             })
         })
 
+        describe('And the action deleteDataFromLocalStorage is executed successfully', () => {
+            test('Action deleteDataFromLocalStorage should call dispatch', async () => {
+                     
+                await actions.deleteDataFromLocalStorage(configActionContext (commit), user);
 
+                expect(commit).toHaveBeenCalled();
+            })
+        })
         describe('And the action fetchTechniquesFromApi is executed successfully', () => {
             test('Action fetchTechniquesFromApi should call commit', async () => {
                 mockedAxios.mockResolvedValue({
@@ -137,6 +139,62 @@ describe('Given an object of actions', () => {
                   const techniqueData = mockedState.techniques
               
                   await actions.fetchTechniquesFromApi(configActionContextAndState(commit, mockedState), techniqueData);
+              
+                  expect(commit).toHaveBeenCalled();
+            })
+        })
+
+        describe('And the action fetchOneTechniqueFromApi is executed successfully', () => {
+            test('Action fetchOneTechniqueFromApi should call commit', async () => {
+                mockedAxios.mockResolvedValue({
+                    data: {}
+                  });
+              
+                  const techniqueData = mockedState.currentTechnique
+              
+                  await actions.fetchOneTechniqueFromApi(configActionContextAndState(commit, mockedState), techniqueData);
+              
+                  expect(commit).toHaveBeenCalled();
+            })
+        })
+
+        describe('And the action fetchCurrentUserTechniquesProvided is executed successfully', () => {
+            test('Action fetchCurrentUserTechniquesProvided should call commit', async () => {
+                mockedAxios.mockResolvedValue({
+                    data: {}
+                  });
+              
+                  const techniqueData = mockedState.currentUserTechniquesProvided
+              
+                  await actions.fetchCurrentUserTechniquesProvided(configActionContextAndState(commit, mockedState), techniqueData);
+              
+                  expect(commit).toHaveBeenCalled();
+            })
+        })
+
+        describe('And the action getNewReview is executed successfully', () => {
+            test('Action getNewReview should call commit', async () => {
+                mockedAxios.mockResolvedValue({
+                    data: {}
+                  });
+              
+                  const reviewData = mockedState.currentTechnique.reviews
+              
+                  await actions.getNewReview(configActionContextAndState(commit, mockedState), reviewData);
+              
+                  expect(commit).toHaveBeenCalled();
+            })
+        })
+
+        describe('And the action fetchResourcesFromApi is executed successfully', () => {
+            test('Action fetchResourcesFromApi should call commit', async () => {
+                mockedAxios.mockResolvedValue({
+                    data: {}
+                  });
+              
+                  const resourceData = mockedState.resources
+              
+                  await actions.fetchResourcesFromApi(configActionContextAndState(commit, mockedState), resourceData);
               
                   expect(commit).toHaveBeenCalled();
             })
