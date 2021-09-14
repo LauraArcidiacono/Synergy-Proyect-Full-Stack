@@ -66,7 +66,7 @@ const stateMock = {
 
     token: "myToken",
 
-    refreshToken: "",
+    refreshToken: "myRefreshToken",
 
     resources: [
         {
