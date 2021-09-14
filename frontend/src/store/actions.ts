@@ -15,7 +15,7 @@ import {
 
 const actions: any = {
     async register({dispatch}: ActionContext<State, State>, userData: UserRegisterData):  Promise<void> {
-      const {data} = await axios.post("http://localhost:5000/synergy/auth/signup", userData);
+      const {data} = await axios.post(process.env.VUE_APP_DDBB_URL_SIGNUP, userData);
       dispatch("login", {email: data.user.email, password: data.user.password});
     },
   
