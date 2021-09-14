@@ -10,11 +10,11 @@ import {
 } from '../test-utils';
 import mockedState from '../mockedState';
 
-
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
-const commit = jest.fn() as jest. MockedFunction<Commit>;
-const dispatch = jest.fn() as jest. MockedFunction<Dispatch>;
+const commit = jest.fn() as jest.MockedFunction<Commit>;
+const dispatch = jest.fn() as jest.MockedFunction<Dispatch>;
+
 
 let mockStorage = {};
 let user = {
@@ -138,7 +138,7 @@ describe('Given an object of actions', () => {
               
                   const techniqueData = mockedState.techniques
               
-                  await actions.fetchTechniquesFromApi(configActionContext(commit), techniqueData);
+                  await actions.fetchTechniquesFromApi(configActionContextAndState(commit, mockedState), techniqueData);
               
                   expect(commit).toHaveBeenCalled();
             })
