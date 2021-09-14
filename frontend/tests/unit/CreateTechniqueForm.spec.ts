@@ -57,5 +57,39 @@ describe('Given a CreateTechniqueForm component', () => {
               })
             expect(wrapper.text()).toContain('Completa todos los campos')
         })
+
+        describe('And submit is call', () => {
+          test('Then should call handleSaveNewReview', async () => {
+            const wrapper = mount(CreateTechniqueForm, {
+                global: {
+                  plugins: [router],
+                  mocks: {
+                    $store: {
+                      state,
+                      getters: {
+                        isTechniqueInFavorites: false,
+                      },
+                      actions,
+                      mutations,
+                      commit: jest.fn(),
+                      dispatch: jest.fn(),
+                    },
+                    methods: {
+                        handleSaveNewReview: jest.fn(),
+                        mounted: jest.fn(),
+                        this: jest.fn(),
+                    }, 
+                    data: jest.fn(),
+                  },
+                },
+              })
+              const submitForm = jest.fn();
+              submitForm();
+              const formCreateTechnique = wrapper.get('[data-test="createTechniqueForm__submit"]');
+              await formCreateTechnique.trigger('submit')
+              
+            expect(submitForm).toHaveBeenCalled()
+        })
+        })
     })
 })
