@@ -64,7 +64,7 @@ const stateMock = {
 
     isUserAuthenticate: false,
 
-    token: "",
+    token: "myToken",
 
     refreshToken: "",
 
