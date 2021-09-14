@@ -40,6 +40,3 @@ export {
   localStorageMock,
 };
 
-function key(key: any): string {
-    throw new Error('Function not implemented.');
-  }
