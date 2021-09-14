@@ -18,12 +18,47 @@ describe('Given a Header component', () => {
                                 mounted: jest.fn(),
                                 this: jest.fn(),
                             },
+                            commit: jest.fn(),
+                            dispatch: jest.fn(),
                         }
                     }
                 },
 
             });
             expect(wrapper.attributes().class).toBe('header')
+        })
+
+        describe('And button logout is pressed', () => {
+            test('@click button "Logout" should call handleLogout', async () => {
+                const wrapper = mount(Header, {
+                    global: {
+                        plugins: [router],
+                        mocks: {
+                            $store: {
+                                state: {
+                                    currentUser: {},
+                                    isUserAuthenticate: true,
+                                },
+                                methods: {
+                                    handleLogout: jest.fn(),
+                                    mounted: jest.fn(),
+                                    this: jest.fn(),
+                                },
+                                commit: jest.fn(),
+                                dispatch: jest.fn(),
+                            }
+                        }
+                    },
+    
+                });
+                const handleLogout = jest.fn();
+                handleLogout();
+                const logoutButton = wrapper.find('#logout__button');
+                await logoutButton.trigger('click')
+                
+              expect(handleLogout).toHaveBeenCalled()
+            })
+            
         })
 
     

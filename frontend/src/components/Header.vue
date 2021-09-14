@@ -20,7 +20,9 @@
         >Perfil</router-link
       >
 
-      <button @click="handleLogout()" class="button">Logout</button>
+      <button @click="handleLogout()" id="logout__button" class="button">
+        Logout
+      </button>
     </div>
     <div v-else class="header__nav">
       <router-link to="/synergy/login" class="nav__item">Tecnicas</router-link>
