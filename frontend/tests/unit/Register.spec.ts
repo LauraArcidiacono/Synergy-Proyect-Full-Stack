@@ -40,5 +40,34 @@ describe('Given a Register component', () => {
             })
             expect(wrapper.text()).toContain('Regístrate')
         })
+
+    describe('And the form is submited', () => {
+        test('Then handleSubmit should be call', () => {
+            const wrapper = mount(Register, {
+                global: {
+                    plugins: [router],
+                    mocks: {
+                        $store: {
+                            state,
+                            methods: {
+                                handleSubmit: jest.fn(),
+                                this: jest.fn(),
+                            },
+                            commit: jest.fn(),
+                            dispatch: jest.fn(),
+                        }
+                    }
+                },
+
+            })
+            const handleSubmit = jest.fn();
+            handleSubmit();
+            const registerButton = wrapper.get('[data-test="handleSubmit__register"]');
+            registerButton.trigger('submit')
+            
+          expect(handleSubmit).toHaveBeenCalled()
+        })
+    })
+
     })
 })
