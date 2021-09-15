@@ -19,7 +19,6 @@
 
       <div class="createReviewForm__inputs">
         <h3>{{ currentTechnique.name }}</h3>
-        <h4>Comparte tu experiencia utilizando ésta técnica</h4>
         <label for="description"
           >Describe tu experiencia utilizando esta técnica:
           <textarea
@@ -118,6 +117,7 @@ export default {
   & img {
     width: 20vw;
     margin: 2vw;
+    border-radius: 50%;
   }
   & h4 {
     font-size: 2rem;
@@ -156,6 +156,13 @@ export default {
     height: 20vh;
     width: 70%;
     margin: 1vh;
+  }
+}
+
+@media (max-width: 900px) {
+  .createReviewForm__container {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>

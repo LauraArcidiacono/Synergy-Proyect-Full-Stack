@@ -23,7 +23,7 @@
                 )
               "
             >
-              X
+              Quitar
             </button>
             <button class="header__favoriteButton">Favorita</button>
           </div>
@@ -52,22 +52,24 @@
     </section>
     <section class="techniqueDetails__reviews">
       <h2>Reseñas</h2>
-      <ul>
-        <li
-          v-for="review in currentTechnique.reviews"
-          :key="review._id"
-          class="reviews__cards"
-        >
-          <article class="cards__review">
-            <img :src="review.user.avatar" alt="Avatar de usuario" />
-            <div>
-              <h3>{{ review.user.name }}</h3>
-              <p>{{ review.user.profession }}</p>
-              <p>{{ review.description }}</p>
-            </div>
-          </article>
-        </li>
-      </ul>
+      <div class="techniqueDetails__reviewsContainer">
+        <ul>
+          <li
+            v-for="review in currentTechnique.reviews"
+            :key="review._id"
+            class="reviews__cards"
+          >
+            <article class="cards__review">
+              <img :src="review.user.avatar" alt="Avatar de usuario" />
+              <div>
+                <h3>{{ review.user.name }}</h3>
+                <p>{{ review.user.profession }}</p>
+                <p>{{ review.description }}</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
     </section>
     <section class="techniqueDetails__buttons">
       <router-link to="/synergy/profile/:userId">
@@ -151,10 +153,15 @@ export default {
   align-items: center;
 }
 .header__deleteButton {
-  border-radius: 50%;
-  border: solid 0.5vw $blue;
-  color: $pinkStrong;
-  background-color: $aquaHeader;
+  @include button;
+  border: transparent;
+  color: black;
+  font: bold;
+  background-color: $regLogBlue;
+  cursor: pointer;
+  &:hover {
+    background-color: $pinkLight;
+  }
 }
 
 .header__favoriteButton {
@@ -188,8 +195,17 @@ export default {
     font-size: 3vw;
   }
 }
+.techniqueDetails__reviewsContainer {
+  display: flex;
+  flex-direction: row;
+  & ul {
+    display: flex;
+    flex-direction: row;
+  }
+}
 .reviews__cards {
   @include reviews__cards;
+  width: 30%;
 }
 .techniqueDetails__buttons {
   display: flex;

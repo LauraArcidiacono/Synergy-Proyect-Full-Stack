@@ -3,7 +3,11 @@
     <h2>Mi Perfil</h2>
     <div class="profile__container">
       <article class="container__info">
-        <img :src="currentUser.avatar" alt="Avatar de usuario" />
+        <img
+          :src="currentUser.avatar"
+          alt="Avatar de usuario"
+          class="profile__avatar"
+        />
         <div>
           <h4>{{ currentUser.name }}</h4>
           <p>{{ currentUser.profession }}</p>
@@ -128,6 +132,15 @@ export default {
   margin: 2vw;
   padding: 2vw;
 }
+.profile__avatar {
+  justify-content: center;
+  width: 8vw;
+  margin: 1vw;
+  margin-bottom: 0;
+  border-radius: 50%;
+  border: solid 0.5vw $pinkLight;
+  background-color: $pinkLight;
+}
 .container__info {
   display: flex;
   flex-direction: column;
@@ -186,8 +199,24 @@ export default {
 
 .card__deleteButton {
   border-radius: 50%;
-  border: solid 0.5vw $blue;
-  color: $pinkStrong;
-  background-color: $aquaHeader;
+  width: 2vw;
+  height: 2vw;
+  border: transparent;
+  color: black;
+  font: bold;
+  background-color: $regLogBlue;
+  cursor: pointer;
+  &:hover {
+    background-color: $pinkLight;
+  }
+}
+
+@media (max-width: 800px) {
+  .profile__container {
+    display: flex;
+    flex-direction: column;
+    margin: 2vw;
+    padding: 2vw;
+  }
 }
 </style>

@@ -1,14 +1,17 @@
 <template>
   <section class="techniqueList__card">
-    <img class="card__ilustration" :src="ilustration" alt="Imagen tipo" />
+    <div class="card__ilustration">
+      <img class="ilustration" :src="ilustration" alt="Imagen tipo" />
+    </div>
     <div class="card__info">
       <h3>{{ name }}</h3>
       <p>Tipo: {{ type }}</p>
       <p>Objetivo: {{ goal }}</p>
+
+      <router-link :to="'/synergy/techniques/' + _id">
+        <button class="button">Ver Detalles</button></router-link
+      >
     </div>
-    <router-link :to="'/synergy/techniques/' + _id">
-      <button class="button">Ver Detalles</button></router-link
-    >
   </section>
 </template>
 
@@ -43,14 +46,41 @@ export default {
 .techniqueList__card {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   flex: wrap;
 }
-
+.card__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card__ilustration {
+  width: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ilustration {
+  display: flex;
+  width: 13vw;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
 .button {
   @include button;
 }
 .card__ilustration {
   @include card__ilustration;
+}
+
+@media (max-width: 780px) {
+  .ilustration {
+    display: flex;
+    width: 22vw;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
 }
 </style>

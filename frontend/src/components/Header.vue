@@ -1,13 +1,14 @@
 <template>
-  <header class="header">
-    <router-link to="/synergy">
-      <img
-        class="header__logo"
-        :src="this.images.logoSynergy"
-        alt="Logo Synergy"
-    /></router-link>
-
-    <h1>Synergy - Dinámicas Grupales</h1>
+  <header class="headerContainer">
+    <div class="header__logo">
+      <router-link to="/synergy">
+        <img
+          class="logo__logo"
+          :src="this.images.logoSynergy"
+          alt="Logo Synergy"
+      /></router-link>
+      <h1 class="header__title">Synergy - Dinámicas Grupales</h1>
+    </div>
 
     <div v-if="isUserAuthenticate" class="header__nav">
       <router-link to="/synergy/techniques" class="nav__item"
@@ -20,7 +21,11 @@
         >Perfil</router-link
       >
 
-      <button @click="handleLogout()" id="logout__button" class="button">
+      <button
+        @click="handleLogout()"
+        id="logout__button"
+        class="nav__item-button"
+      >
         Logout
       </button>
     </div>
@@ -67,37 +72,59 @@ export default {
 @import "../styles/_colors.scss";
 @import "../styles/_mixins.scss";
 
-@media only screen and (min-width: 901px) {
-  //TODO revisar media query ---> cuando al pantalla es mayor a 900px, todo esto. ¿Cuando es menor?
-  header {
-    display: flex;
-    height: 30vh;
-    width: 100%;
-    background-color: $aquaHeader;
-    align-items: center;
-    justify-content: space-between;
-    & h1 {
-      display: none;
-    }
+.headerContainer {
+  display: flex;
+  height: auto;
+  width: 100%;
+  background-color: $aquaHeader;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__title {
+  display: none;
+}
+.header__nav {
+  width: 50%;
+  margin: 3vh;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.header__logo {
+  width: 20%;
+}
+.logo__logo {
+  width: 100%;
+  margin: 1vh;
+  &:hover {
+    opacity: 0.8;
   }
-  .header__logo {
-    width: 65%;
-    margin: 1vh;
+}
+.nav__item {
+  margin: 3vw;
+  text-decoration: none;
+  color: rgb(10, 76, 99);
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.nav__item-button {
+  @include button;
+}
+
+@media (max-width: 780px) {
+  .headerContainer {
+    flex-direction: column;
   }
   .header__nav {
-    margin: 3vh;
-    align-items: center;
-    justify-items: flex-end;
+    flex-direction: column;
+    align-content: center;
   }
   .nav__item {
-    margin: 3vw;
-    text-decoration: none;
-    color: rgb(10, 76, 99);
-    font-family: "Poppins", sans-serif;
-    font-size: 2rem;
-  }
-  .button {
-    @include button;
+    font-size: 1rem;
   }
 }
 </style>

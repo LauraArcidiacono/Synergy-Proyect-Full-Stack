@@ -1,10 +1,15 @@
 <template>
-  <footer class="footer">
-    <img
-      class="footer__logo"
-      :src="this.images.logoSynergy"
-      alt="Logo Synergy"
-    />
+  <footer class="footerContainer">
+    <div class="footer__logo">
+      <router-link to="/synergy">
+        <img
+          class="logo__logo"
+          :src="this.images.logoSynergy"
+          alt="Logo Synergy"
+        />
+        /></router-link
+      >
+    </div>
     <div class="footer__central">
       <img
         class="footer__title"
@@ -45,23 +50,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-footer {
+.footerContainer {
   width: 100%;
   display: flex;
-  height: 30vh;
+  height: auto;
   background-color: rgb(215, 234, 226);
   align-items: center;
   justify-content: space-between;
 }
 .footer__logo {
-  height: 90%;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+.logo__logo {
+  width: 60%;
   margin: 1vh;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 .footer__title {
-  width: 25%;
+  margin-bottom: 2vh;
+  width: 60%;
 }
 .footer__central {
-  width: 60%;
+  width: 50%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -73,12 +87,21 @@ footer {
   text-align: center;
 }
 .footer__logos {
+  width: 25%;
   display: flex;
-  height: 70%;
-  align-items: center;
+  justify-content: center;
 }
 .logos__item {
-  height: 20vw;
+  width: 4vw;
   margin: 1vw;
+}
+
+@media (max-width: 700px) {
+  .footerContainer {
+    flex-direction: column;
+  }
+  .footer__title {
+    width: 50%;
+  }
 }
 </style>

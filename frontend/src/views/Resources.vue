@@ -8,7 +8,7 @@
           :key="resource._id"
           class="book__item"
         >
-          <div>
+          <div class="book__itemContainer">
             <div Class="book__image">
               <img :src="resource.image" alt="Portada Libro" />
             </div>
@@ -62,31 +62,47 @@ export default {
   align-items: center;
   margin-top: 2vw;
 }
+.resources__items {
+  min-width: 500px;
+}
 .items__book {
+  height: auto;
+  list-style: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 45vw;
   background-color: rgba(10, 76, 99, 0.7);
   margin: 2vw;
   border-radius: 1.5vw;
   & img {
-    width: 100%;
+    width: 70%;
     background-color: $regLogBlue;
     border-radius: 1vw;
   }
-  & div {
-    display: flex;
-    text-align: center;
-    margin: 2vw;
-    flex-direction: column;
-    justify-content: center;
-  }
+}
+.book__itemContainer {
+  background-color: $aqua;
+  border-radius: 1.5vw;
+  display: flex;
+  flex-direction: row;
+  margin: 2vw;
 }
 .book__image {
   flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .book__info {
   flex: 1;
+  display: flex;
+  text-align: center;
+  margin: 2vw;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 60%;
   & h3,
   h4,
   a {
