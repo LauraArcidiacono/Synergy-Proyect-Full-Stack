@@ -62,12 +62,15 @@
     </section>
     <section class="landingPage__reviews">
       <h3>Reseñas</h3>
-      <div class="reviews__cards">
+      <div class="reviews__cardsContainer">
         <article class="cards__review">
           <img :src="this.images.avatarClara" alt="Avatar de usuario" />
           <div>
             <h4>Clara Carzolio</h4>
-            <p>Soy profesora y la uso siempre al preparar mis clases!</p>
+            <p>
+              Soy profesora y la uso siempre al preparar mis clases! La
+              comunidad es muy activa y cada vez hay más técnicas!
+            </p>
           </div>
         </article>
         <article class="cards__review">
@@ -164,6 +167,8 @@ export default {
   @include article__container;
   background-color: $pinkLightOp;
   width: 80%;
+  margin-right: auto;
+  margin-left: auto;
 }
 .rules__container {
   display: flex;
@@ -182,8 +187,44 @@ export default {
 .landingPage__reviews {
   @include reviews__container;
 }
-.reviews__cards {
+.reviews__cardsContainer {
   @include reviews__cards;
   margin-bottom: 2vw;
+  display: flex;
+  flex-direction: row;
+  min-height: 39vh;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+.cards__review {
+  width: 30%;
+
+  min-height: 39vh;
+}
+
+@media (max-width: 800px) {
+  .landingPage__presentation,
+  .landingPage__fundamentals,
+  .landingPage__rules,
+  .reviews__cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .presentation__info {
+    width: 80%;
+    padding: 2vh;
+  }
+  .landingPage__logo {
+    display: none;
+  }
+  .reviews__cardsContainer {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2vh;
+  }
+  .cards__review {
+    width: 80%;
+    min-height: 22vh;
+  }
 }
 </style>

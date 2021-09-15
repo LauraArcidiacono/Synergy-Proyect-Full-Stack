@@ -1,7 +1,11 @@
 <template>
   <div>
     <Header />
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
     <Footer />
   </div>
 </template>
@@ -22,5 +26,14 @@ export default {
 * {
   margin: 0;
   font-family: "Poppins", sans-serif, Arial;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

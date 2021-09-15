@@ -107,4 +107,16 @@ export default {
   @include article__container;
   background-color: $pinkLightOp;
 }
+
+@media (max-width: 800px) {
+  .dashboard__articles {
+    flex-direction: column;
+    align-items: center;
+  }
+  .articles__techniques,
+  .articles_resources,
+  .articles__profile {
+    width: 80%;
+  }
+}
 </style>

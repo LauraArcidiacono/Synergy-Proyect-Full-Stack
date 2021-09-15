@@ -10,28 +10,35 @@
         font-size: 1.1rem;
         margin: 2vw;
         cursor: pointer;
+        &:hover {
+          background-color: $regLogBlue;
+        }
 }
 @mixin input {
   outline: none;
 }
 @mixin technique__item {
-    width: 70%;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
   border: solid 0.1vw;
   border-color: rgba(0, 0, 0, 0.25);
   flex-direction: column;
   align-items: center;
   margin: 1vw;
-
-
 }
 @mixin card__ilustration {
     width: 10vw;
 }
 @mixin user__avatar {
-  border-radius: 50%;
+  justify-content: center;
+    width: 8vw;
+    margin: 1vw;
+    margin-bottom: 0;
+    border-radius: 50%;
+    border: solid 0.5vw $pinkLight;
+    background-color: $pinkLight;
 }
 @mixin article__container{
   display: flex;
@@ -72,8 +79,7 @@
 }
 @mixin reviews__cards {
   display: flex;
-  flex-direction: row;
-
+  flex-direction: column;
   & div {
     margin: 0.5vw;
     padding: 1vw;
