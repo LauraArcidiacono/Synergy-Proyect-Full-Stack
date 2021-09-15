@@ -10,6 +10,15 @@ const configActionContextAndState = (commit: Commit, state: State): any => ({
   rootGetters: jest.fn(),
 });
 
+const configActionContextDispatchAndState = (dispatch: Dispatch, state: State): any => ({
+  dispatch,
+  commit: jest.fn(),
+  state,
+  getters: jest.fn(),
+  rootState: {} as State,
+  rootGetters: jest.fn(),
+});
+
 const configActionContext = (commit: Commit): any => ({
   commit,
   dispatch: jest.fn(),
@@ -35,6 +44,7 @@ const localStorageMock = ()=> ({
 
 export {
   configActionContext,
+  configActionContextDispatchAndState,
   configActionContextAndState,
   configActionContextDispatch,
   localStorageMock,
