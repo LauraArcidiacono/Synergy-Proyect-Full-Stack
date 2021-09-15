@@ -1,11 +1,11 @@
 <template>
   <div class="techniquesList">
-    <h2>Lista de Técnicas disponibles</h2>
     <img
       class="techniquesList__title"
       :src="this.images.tituloSynergy"
       alt="Logo Synergy"
     />
+    <h2>Lista de Técnicas disponibles</h2>
     <section class="techniquesList__search">
       <div class="search__options">
         <label class="search__options-label" for="techniques__type"
@@ -88,14 +88,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  & h2 {
-    display: none;
-  }
 }
 .techniquesList__title {
-  width: 14%;
+  width: 27%;
   margin-top: 2vw;
 }
+
 .search__options {
   display: flex;
   flex-direction: row;
@@ -115,7 +113,8 @@ export default {
 }
 .technique__card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   flex: wrap;
   align-items: center;
@@ -123,12 +122,27 @@ export default {
 }
 .card__item {
   @include technique__item;
+  min-height: 44vh;
 }
 .techniquesList__search {
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   font-size: 2vw;
+}
+
+@media (max-width: 780px) {
+  .technique__card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .card__item {
+    @include technique__item;
+    width: 75%;
+  }
 }
 </style>
