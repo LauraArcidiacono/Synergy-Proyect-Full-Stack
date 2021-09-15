@@ -7,8 +7,7 @@
           :src="this.images.logoSynergy"
           alt="Logo Synergy"
         />
-        /></router-link
-      >
+      </router-link>
     </div>
     <div class="footer__central">
       <img
