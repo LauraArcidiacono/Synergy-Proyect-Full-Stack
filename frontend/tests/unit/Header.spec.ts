@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import Header from '@/components/Header.vue';
 import router from '@/router';
+import state from '@/store/index'
 describe('Given a Header component', () => {
         describe('When is rendered', () => {
             test('Then should render the logo', () => {
@@ -9,9 +10,7 @@ describe('Given a Header component', () => {
                         plugins: [router],
                         mocks: {
                             $store: {
-                                state: {
-                                    isAuthenticate: true,
-                                },
+                                state,
                                 dispatch: jest.fn(),
                             }
                         }

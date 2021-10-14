@@ -22,7 +22,7 @@ describe('Given a app.vue file', () => {
           },
         },
       });
-    expect(wrapper.html()).toContain('<header class="header">');
+    expect(wrapper.html()).toContain('<header class="headerContainer">');
     })
   })
 });
