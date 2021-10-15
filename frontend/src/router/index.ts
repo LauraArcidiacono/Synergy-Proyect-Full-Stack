@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import LandingPage from '../views/LandingPage.vue'
-import Dashboard from '../views/Dashboard.vue';
-import Techniques from '../views/Techniques.vue';
-import TechniqueDetails from'../views/TechniqueDetails.vue';
+import LandingPage from '@/views/LandingPage.vue'
+import Dashboard from '@/views/Dashboard.vue';
+import Techniques from '@/views/Techniques.vue';
+import TechniqueDetails from'@/views/TechniqueDetails.vue';
 import CreateTechniqueForm from '@/views/CreateTechniqueForm.vue';
 import CreateReviewForm from '@/views/CreateReviewForm.vue';
-import Profile from '../views/Profile.vue';
-import Resources from '../views/Resources.vue';
-import NotFound from '../views/NotFound.vue';
-import Login from '../components/Login.vue';
-import Register from '../components/Register.vue';
+import Profile from '@/views/Profile.vue';
+import Resources from '@/views/Resources.vue';
+import NotFound from '@/views/NotFound.vue';
+import Login from '@/components/Login.vue';
+import Register from '@/components/Register.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
