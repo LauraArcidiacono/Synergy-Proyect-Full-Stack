@@ -1,7 +1,7 @@
 <template>
   <footer class="footerContainer">
     <div class="footer__logo">
-      <router-link to="/synergy">
+      <router-link to="/synergy" class="logo__router">
         <img
           class="logo__logo"
           :src="this.images.logoSynergy"
@@ -17,7 +17,7 @@
       />
       <span class="footer__span">by Laura Arcidiacono</span>
       <span class="footer__span">Todos los derechos reservados</span>
-      <span class="footer__span">© 2000-2021</span>
+      <span class="footer__span">© 2000-2022</span>
     </div>
     <div class="footer__logos">
       <img class="logos__item" :src="this.images.twiter" alt="Logo Twiter" />
@@ -69,6 +69,10 @@ export default {
     opacity: 0.8;
   }
 }
+.logo__router {
+  display: flex;
+  justify-content: center;
+}
 .footer__title {
   margin-bottom: 2vh;
   width: 60%;
@@ -98,6 +102,16 @@ export default {
 @media (max-width: 700px) {
   .footerContainer {
     flex-direction: column;
+    justify-content: center;
+  }
+  .footer__logo {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+  }
+  .logo__logo {
+    display: flex;
+    justify-content: center;
   }
   .footer__title {
     width: 50%;

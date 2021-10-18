@@ -139,4 +139,17 @@ export default {
 .button {
   @include button;
 }
+
+@media (max-width: 800px) {
+  .register__userData {
+    margin-bottom: 3vh;
+    margin-top: 2vh;
+    width: 70vw;
+  }
+  .register {
+    & input {
+      font-size: 3.5vw;
+    }
+  }
+}
 </style>

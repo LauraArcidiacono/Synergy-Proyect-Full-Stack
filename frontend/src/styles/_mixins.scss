@@ -1,18 +1,18 @@
 @import './_colors.scss';
 
 @mixin button {
-        background-color: #0a4c63;
-        border: transparent;
-        border-radius: 2vw;
-        width: 17vw;
-        padding: 1vw;
-        color: white;
-        font-size: 1.1rem;
-        margin: 2vw;
-        cursor: pointer;
-        &:hover {
-          background-color: $regLogBlue;
-        }
+  background-color: #0a4c63;
+  border: transparent;
+  border-radius: 2vw;
+  width: 40%;
+  padding: 1vw;
+  color: white;
+  font-size: 1rem;
+  margin: 2vw;
+  cursor: pointer;
+  &:hover {
+    background-color: $regLogBlue;
+  }
 }
 @mixin input {
   outline: none;
@@ -27,30 +27,31 @@
   flex-direction: column;
   align-items: center;
   margin: 1vw;
+  margin-bottom: 2vh;
 }
 @mixin card__ilustration {
     width: 10vw;
 }
 @mixin user__avatar {
   justify-content: center;
-    width: 8vw;
-    margin: 1vw;
-    margin-bottom: 0;
-    border-radius: 50%;
-    border: solid 0.5vw $pinkLight;
-    background-color: $pinkLight;
+  width: 8vw;
+  margin: 1vw;
+  margin-bottom: 0;
+  border-radius: 50%;
+  border: solid 0.5vw $pinkLight;
+  background-color: $pinkLight;
 }
 @mixin article__container{
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 1.5vw;
-    margin: 2vw;
-    padding: 1vw;
-    background-color: rgba(254, 226, 202, 0.45);
-    flex-wrap: wrap;
-    width: 33%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1.5vw;
+  margin: 2vw;
+  padding: 1vw;
+  background-color: rgba(254, 226, 202, 0.45);
+  flex-wrap: wrap;
+  width: 33%;
 }
 @mixin reviews__container {
   & img {

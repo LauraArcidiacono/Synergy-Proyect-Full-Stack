@@ -8,8 +8,8 @@
       <p>Tipo: {{ type }}</p>
       <p>Objetivo: {{ goal }}</p>
 
-      <router-link :to="'/synergy/techniques/' + _id">
-        <button class="button">Ver Detalles</button></router-link
+      <router-link :to="'/synergy/techniques/' + _id" class="button">
+        Ver Detalles</router-link
       >
     </div>
   </section>
@@ -69,6 +69,8 @@ export default {
 }
 .button {
   @include button;
+  text-decoration: none;
+  padding: 2vw;
 }
 .card__ilustration {
   @include card__ilustration;
