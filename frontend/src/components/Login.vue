@@ -33,9 +33,9 @@
         >Has introducido mal el email o la contraseña.</span
       >
       <button class="button">Ingresar</button>
-      <h4>¿Aún no te has registrado en Synergy</h4>
-      <router-link to="/synergy/register">
-        <button type="submit" class="button">Regístrate</button></router-link
+      <h4>¿Aún no te has registrado en Synergy?</h4>
+      <router-link to="/synergy/register" class="routerButton">
+        Regístrate</router-link
       >
     </div>
   </form>
@@ -101,6 +101,7 @@ export default {
   }
   & h4 {
     margin-top: 2vw;
+    font-size: 1rem;
   }
 }
 .login__userData {
@@ -114,5 +115,26 @@ export default {
 }
 .button {
   @include button;
+}
+.routerButton {
+  @include button;
+  text-decoration: none;
+  text-align: center;
+  &:hover {
+    background-color: $regLogBlue;
+  }
+}
+
+@media (max-width: 800px) {
+  .login__userData {
+    margin-bottom: 3vh;
+    margin-top: 2vh;
+    width: 70vw;
+  }
+  .login {
+    h4 {
+      font-size: 0.8rem;
+    }
+  }
 }
 </style>
