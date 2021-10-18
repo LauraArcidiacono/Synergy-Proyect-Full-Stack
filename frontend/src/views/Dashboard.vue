@@ -18,8 +18,8 @@
           dejar tu propia reseña y guardarlas en tu lista de favoritas para
           tenerlas siempre a mano
         </p>
-        <router-link to="/synergy/techniques">
-          <button class="button">Ver Técnicas</button></router-link
+        <router-link to="/synergy/techniques" class="button">
+          Ver Técnicas</router-link
         >
       </article>
       <article class="articles_resources">
@@ -33,8 +33,8 @@
           Tambien encontrarás el link a las editoriales para que puedas acceder
           fácilmente a consultar por la disponibilidad de cada libro.
         </p>
-        <router-link to="/synergy/resources">
-          <button class="button">Ver Recursos</button></router-link
+        <router-link to="/synergy/resources" class="button">
+          Ver Recursos</router-link
         >
       </article>
       <article class="articles__profile">
@@ -45,8 +45,8 @@
           conoces y consideras valiosas para que otras personas también puedan
           implementarlas.
         </p>
-        <router-link :to="'/synergy/profile/' + currentUser._id">
-          <button class="button">Ver mi Perfil</button></router-link
+        <router-link :to="'/synergy/profile/' + currentUser._id" class="button"
+          >Ver mi Perfil</router-link
         >
       </article>
     </div>
@@ -106,6 +106,10 @@ export default {
 .articles__profile {
   @include article__container;
   background-color: $pinkLightOp;
+}
+.button {
+  text-decoration: none;
+  text-align: center;
 }
 
 @media (max-width: 800px) {
