@@ -1,7 +1,7 @@
 <template>
   <header class="headerContainer">
     <div class="header__logo">
-      <router-link to="/synergy">
+      <router-link to="/synergy" class="logo__router">
         <img
           class="logo__logo"
           :src="this.images.logoSynergy"
@@ -100,6 +100,10 @@ export default {
   &:hover {
     opacity: 0.8;
   }
+}
+.logo__router {
+  display: flex;
+  justify-content: center;
 }
 .nav__item {
   margin: 3vw;
