@@ -214,6 +214,9 @@ export default {
     width: 80%;
     padding: 2vh;
   }
+  .fundamentals__info {
+    width: 70%;
+  }
   .landingPage__logo {
     display: none;
   }
