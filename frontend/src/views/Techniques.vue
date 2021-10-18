@@ -35,7 +35,7 @@
         <button class="button">Buscar</button>
       </div>
     </section>
-    <ul class="technique__card">
+    <ul class="technique__cards">
       <li
         v-for="technique in techniques"
         :key="technique._id"
@@ -111,7 +111,7 @@ export default {
   height: 4vh;
   font-size: 2.5vh;
 }
-.technique__card {
+.technique__cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -119,10 +119,11 @@ export default {
   flex: wrap;
   align-items: center;
   justify-content: center;
+  padding-inline-start: 0;
 }
 .card__item {
   @include technique__item;
-  min-height: 44vh;
+  min-height: 55vh;
 }
 .techniquesList__search {
   display: none;
@@ -143,6 +144,7 @@ export default {
   .card__item {
     @include technique__item;
     width: 75%;
+    min-height: 30vh;
   }
 }
 </style>
