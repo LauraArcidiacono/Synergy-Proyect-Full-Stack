@@ -23,7 +23,10 @@
             :key="favoriteTechniques._id"
             class="card__item"
           >
-            <router-link :to="'/synergy/techniques/' + favoriteTechniques._id">
+            <router-link
+              :to="'/synergy/techniques/' + favoriteTechniques._id"
+              class="card__link"
+            >
               <div>
                 <img
                   class="card__ilustration"
@@ -52,10 +55,11 @@
                 class="card__deleteButton"
                 data-test="deleteTechniqueProvided__button"
               >
-                X
+                <i class="fas fa-trash-alt"></i>
               </button>
               <router-link
                 :to="'/synergy/techniques/' + techniquesProvided._id"
+                class="card__link"
               >
                 <div>
                   <img
@@ -72,8 +76,10 @@
       </article>
     </div>
 
-    <router-link to="/synergy/techniques/createtechniqueform">
-      <button class="button">Crear Técnica</button>
+    <router-link
+      to="/synergy/techniques/createtechniqueform"
+      class="router__button"
+      >Crear Técnica
     </router-link>
   </section>
 </template>
@@ -196,27 +202,44 @@ export default {
     margin-left: 0.5vw;
   }
 }
+.card__link {
+  text-decoration: none;
+  color: $blue;
+}
 
 .card__deleteButton {
-  border-radius: 50%;
-  width: 2vw;
-  height: 2vw;
   border: transparent;
+  border-radius: 24vh;
   color: black;
-  font: bold;
   background-color: $regLogBlue;
+  width: 3vw;
+  height: 5vh;
   cursor: pointer;
   &:hover {
     background-color: $pinkLight;
   }
 }
-
+.router__button {
+  @include button;
+  text-decoration: none;
+  text-align: center;
+  width: 12vw;
+}
 @media (max-width: 800px) {
   .profile__container {
     display: flex;
     flex-direction: column;
     margin: 2vw;
     padding: 2vw;
+  }
+
+  .card__deleteButton {
+    border-radius: 24vh;
+    width: 9vw;
+    height: 5vh;
+  }
+  .router__button {
+    width: 30vw;
   }
 }
 </style>
