@@ -88,8 +88,8 @@
       </div>
     </div>
     <div class="createTechniqueForm__buttons">
-      <router-link to="/synergy/profile/:userId">
-        <button class="button">Volver sin crear</button>
+      <router-link to="/synergy/profile/:userId" class="button"
+        >Volver sin crear
       </router-link>
       <button type="submit" class="button">Crear Técnica</button>
     </div>
@@ -187,5 +187,17 @@ export default {
 .createTechniqueForm__buttons {
   display: flex;
   flex-direction: row;
+}
+.button {
+  @include button;
+  width: auto;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .createTechniqueForm {
+    padding: 2vw;
+  }
 }
 </style>
