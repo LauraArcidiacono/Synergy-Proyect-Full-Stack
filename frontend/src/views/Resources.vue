@@ -63,14 +63,18 @@ export default {
   margin-top: 2vw;
 }
 .resources__items {
-  min-width: 500px;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .items__book {
   height: auto;
   list-style: none;
+  padding-inline-start: 0;
   display: flex;
   flex-direction: column;
-  width: 45vw;
+  width: 50vw;
   background-color: rgba(10, 76, 99, 0.7);
   margin: 2vw;
   border-radius: 1.5vw;
@@ -114,6 +118,12 @@ export default {
   & h3,
   h4 {
     margin-bottom: 1vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .items__book {
+    width: 80vw;
   }
 }
 </style>

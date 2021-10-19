@@ -130,6 +130,7 @@ export default {
 
 .techniqueDetails {
   width: 100%;
+  margin-right: 5vw;
 }
 .techniqueDetails__info {
   display: flex;
@@ -227,6 +228,9 @@ export default {
   .details__info {
     display: flex;
     flex-direction: column;
+  }
+  .details__info-details {
+    width: 90%;
   }
 
   .header__deleteButton,

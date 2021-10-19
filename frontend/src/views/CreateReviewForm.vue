@@ -48,8 +48,8 @@
       </div>
     </div>
     <div class="createReviewForm__buttons">
-      <router-link to="/synergy/techniques/:techniqueId">
-        <button class="button">Volver sin crear</button>
+      <router-link to="/synergy/techniques/:techniqueId" class="router__button"
+        >Volver sin crear
       </router-link>
 
       <button type="submit" class="button">Crear Reseña</button>
@@ -158,11 +158,25 @@ export default {
     margin: 1vh;
   }
 }
+.createReviewForm__buttons {
+  display: flex;
+  flex-direction: row;
+}
+.router__button {
+  @include button;
+  text-decoration: none;
+  text-align: center;
+  width: 12vw;
+}
 
 @media (max-width: 900px) {
   .createReviewForm__container {
     display: flex;
     flex-direction: column;
+    padding: 2vw;
+  }
+  .router__button {
+    width: 40vw;
   }
 }
 </style>
