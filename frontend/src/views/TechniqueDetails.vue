@@ -57,7 +57,7 @@
       <div class="techniqueDetails__reviewsContainer">
         <ul>
           <li
-            v-for="review in currentTechnique.reviews"
+            v-for="review in currentTechniqueReviews"
             :key="review._id"
             class="reviews__cards"
           >
@@ -90,7 +90,7 @@ import { useRoute } from "vue-router";
 export default {
   name: "TechniqueDetails",
   computed: {
-    ...mapState(["currentUser", "currentTechnique"]),
+    ...mapState(["currentUser", "currentTechnique", "currentTechniqueReviews"]),
   },
   methods: {
     ...mapActions([
