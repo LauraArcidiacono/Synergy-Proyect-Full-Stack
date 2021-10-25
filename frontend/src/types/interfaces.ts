@@ -141,11 +141,13 @@ interface State {
   techniques: Array<Technique>,
   currentTechnique: Technique,
   currentUserTechniquesProvided: Array<Technique>,
+  currentTechniqueReviews: Array<Review>,
   currentUser: User,
   isUserAuthenticate: boolean,
   token: string,
   refreshToken: string,
   resources: Array<Resource>
+  reviews: Array<Review>, 
 }
 
 export {
