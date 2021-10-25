@@ -58,14 +58,14 @@ const actions: any = {
         commit('loadTechniques', data);
       },
   
-    async fetchOneTechniqueFromApi({commit, state}: ActionContext<State, State>, id: string):  Promise<void> {
+    async fetchOneTechniqueFromApi({dispatch, commit, state}: ActionContext<State, State>, id: string):  Promise<void> {
         const { data } = await axios({
           method: 'GET',
           url: `${process.env.VUE_APP_DDBB_URL}/technique/${id}`,
           headers: { Authorization: `Bearer ${state.token}` }
         }); 
         commit('loadOneTechnique', data);
-        
+        dispatch("fetchReviewsFromApi", id)
       },
 
     async fetchCurrentUserTechniquesProvided({commit, state}: ActionContext<State, State>, id: string) {
@@ -132,24 +132,32 @@ const actions: any = {
     },
 
 
-    async createNewReview({dispatch, state}:ActionContext<State, State>, newReview: NewReview):  Promise<void> {
-      const { data} = await axios({
+    async createNewReview({state}:ActionContext<State, State>, newReview: NewReview):  Promise<void> {
+      await axios({
         method: 'POST',
         url: `${process.env.VUE_APP_DDBB_URL}/review`,
         headers: { Authorization: `Bearer ${state.token}`},
         data: newReview
       });
-      dispatch("getNewReview", data._id)
     },
 
-    async getNewReview({commit, state}:ActionContext<State, State>, reviewId: string):  Promise<void> {
-      const {data} = await axios({
+    async fetchReviewsFromApi({commit, dispatch, state}:ActionContext<State, State>, id: string):  Promise<void> {
+      const { data } = await axios({
         method: 'GET',
-        url: `${process.env.VUE_APP_DDBB_URL}/review/${reviewId}`,
+        url: `${process.env.VUE_APP_DDBB_URL}/review`,
         headers: { Authorization: `Bearer ${state.token}`},
       })
-      commit("loadTechniqueReview", data);
+      commit("loadReviews", data)
+      dispatch("filterTechniqueReview", id)
     },
+
+    async filterTechniqueReview({commit, state}:ActionContext<State, State>, id: string): Promise<void> {
+      const currentTechniqueReviews = state.reviews.filter((reviewItem) => reviewItem.technique === id);
+      commit("loadCurrentTechniqueReviews", currentTechniqueReviews)
+    },
+
+
+
 
     async fetchResourcesFromApi({commit, state}: ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({
