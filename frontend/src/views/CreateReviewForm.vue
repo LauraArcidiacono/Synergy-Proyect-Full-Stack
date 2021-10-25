@@ -70,8 +70,8 @@ export default {
     handleSaveNewReview(user, technique) {
       this.createNewReview({
         ...this.newReview,
-        user: user,
-        technique: technique,
+        user: user._id,
+        technique: technique._id,
       });
       this.$router.push(`/synergy/techniques/${technique._id}`);
     },

@@ -7,6 +7,8 @@ const state = {
 
     currentUserTechniquesProvided: [],
 
+    currentTechniqueReviews: [],
+
     currentUser: {},
 
     isUserAuthenticate: false,
@@ -16,6 +18,8 @@ const state = {
     refreshToken: "",
 
     resources: [],
+
+    reviews: [], 
 };
 
 export default state as unknown as State; 

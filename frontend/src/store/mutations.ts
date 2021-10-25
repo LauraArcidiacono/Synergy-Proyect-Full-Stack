@@ -37,10 +37,6 @@ const mutations = {
         state.currentUser.favoriteTechniques = payload;
       },
   
-      loadTechniqueReview(state: State, payload: Review) {
-        state.currentTechnique.reviews.push(payload);
-  },
-  
       loadTechniques(state: State, payload: Array<Technique>) {
         state.techniques = payload;
       },
@@ -49,7 +45,14 @@ const mutations = {
         state.currentTechnique = payload;
       },
 
-  
+      loadReviews(state: State, payload: Array<Review>) {
+        state.reviews = payload;
+      },
+
+      loadCurrentTechniqueReviews(state: State, payload: Array<Review>) {
+        state.currentTechniqueReviews = payload; 
+      },
+
       loadResources(state: State, payload: any) {
         state.resources = payload;
       },
