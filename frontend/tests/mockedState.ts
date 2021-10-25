@@ -51,6 +51,17 @@ const stateMock = {
 
     ],
 
+    currentTechniqueReviews: [
+       {
+        _id: "",
+        technique: "",
+        user: "",
+        description: "",
+        score: "",
+        __v: 0
+        }
+    ],
+
     currentUser: {
         name: "",
         profession: "",
@@ -78,6 +89,17 @@ const stateMock = {
             __v: 0
         }
     ],
+
+    reviews: [
+    {
+        _id: "",
+        technique: "",
+        user: "",
+        description: "",
+        score: "",
+        __v: 0
+    }
+    ], 
 };
 
 
