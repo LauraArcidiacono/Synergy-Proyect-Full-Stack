@@ -27,7 +27,7 @@
           id="techniques__type"
           v-model="newTechnique.type"
         >
-          <option value="palnificacion">Planificación</option>
+          <option value="planificacion">Planificación</option>
           <option value="confianza">Confianza</option>
           <option value="metas">Logro de metas</option>
           <option value="comunicacion">Comunicación</option>
