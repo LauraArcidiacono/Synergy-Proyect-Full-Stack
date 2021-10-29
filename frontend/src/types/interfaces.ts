@@ -139,6 +139,7 @@ interface TechniquesProvided {
 
 interface State {
   techniques: Array<Technique>,
+  filteredTechniques: Array<Technique>,
   currentTechnique: Technique,
   currentUserTechniquesProvided: Array<Technique>,
   currentTechniqueReviews: Array<Review>,
