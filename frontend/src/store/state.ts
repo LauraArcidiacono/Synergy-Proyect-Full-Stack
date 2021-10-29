@@ -3,6 +3,8 @@ import {State} from '@/types/interfaces';
 const state = {
     techniques: [],
 
+    filteredTechniques: [],
+
     currentTechnique: {},
 
     currentUserTechniquesProvided: [],
