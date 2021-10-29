@@ -10,3 +10,6 @@ Proyecto Full Stack
 
 🔹 Unit Testing: Jest (Sintaxis: GHERKIN).
 
+🔹 Deploy: Heroku
+
+⭐ Enlace: https://synergyfullstack.herokuapp.com/
