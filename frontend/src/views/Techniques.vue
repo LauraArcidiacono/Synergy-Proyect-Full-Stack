@@ -15,13 +15,26 @@
           class="search__options-select"
           name="techniques__type"
           id="techniques__type"
+          v-model="filterValue"
         >
-          <option value="palnificacion">Planificación</option>
-          <option value="confianza">Confianza</option>
-          <option value="logro de metas">Logro de metas</option>
-          <option value="comunicacion">Comunicación</option>
-          <option value="presentacion">Presentación</option>
-          <option value="animacion">Animación</option>
+          <option value="palnificacion" @click="filterTechniques(filterValue)">
+            Planificación
+          </option>
+          <option value="confianza" @click="filterTechniques(filterValue)">
+            Confianza
+          </option>
+          <option value="logro de metas" @click="filterTechniques(filterValue)">
+            Logro de metas
+          </option>
+          <option value="comunicacion" @click="filterTechniques(filterValue)">
+            Comunicación
+          </option>
+          <option value="presentacion" @click="filterTechniques(filterValue)">
+            Presentación
+          </option>
+          <option value="animacion" @click="filterTechniques(filterValue)">
+            Animación
+          </option>
         </select>
       </div>
       <div class="search__options">
@@ -67,7 +80,7 @@ export default {
     ...mapState(["techniques", "token"]),
   },
   methods: {
-    ...mapActions(["fetchTechniquesFromApi"]),
+    ...mapActions(["fetchTechniquesFromApi", "filterTechniques"]),
   },
   mounted() {
     this.fetchTechniquesFromApi();
@@ -75,6 +88,7 @@ export default {
   data() {
     return {
       images: imagesURLs,
+      filterValue: "",
     };
   },
 };
