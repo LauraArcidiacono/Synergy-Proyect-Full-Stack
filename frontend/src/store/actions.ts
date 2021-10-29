@@ -56,7 +56,13 @@ const actions: any = {
           headers: { Authorization: `Bearer ${state.token}` }
         });
         commit('loadTechniques', data);
+        commit('loadFilteredTechniques', data);
       },
+
+    async filterTechniques({commit, state}: ActionContext<State, State>, filterValue: string): Promise<void> {
+      const filteredTechniques = state.techniques.filter(technique => technique.type.toLocaleLowerCase() === filterValue);
+      commit('loadFilteredTechniques', filteredTechniques);
+    },
   
     async fetchOneTechniqueFromApi({dispatch, commit, state}: ActionContext<State, State>, id: string):  Promise<void> {
         const { data } = await axios({
@@ -155,9 +161,6 @@ const actions: any = {
       const currentTechniqueReviews = state.reviews.filter((reviewItem) => reviewItem.technique === id);
       commit("loadCurrentTechniqueReviews", currentTechniqueReviews)
     },
-
-
-
 
     async fetchResourcesFromApi({commit, state}: ActionContext<State, State>):  Promise<void> {
         const { data } = await axios({
