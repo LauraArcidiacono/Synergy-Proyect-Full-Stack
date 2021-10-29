@@ -33,8 +33,9 @@
           class="search__options-input"
           type="text"
           name="search"
-          v-model="searchValue"
           placeholder="Saludos Múltiples"
+          v-model="searchValue"
+          v-on:input="searchTechniques(searchValue)"
         />
         <button class="button">Buscar</button>
       </div>
@@ -86,7 +87,11 @@ export default {
     ...mapState(["techniques", "filteredTechniques", "token"]),
   },
   methods: {
-    ...mapActions(["fetchTechniquesFromApi", "filterTechniques"]),
+    ...mapActions([
+      "fetchTechniquesFromApi",
+      "filterTechniques",
+      "searchTechniques",
+    ]),
 
     handleFilterTechniques(filterValue) {
       this.filterTechniques(filterValue);
