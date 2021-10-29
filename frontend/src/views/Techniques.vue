@@ -15,29 +15,48 @@
           class="search__options-select"
           name="techniques__type"
           id="techniques__type"
+          v-model="filterValue"
+          @change="handleFilterTechniques(filterValue)"
         >
-          <option value="palnificacion">Planificación</option>
+          <option value="">Todas</option>
+          <option value="planificacion">Planificación</option>
           <option value="confianza">Confianza</option>
-          <option value="logro de metas">Logro de metas</option>
+          <option value="metas">Logro de metas</option>
           <option value="comunicacion">Comunicación</option>
           <option value="presentacion">Presentación</option>
           <option value="animacion">Animación</option>
         </select>
       </div>
       <div class="search__options">
-        <label class="search__options-label" for="search">Palabras clave</label>
+        <label class="search__options-label" for="search">Nombre</label>
         <input
           class="search__options-input"
-          type="search"
-          id="search"
+          type="text"
           name="search"
+          v-model="searchValue"
+          placeholder="Saludos Múltiples"
         />
         <button class="button">Buscar</button>
       </div>
     </section>
-    <ul class="technique__cards">
+    <ul class="technique__cards" v-if="filterValue === ''">
       <li
         v-for="technique in techniques"
+        :key="technique._id"
+        class="card__item"
+      >
+        <TechniqueCard
+          :name="technique.name"
+          :type="technique.type"
+          :goal="technique.goal"
+          :ilustration="technique.ilustration"
+          :_id="technique._id"
+        />
+      </li>
+    </ul>
+    <ul class="technique__cards" v-else>
+      <li
+        v-for="technique in filteredTechniques"
         :key="technique._id"
         class="card__item"
       >
@@ -64,10 +83,14 @@ export default {
     TechniqueCard,
   },
   computed: {
-    ...mapState(["techniques", "token"]),
+    ...mapState(["techniques", "filteredTechniques", "token"]),
   },
   methods: {
-    ...mapActions(["fetchTechniquesFromApi"]),
+    ...mapActions(["fetchTechniquesFromApi", "filterTechniques"]),
+
+    handleFilterTechniques(filterValue) {
+      this.filterTechniques(filterValue);
+    },
   },
   mounted() {
     this.fetchTechniquesFromApi();
@@ -75,6 +98,8 @@ export default {
   data() {
     return {
       images: imagesURLs,
+      filterValue: "",
+      searchValue: "",
     };
   },
 };
@@ -126,7 +151,7 @@ export default {
   min-height: 55vh;
 }
 .techniquesList__search {
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
