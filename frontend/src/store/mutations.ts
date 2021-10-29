@@ -40,7 +40,11 @@ const mutations = {
       loadTechniques(state: State, payload: Array<Technique>) {
         state.techniques = payload;
       },
-  
+      
+      loadFilteredTechniques(state: State, payload: Array<Technique>) {
+        state.filteredTechniques = payload;
+      },
+
       loadOneTechnique(state: State, payload: Technique) {
         state.currentTechnique = payload;
       },
