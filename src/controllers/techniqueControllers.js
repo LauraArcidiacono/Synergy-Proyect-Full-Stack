@@ -70,21 +70,6 @@ async function getTechniquesByUserProviderId(req, res) {
   }
 }
 
-///
-async function getTechniquesByUserReviewerId(req, res) {
-  const { userReviewerId } = req.params;
-  try {
-    const foundTechniqueReview = await Technique
-      .find({ reviews: { user: { _id: { $eq: userReviewerId } } } })
-      .populate('reviews');
-    res.json(foundTechniqueReview);
-    res.send(204);
-  } catch (error) {
-    res.status(500);
-    res.send(error);
-  }
-}
-///
 async function updateOneTechniqueById(req, res) {
   const { techniqueId } = req.params;
   const dataToUpdate = req.body;
@@ -118,6 +103,5 @@ module.exports = {
   getOneTechniqueById,
   getTechniquesByUserProviderId,
   updateOneTechniqueById,
-  getTechniquesByUserReviewerId,
   deleteOneTechniqueById
 };

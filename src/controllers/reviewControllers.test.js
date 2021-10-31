@@ -22,7 +22,11 @@ describe('reviewControllers', () => {
             query: jest.fn()
           };
 
-          Review.find.mockResolvedValue();
+          Review.find.mockReturnValue({
+            populate: jest.fn().mockResolvedValue({
+              user: {}
+            })
+          });
 
           await controllers.getAllReviews(req, res);
 
