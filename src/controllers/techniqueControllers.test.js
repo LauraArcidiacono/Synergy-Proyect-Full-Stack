@@ -162,7 +162,7 @@ describe('TechniqueControllers', () => {
   describe('Given a getTechniquesByUserReviewerId function', () => {
     beforeEach(() => {
       req = {
-        params: { userProviderId: '612cdc22f51271a5127ca260' }
+        params: { userProviderId: '697789812cdc22f51271a5127ca260' }
       };
     });
     describe('When is triggered', () => {
