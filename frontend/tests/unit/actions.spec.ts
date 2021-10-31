@@ -71,7 +71,7 @@ describe('Given an object of actions', () => {
         })
 
         describe('And the action getUserFromLocalStorage is executed successfully', () => {
-            test('Action getUserFromLocalStorage should call dispatch', async () => {
+            test('Action getUserFromLocalStorage should call dispatch', () => {
                 const localStorageUser = {
                     email: '@',
                     passwrod:'123'
@@ -79,7 +79,7 @@ describe('Given an object of actions', () => {
 
                 JSON.parse = jest.fn().mockImplementationOnce(() => localStorageUser); 
                  
-                await actions.getUserFromLocalStorage(configActionContextDispatch(dispatch), {});
+                actions.getUserFromLocalStorage(configActionContextDispatch(dispatch), {});
 
                 expect(dispatch).toHaveBeenCalled();
             })
@@ -130,9 +130,9 @@ describe('Given an object of actions', () => {
         })
 
         describe('And the action deleteDataFromLocalStorage is executed successfully', () => {
-            test('Action deleteDataFromLocalStorage should call dispatch', async () => {
+            test('Action deleteDataFromLocalStorage should call dispatch', () => {
                      
-                await actions.deleteDataFromLocalStorage(configActionContext (commit), user);
+                actions.deleteDataFromLocalStorage(configActionContext (commit), user);
 
                 expect(commit).toHaveBeenCalled();
             })
@@ -151,6 +151,28 @@ describe('Given an object of actions', () => {
             })
         })
 
+        describe('And filterTechniques is executed succesfully', () => {
+            test('Action filterTechniques should call commit', () => {
+                const filteredTechniques  = mockedState.techniques;
+
+                actions.filterTechniques(configActionContextAndState(commit, mockedState), filteredTechniques);
+
+                expect(commit).toHaveBeenCalled();
+            })
+        })
+
+        describe('When searchTechniques is executed succesfully', () => {
+            describe('And the state.techniques includes the searched techniques', () => {
+                test('Action searchTechniques should call commit', () => {
+                    const searchedTechnique = mockedState.techniques;
+
+                    actions.searchTechniques(configActionContextAndState(commit, mockedState), searchedTechnique);
+
+                    expect(commit).toHaveBeenCalled(); 
+                })
+            })   
+        })
+
         describe('And the action fetchOneTechniqueFromApi is executed successfully', () => {
             test('Action fetchOneTechniqueFromApi should call commit', async () => {
                 mockedAxios.mockResolvedValue({
@@ -164,6 +186,8 @@ describe('Given an object of actions', () => {
                   expect(commit).toHaveBeenCalled();
             })
         })
+
+ 
 
         describe('And the action fetchCurrentUserTechniquesProvided is executed successfully', () => {
             test('Action fetchCurrentUserTechniquesProvided should call commit', async () => {
@@ -196,28 +220,20 @@ describe('Given an object of actions', () => {
 
 
         describe('And the action deleteTechniqueProvided is executed successfully', () => {
-            test('Action deleteTechniqueProvided should call commit', async () => {
-                mockedAxios.mockResolvedValue({
-                    data: {}
-                });
-            
+            test('Action deleteTechniqueProvided should call commit two times', () => {
                 const updateProvidedTechniques = [{}]
             
-                await actions.deleteTechniqueProvided(configActionContextAndState(commit, mockedState), updateProvidedTechniques);
+                actions.deleteTechniqueProvided(configActionContextAndState(commit, mockedState), updateProvidedTechniques);
             
                 expect(commit).toHaveBeenCalled();
             })
         })
 
         describe('And the action deleteTechniqueProvided is executed successfully', () => {
-            test('Action deleteTechniqueProvided should call dispatch', async () => {
-                mockedAxios.mockResolvedValue({
-                    data: {}
-                });
-            
+            test('Action deleteTechniqueProvided should call dispatch', () => {
                 const techniqueToDeleteId = [{techniqueId: "45734589894735jh"}]
             
-                await actions.deleteTechniqueProvided(configActionContextDispatchAndState(dispatch, mockedState), techniqueToDeleteId);
+                actions.deleteTechniqueProvided(configActionContextDispatchAndState(dispatch, mockedState), techniqueToDeleteId);
             
                 expect(dispatch).toHaveBeenCalled();
             })
@@ -256,22 +272,22 @@ describe('Given an object of actions', () => {
 
 
     describe('And the action deleteTechniqueFromFavorite is executed successfully', () => {
-        test('Action deleteTechniqueFromFavorite should call commit', async () => {
+        test('Action deleteTechniqueFromFavorite should call commit', () => {
 
             const techniqueToDelete = [{}]
         
-            await actions.deleteTechniqueFromFavorite(configActionContextAndState(commit, mockedState), techniqueToDelete);
+            actions.deleteTechniqueFromFavorite(configActionContextAndState(commit, mockedState), techniqueToDelete);
         
             expect(commit).toHaveBeenCalled();
         })
     })
 
     describe('And the action deleteTechniqueFromFavorite is executed successfully', () => {
-        test('Action deleteTechniqueFromFavorite should call dispatch', async () => {
+        test('Action deleteTechniqueFromFavorite should call dispatch', () => {
 
             const techniqueToDelete = [{}]
         
-            await actions.deleteTechniqueFromFavorite(configActionContextDispatchAndState(dispatch, mockedState), techniqueToDelete);
+            actions.deleteTechniqueFromFavorite(configActionContextDispatchAndState(dispatch, mockedState), techniqueToDelete);
         
             expect(dispatch).toHaveBeenCalled();
         })
@@ -303,20 +319,41 @@ describe('Given an object of actions', () => {
             })
         })
 
-        describe('And the action getNewReview is executed successfully', () => {
-            test('Action getNewReview should call commit', async () => {
+        describe('And the action fetchReviewsFromApi is executed succesfully', () => {
+            test('Action fetchReviewsFromApi sould call commit', async () => {
                 mockedAxios.mockResolvedValue({
                     data: {}
-                  });
-              
-                  const reviewData = mockedState.currentTechnique.reviews
-              
-                  await actions.getNewReview(configActionContextAndState(commit, mockedState), reviewData);
-              
-                  expect(commit).toHaveBeenCalled();
+                });
+
+                const reviewsData = mockedState.reviews;
+
+                await actions.fetchReviewsFromApi(configActionContextAndState(commit, mockedState), reviewsData);
+
+                expect(commit).toHaveBeenCalled();
+            })
+
+            test('Action fetchReviewsFromApi sould call dispatch', async () => {
+                mockedAxios.mockResolvedValue({
+                    data: {}
+                });
+
+                const id = "324uou242ui43223434";
+
+                await actions.fetchReviewsFromApi(configActionContextAndState(dispatch, mockedState), id);
+
+                expect(dispatch).toHaveBeenCalled();
             })
         })
 
+        describe('And the action filterTechniqueReview is executed succesfully', () => {
+            test('Action filterTechniqueReview shuld call commit', () => {
+                const currentTechniqueReviews = mockedState.currentTechniqueReviews;
+
+                actions.filterTechniqueReview(configActionContextAndState(commit, mockedState), currentTechniqueReviews);
+
+                expect(commit).toHaveBeenCalled();
+            })
+        })
         describe('And the action fetchResourcesFromApi is executed successfully', () => {
             test('Action fetchResourcesFromApi should call commit', async () => {
                 mockedAxios.mockResolvedValue({

@@ -59,20 +59,19 @@ const actions: any = {
         commit('loadFilteredTechniques', data);
       },
 
-    async filterTechniques({commit, state}: ActionContext<State, State>, filterValue: string): Promise<void> {
+    filterTechniques({commit, state}: ActionContext<State, State>, filterValue: string) {
       const filteredTechniques = state.techniques.filter(technique => technique.type.toLocaleLowerCase() === filterValue);
       commit('loadFilteredTechniques', filteredTechniques);
     },
 
-    async searchTechniques({commit, state}: ActionContext<State, State>, searchValue: string): Promise<void> {
-      const searchedTchnique = state.techniques.filter((technique) => {
-        const stateTechniques = technique.name.toLocaleLowerCase();
-        const incomingInput = searchValue.toLocaleLowerCase();
-        if (stateTechniques.includes(incomingInput)) {
+    searchTechniques({commit, state}: ActionContext<State, State>, searchValue: string) {
+      const searchedTechnique = state.techniques.filter((technique) => {
+        const stateTechniques = technique.name.toLowerCase();
+        if (stateTechniques.includes(searchValue)) {
           return technique;
         }
       });
-      commit('loadFilteredTechniques', searchedTchnique);
+      commit('loadFilteredTechniques', searchedTechnique);
     },
   
     async fetchOneTechniqueFromApi({dispatch, commit, state}: ActionContext<State, State>, id: string):  Promise<void> {
@@ -105,7 +104,7 @@ const actions: any = {
       commit("updateTechniquesProvidedByThisUser", {_id: data._id, ilustration: data.ilustration, name: data.name})
       },
 
-    async deleteTechniqueProvided({ commit, dispatch, state }: ActionContext<State, State>, techniqueToDelete: TechniqueProvidedToDelete): Promise<void> {
+    deleteTechniqueProvided({ commit, dispatch, state }: ActionContext<State, State>, techniqueToDelete: TechniqueProvidedToDelete) {
       const techniqueId = techniqueToDelete.techniqueId;
       const updateProvided = state.currentUserTechniquesProvided.filter((techniqueItem) => techniqueItem._id !== techniqueId)
       commit("updateTechniquesProvidedByThisUser", updateProvided)
@@ -131,7 +130,7 @@ const actions: any = {
       commit("updateUserFavoriteTechniques", data.favoriteTechniques[data.favoriteTechniques.length-1])
     },
 
-    async deleteTechniqueFromFavorite({ commit, dispatch, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques): Promise<void> {
+    deleteTechniqueFromFavorite({ commit, dispatch, state }: ActionContext<State, State>, favoriteTechnique: FavoriteTechniques) {
       const techniqueId = favoriteTechnique.techniqueId;
       const userId = favoriteTechnique.userId;
       const updatedFavorites = state.currentUser.favoriteTechniques.filter((techniqueItem) => techniqueItem._id !== techniqueId)
@@ -168,7 +167,7 @@ const actions: any = {
       dispatch("filterTechniqueReview", id)
     },
 
-    async filterTechniqueReview({commit, state}:ActionContext<State, State>, id: string): Promise<void> {
+    filterTechniqueReview({commit, state}:ActionContext<State, State>, id: string){
       const currentTechniqueReviews = state.reviews.filter((reviewItem) => reviewItem.technique === id);
       commit("loadCurrentTechniqueReviews", currentTechniqueReviews)
     },
