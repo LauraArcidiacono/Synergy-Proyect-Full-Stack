@@ -63,6 +63,17 @@ const actions: any = {
       const filteredTechniques = state.techniques.filter(technique => technique.type.toLocaleLowerCase() === filterValue);
       commit('loadFilteredTechniques', filteredTechniques);
     },
+
+    async searchTechniques({commit, state}: ActionContext<State, State>, searchValue: string): Promise<void> {
+      const searchedTchnique = state.techniques.filter((technique) => {
+        const stateTechniques = technique.name.toLocaleLowerCase();
+        const incomingInput = searchValue.toLocaleLowerCase();
+        if (stateTechniques.includes(incomingInput)) {
+          return technique;
+        }
+      });
+      commit('loadFilteredTechniques', searchedTchnique);
+    },
   
     async fetchOneTechniqueFromApi({dispatch, commit, state}: ActionContext<State, State>, id: string):  Promise<void> {
         const { data } = await axios({
