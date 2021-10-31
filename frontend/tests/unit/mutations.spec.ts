@@ -268,21 +268,21 @@ describe('Given a mutations module', () => {
         })
 
 
-        describe('When loadTechniqueReview is commited with payload', () => {
+        describe('When loadCurrentTechniqueReviews is commited with payload', () => {
             describe('Then state must be updated', () => {
-                test('State.currentTechnique.reviews must be updated with payload data', () => {
-                    const payload =  {
+                test('State.currentTechniqueReviews must be updated with payload data', () => {
+                    const payload =  [{
                         _id: "612deae3ae4b43e9447880fb",
                         technique: "612df3d8dbe5775944437e46",
                         user: "612cdf2cfa97f2e5c4f1f107",
                         description: "Esta técnica es excelente para revisar la organización y priorización de tareas. Los grupos se divierten y debaten fluidamente",
                         score: 5,
                         __v: 0
-                    }
+                    }]
             
-                    mutations.loadTechniqueReview(mockedState, payload);
+                    mutations.loadCurrentTechniqueReviews(mockedState, payload);
             
-                    expect(mockedState.currentTechnique.reviews).toStrictEqual([{
+                    expect(mockedState.currentTechniqueReviews).toStrictEqual([{
                         _id: "612deae3ae4b43e9447880fb",
                         technique: "612df3d8dbe5775944437e46",
                         user: "612cdf2cfa97f2e5c4f1f107",
@@ -315,6 +315,44 @@ describe('Given a mutations module', () => {
                     mutations.loadTechniques(mockedState, payload);
             
                     expect(mockedState.techniques).toStrictEqual([{
+                        _id: "61314337f8aab565c3e56087",
+                        name: "¿Te gusta tu compañia?",
+                        type: "Animación",
+                        time: 30,
+                        goal: "Caldeamiento y animación del grupo.",
+                        material: "Sillas en ronda.",
+                        task: "Se forma una ronda de sillas y una persona...",
+                        workflow: "Dinamiza y anima al grupo, genera muchas...",
+                        ilustration: "https://i.ibb.co/qptF73V/Music-Celebrate.png",
+                        reviews: [],
+                        __v: 0,
+                        userProvider: "6134eec9c158ae21f6cd95d4"
+                    }])
+                })
+            })
+        })
+
+        describe('When loadFilteredTechniques is commited with payload', () => {
+            describe('Then state must be updated', () => {
+                test('State.filteredTechniques must be updated with payload data', () => {
+                    const payload =  [{
+                        _id: "61314337f8aab565c3e56087",
+                        name: "¿Te gusta tu compañia?",
+                        type: "Animación",
+                        time: 30,
+                        goal: "Caldeamiento y animación del grupo.",
+                        material: "Sillas en ronda.",
+                        task: "Se forma una ronda de sillas y una persona...",
+                        workflow: "Dinamiza y anima al grupo, genera muchas...",
+                        ilustration: "https://i.ibb.co/qptF73V/Music-Celebrate.png",
+                        reviews: [],
+                        __v: 0,
+                        userProvider: "6134eec9c158ae21f6cd95d4"
+                    }]
+            
+                    mutations.loadFilteredTechniques(mockedState, payload);
+            
+                    expect(mockedState.filteredTechniques).toStrictEqual([{
                         _id: "61314337f8aab565c3e56087",
                         name: "¿Te gusta tu compañia?",
                         type: "Animación",
@@ -370,6 +408,36 @@ describe('Given a mutations module', () => {
             })
         })
 
+
+        ///
+        describe("When loadReviews is commited with payload", () => {
+            describe("Then state must be updated", () => {
+                test("State.reviews must be updated with payload data", () => {
+                    const payload = [{
+                        _id: "ur73373h438",
+                        technique: "d83842382902342",
+                        user: "jk2o4i2u4h242",
+                        description: "Excelente!",
+                        score: 5,
+                        __v: 0
+                    }]
+
+                    mutations.loadReviews(mockedState, payload);
+
+                    expect(mockedState.reviews).toStrictEqual([
+                        {
+                            _id: "ur73373h438",
+                            technique: "d83842382902342",
+                            user: "jk2o4i2u4h242",
+                            description: "Excelente!",
+                            score: 5,
+                            __v: 0
+                        }
+                    ])
+                })
+            })
+        })
+        ///
         describe('When loadResources is commited with payload', () => {
             describe('Then state must be updated', () => {
                 test('State.resources must be updated with payload data', () => {
