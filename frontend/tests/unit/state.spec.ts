@@ -5,19 +5,25 @@ describe('Given a state', () => {
         expect(state).toEqual({
             techniques: [],
 
+            filteredTechniques: [],
+
             currentTechnique: {},
-        
+
             currentUserTechniquesProvided: [],
-        
+
+            currentTechniqueReviews: [],
+
             currentUser: {},
-        
+
             isUserAuthenticate: false,
-        
+
             token: "",
-        
+
             refreshToken: "",
-        
+
             resources: [],
+
+            reviews: [],
         })
     })
 })
