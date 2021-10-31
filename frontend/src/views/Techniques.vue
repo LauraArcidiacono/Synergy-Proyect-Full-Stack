@@ -17,6 +17,7 @@
           id="techniques__type"
           v-model="filterValue"
           @change="handleFilterTechniques(filterValue)"
+          data-test="selectCategory"
         >
           <option value="">Todas</option>
           <option value="planificacion">Planificación</option>
@@ -35,7 +36,7 @@
           name="search"
           placeholder="Saludos Múltiples"
           v-model="searchValue"
-          v-on:input="searchTechniques(searchValue)"
+          v-on:input="searchTechniques(searchValue.toLowerCase())"
         />
       </div>
     </section>
