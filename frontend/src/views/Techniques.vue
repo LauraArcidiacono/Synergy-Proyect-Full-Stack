@@ -28,7 +28,7 @@
         </select>
       </div>
       <div class="search__options">
-        <label class="search__options-label" for="search">Nombre</label>
+        <label class="search__options-label" for="search">Nombre:</label>
         <input
           class="search__options-input"
           type="text"
@@ -37,10 +37,12 @@
           v-model="searchValue"
           v-on:input="searchTechniques(searchValue)"
         />
-        <button class="button">Buscar</button>
       </div>
     </section>
-    <ul class="technique__cards" v-if="filterValue === ''">
+    <ul
+      class="technique__cards"
+      v-if="filterValue === '' && searchValue === ''"
+    >
       <li
         v-for="technique in techniques"
         :key="technique._id"
