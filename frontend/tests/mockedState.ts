@@ -96,7 +96,7 @@ const stateMock = {
         technique: "",
         user: "",
         description: "",
-        score: "",
+        score: 5,
         __v: 0
     }
     ], 
